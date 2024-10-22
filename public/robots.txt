@@ -2,16 +2,6 @@ User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
 Disallow: /yash
-Disallow: /best-wedding-photographers*
-Disallow: /best-mehndi-artists*
-Disallow: /best-decorators*
-Disallow: /invitation-cards*
-Disallow: /best-choreographers*
-Disallow: /band-baja-ghodiwala*
-Disallow: /wedding-transportation-and-vintage-cars*
-Disallow: /bridal-wear*
-Disallow: /groom-wear*
-
 
 
 
