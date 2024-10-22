@@ -200,7 +200,7 @@ export default function VendorTopFilter({
   let gridvalue = "2fr 2fr 2fr 1.5fr";
 
   if (
-    category == "top-makeup-artists" ||
+    category == "makeup-artists" ||
     category == "best-wedding-photographers" ||
     category == "best-decorators"
   ) {
@@ -239,7 +239,7 @@ export default function VendorTopFilter({
   async function handleApplyFilter() {
     const baseUrl = `/${filterCategory}/${city}/${filterLocality}`;
     let query = "";
-    if (category === "top-makeup-artists") {
+    if (category === "makeup-artists") {
       query = `?makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
     } else if (category === "best-wedding-photographers") {
       query = `?photographer_occation=${filterPhotographerService || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
@@ -313,7 +313,7 @@ export default function VendorTopFilter({
           </div>
         </div>
 
-        {category !== "best-wedding-photographers" && category !== "top-makeup-artists" && (
+        {category !== "best-wedding-photographers" && category !== "makeup-artists" && (
           <div className="category-wrapper filter-item">
             <div className="dropdown category-dropdown">
               <BiCategoryAlt className="icon" />
@@ -335,7 +335,7 @@ export default function VendorTopFilter({
         )}
 
 
-        {category === "top-makeup-artists" && (
+        {category === "makeup-artists" && (
           <>
             <div className="occationList-wrapper filter-item">
               <div className="dropdown occationList-dropdown">

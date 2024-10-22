@@ -228,7 +228,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
     let query = `?multi_localities=${localitiesFilterArray}&experience=${experienceRange.join(",")}&events_completed=${eventsCompletedRange.join(",")}`;
 
     // Build query string based on selected filters
-    if (category === "top-makeup-artists") {
+    if (category === "makeup-artists") {
       query += `&makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup.join(",") || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
     } else if (category === "best-wedding-photographers") {
       query += `&photographer_occation=${filterPhotographerOccation || ""}&photographer_service=${selectedServiceListPhotographers.join(",") || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
@@ -257,7 +257,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
           </>
         )}
         
-        {category === "top-makeup-artists" && (
+        {category === "makeup-artists" && (
           <>
             <CheckFilter items={serviceListMakeup} name={"Services"} list={selectedServiceListMakeup} setList={setSelectedServiceListMakeup} handleApplyFilter={handleApplyFilter} />
             <CylenderFilter name={"Occasion"} items={occationList} value={selectedOccasionListMakeup} setValue={setSelectedOccasionListMakeup} handleApplyFilter={handleApplyFilter} />

@@ -42,7 +42,7 @@ export default function Home({
       {
         "@type": "ListItem",
         position: 4,
-        url: "https://weddingbanquets.in/top-makeup-artists/delhi/all",
+        url: "https://weddingbanquets.in/makeup-artists/delhi/all",
         name: "Makeup Artists",
       },
       {
