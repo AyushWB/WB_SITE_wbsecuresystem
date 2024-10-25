@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { RiWhatsappFill, RiLinkedinBoxFill, RiFacebookCircleFill, RiInstagramFill } from 'react-icons/ri'
-import { FaPinterest } from "react-icons/fa";
+import { FaPinterest, FaYoutube } from "react-icons/fa";
 import { IoIosCall } from 'react-icons/io'
 import { MdEmail } from 'react-icons/md'
 import Link from 'next/link'
@@ -124,9 +124,15 @@ function Footer() {
                         <span><RiLinkedinBoxFill size={25} className='social-icon' /></span>
                     </Link>
                     
+                    <Link className='f-icon' href={"https://www.youtube.com/@weddingbanquetsofficial/"} passHref target='_blank' aria-label="icon">
+                        <span ><FaYoutube  size={25} className='social-icon' /></span>
+                    </Link>
+
                     <Link className='f-icon' href={"https://www.instagram.com/weddingbanquetsindia/"} passHref target='_blank' aria-label="icon">
                         <span ><RiInstagramFill size={25} className='social-icon' /></span>
                     </Link>
+                    
+                    
                 </div>
                 <div className="newsletter">
                     <p>Subscribe to our Newsletter</p>
