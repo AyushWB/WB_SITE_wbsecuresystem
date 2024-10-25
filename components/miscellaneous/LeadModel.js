@@ -157,16 +157,16 @@ export default function LeadModel() {
             />
           ) : (
             <Image
-              src="/common/discount.png"
+              src="/common/happy-diwali-diwali.gif"
               alt="An example image"
-              width={130}
-              height={130}
+              width={160}
+              height={160}
             />
           )}
           {isSent ? (
             <h3 className="title"> Thank You</h3>
           ) : (
-            <h3 className="title"> Send Enquiry</h3>
+            <h3 className="title"> Deepawali Offer</h3> //Send Enquiry
           )}
           <h3 className="discount-heading">{!isSent && "get upto 40% off"}</h3>
           <p className="discount-text">
@@ -346,7 +346,7 @@ const Wrapper = styled.div`
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.4rem;
 
       .discount-heading {
         color: var(--primary-color);
