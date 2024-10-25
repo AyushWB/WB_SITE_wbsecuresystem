@@ -160,7 +160,7 @@ export default function AvailableCheck() {
             />
           ) : (
             <Image
-              src="/common/happy-diwali-diwali.gif"
+              src="/common/happy-diwali-diwali.png"
               alt="An example image"
               width={160}
               height={160}
