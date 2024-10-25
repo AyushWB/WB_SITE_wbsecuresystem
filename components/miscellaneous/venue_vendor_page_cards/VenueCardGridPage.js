@@ -10,7 +10,7 @@ export default function VenueCardGridPage (){
             <div className="container">
                 <Heading text={`Venues in ${selectedCity}`}/>
                 <div className="card-container">
-                    <VenueCardPage bgColor={"#FAF3F0"} imgUrl={'/vendor-cat/photographer.jpeg'} title={"Banquet Halls"} desc={"Banquet Halls"} url={"/best-wedding-photographers/delhi/all"}/>
+                    <VenueCardPage bgColor={"#FAF3F0"} imgUrl={'/vendor-cat/photographer.jpeg'} title={"Banquet Halls"} desc={"Banquet Halls"} url={"/wedding-photographers/delhi/all"}/>
                     <VenueCardPage bgColor={"#FAF0D7"} imgUrl={'/vendor-cat/makeup.jpeg'} title={"Marriage Gardens"} desc={"Marriage Gardens"}  url={"/makeup-artists/delhi/all"}/>
                     <VenueCardPage bgColor={"#F7FFE5"} imgUrl={'/vendor-cat/mehndi-artist.jpeg'} title={"Wedding Farmhouse"} desc={"Wedding Farmhouse"}  url={"/best-mehndi-artists/delhi/all"}/>
                     <VenueCardPage bgColor={"#F9F5F6"} imgUrl={'/vendor-cat/wedding-decorator.jpeg'} title={"Party Halls"} desc={"Party Halls"}  url={"/best-decorators/delhi/all"}/>

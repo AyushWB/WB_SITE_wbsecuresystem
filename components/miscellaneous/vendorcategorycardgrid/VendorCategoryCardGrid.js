@@ -11,7 +11,7 @@ export default function VendorCategoryCardGrid (){
             <div className="container">
                 <Heading text={"Wedding vendors by category"}/>
                 <div className="card-container">
-                    <VendorCategoryCard bgColor={"#FAF3F0"} imgUrl={'/vendor-cat/photographer.jpeg'} title={"Photographer"} desc={"Photgrapher & Videographer"} url={"/best-wedding-photographers/delhi/all"}/>
+                    <VendorCategoryCard bgColor={"#FAF3F0"} imgUrl={'/vendor-cat/photographer.jpeg'} title={"Photographer"} desc={"Photgrapher & Videographer"} url={"/wedding-photographers/delhi/all"}/>
                     <VendorCategoryCard bgColor={"#FAF0D7"} imgUrl={'/vendor-cat/makeup.jpeg'} title={"Makeup Artist"} desc={"Wedding Makeup Artist"}  url={"/makeup-artists/delhi/all"}/>
                     <VendorCategoryCard bgColor={"#F7FFE5"} imgUrl={'/vendor-cat/mehndi-artist.jpeg'} title={"Mehndi Artist"} desc={"Wedding Mehndi Artist"}  url={"/best-mehndi-artists/delhi/all"}/>
                     <VendorCategoryCard bgColor={"#F9F5F6"} imgUrl={'/vendor-cat/wedding-decorator.jpeg'} title={"Decorators"} desc={"Decorators "}  url={"/best-decorators/delhi/all"}/>

@@ -222,7 +222,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
 
   const handleApplyFilter = async () => {
     const localitiesFilterArray = selectedLocalities.join(",");
-    const filterCategory = category || "best-wedding-photographers";
+    const filterCategory = category || "wedding-photographers";
     const filterLocality = localities.length >= 1 ? "all" : locality;
     const baseUrl = `/${filterCategory}/${city}/${filterLocality}`;
     let query = `?multi_localities=${localitiesFilterArray}&experience=${experienceRange.join(",")}&events_completed=${eventsCompletedRange.join(",")}`;
@@ -230,7 +230,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
     // Build query string based on selected filters
     if (category === "makeup-artists") {
       query += `&makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup.join(",") || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
-    } else if (category === "best-wedding-photographers") {
+    } else if (category === "wedding-photographers") {
       query += `&photographer_occation=${filterPhotographerOccation || ""}&photographer_service=${selectedServiceListPhotographers.join(",") || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
     } else if (category === "best-mehndi-artists") {
       query += `&mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
@@ -248,7 +248,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
       <div className="filters">
         <CheckFilter items={cityLocalities} type={'vendor'} name={"Localities"} list={selectedLocalities} setList={setSelectedLocalities} handleApplyFilter={handleApplyFilter} />
         
-        {category === "best-wedding-photographers" && (
+        {category === "wedding-photographers" && (
           <>
             <CheckFilter items={serviceListPhotographers} name={"Services"} list={selectedServiceListPhotographers} setList={setSelectedServiceListPhotographers} handleApplyFilter={handleApplyFilter} />
             <CylenderFilter name={"Occasion"} items={occationList} value={filterPhotographerOccation} setValue={setFilterPhotographerOccation} handleApplyFilter={handleApplyFilter} />

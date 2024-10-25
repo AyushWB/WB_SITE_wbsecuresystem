@@ -48,7 +48,7 @@ export default function Home({
       {
         "@type": "ListItem",
         position: 5,
-        url: "https://weddingbanquets.in/best-wedding-photographers/delhi/all",
+        url: "https://weddingbanquets.in/wedding-photographers/delhi/all",
         name: "Photographers",
       },
       {

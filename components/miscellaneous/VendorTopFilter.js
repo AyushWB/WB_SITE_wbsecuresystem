@@ -201,7 +201,7 @@ export default function VendorTopFilter({
 
   if (
     category == "makeup-artists" ||
-    category == "best-wedding-photographers" ||
+    category == "wedding-photographers" ||
     category == "best-decorators"
   ) {
     gridvalue = "1.4fr 1.4fr 2fr 2fr 2fr 1.4fr";
@@ -215,7 +215,7 @@ export default function VendorTopFilter({
   }, [locality, category]);
 
   useEffect(() => {
-    if (category === "best-wedding-photographers") {
+    if (category === "wedding-photographers") {
       const updatedBudget = initialPhotoVideoPackageBudget.map((item, index, array) => {
         const newPriceRange = item.slug.split(',').map(price => parseInt(price, 10) * days);
         let newName = '';
@@ -241,7 +241,7 @@ export default function VendorTopFilter({
     let query = "";
     if (category === "makeup-artists") {
       query = `?makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
-    } else if (category === "best-wedding-photographers") {
+    } else if (category === "wedding-photographers") {
       query = `?photographer_occation=${filterPhotographerService || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
     } else if (category === "best-mehndi-artists") {
       query = `?mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
@@ -313,7 +313,7 @@ export default function VendorTopFilter({
           </div>
         </div>
 
-        {category !== "best-wedding-photographers" && category !== "makeup-artists" && (
+        {category !== "wedding-photographers" && category !== "makeup-artists" && (
           <div className="category-wrapper filter-item">
             <div className="dropdown category-dropdown">
               <BiCategoryAlt className="icon" />
@@ -396,7 +396,7 @@ export default function VendorTopFilter({
           </>
         )}
 
-        {category === "best-wedding-photographers" && (
+        {category === "wedding-photographers" && (
           <>
             <div className="days-wrapper filter-item">
               <div className="dropdown days-dropdown">

@@ -74,7 +74,7 @@ export default function SideMenuBar() {
                         </li>
                         <li className="menu-item">
 
-                            <Link href={`/best-wedding-photographers/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photographers</Link>
+                            <Link href={`/wedding-photographers/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photographers</Link>
                         </li>
                         <li className="menu-item">
                             <Link href={`/makeup-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Makeup Artist</Link>
