@@ -54,7 +54,7 @@ export default function Home({
       {
         "@type": "ListItem",
         position: 6,
-        url: "https://weddingbanquets.in/best-mehndi-artists/delhi/all",
+        url: "https://weddingbanquets.in/best-mehendi-artists/delhi/all",
         name: "Mehndi Artists",
       },
     ],

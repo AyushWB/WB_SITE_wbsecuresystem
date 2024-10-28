@@ -47,7 +47,7 @@ function Footer() {
                             </li>
 
                             <li>
-                                <Link href={`/best-mehndi-artists/${selectedCity}/all`} className='f-link'>Mehndi Artist</Link>
+                                <Link href={`/best-mehendi-artists/${selectedCity}/all`} className='f-link'>Mehndi Artist</Link>
                             </li>
 
                             <li>

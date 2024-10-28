@@ -48,11 +48,11 @@ function FooterVendors() {
                                 Wedding Transportation / Vintage Cars
                             </Link>
                         
-                            <Link className='vendor-link' href={`/bridal-wear/${selectedCity}all`}>
+                            <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}all`}>
                                 Bridal Wear
                             </Link>
                        
-                            <Link className='vendor-link' href={`/groom-wear/${selectedCity}/all`}>
+                            <Link className='vendor-link' href={`/groom-outfits/${selectedCity}/all`}>
                                 Groom Wear
                             </Link>
                         

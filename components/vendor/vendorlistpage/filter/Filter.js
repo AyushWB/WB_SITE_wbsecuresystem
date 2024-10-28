@@ -232,11 +232,11 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
       query += `&makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup.join(",") || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
     } else if (category === "wedding-photographers") {
       query += `&photographer_occation=${filterPhotographerOccation || ""}&photographer_service=${selectedServiceListPhotographers.join(",") || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
-    } else if (category === "best-mehndi-artists") {
+    } else if (category === "best-mehendi-artists") {
       query += `&mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
     } else if (category === "band-baja-ghodiwala") {
       query += `&band_baja_ghodiwala_budget=${filterBandBajaGhodiwalaBudget || ""}`;
-    } else if (category === "best-decorators") {
+    } else if (category === "wedding-decorators") {
       query += `&banquet_decor_package_budget=${filterBanquetDecorPackageBudget || ""}&home_decor_package_budget=${filterHomeDecorPackageBudget || ""}`;
     }
 
@@ -265,13 +265,13 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
           </>
         )}
         
-        {category === "best-mehndi-artists" && (
+        {category === "best-mehendi-artists" && (
           <>
             <CylenderFilter name={"Mehndi Artist Budget"} items={mehndiPackageBudget} value={filterMehndiPackageBudget} setValue={setFilterMehndiPackageBudget} handleApplyFilter={handleApplyFilter} />
           </>
         )}
         
-        {category === "best-decorators" && (
+        {category === "wedding-decorators" && (
           <>
             <CylenderFilter name={"Decor Price (Venue)"} items={banquetDecorPackageBudget} value={filterBanquetDecorPackageBudget} setValue={setFilterBanquetDecorPackageBudget} handleApplyFilter={handleApplyFilter} />
             <CylenderFilter name={"Decor Price (Home)"} items={homeDecorPackageBudget} value={filterHomeDecorPackageBudget} setValue={setFilterHomeDecorPackageBudget} handleApplyFilter={handleApplyFilter} />

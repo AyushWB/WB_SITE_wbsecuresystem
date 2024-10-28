@@ -81,7 +81,7 @@ export default function SideMenuBar() {
 
                         </li>
                         <li className="menu-item">
-                            <Link href={`/best-mehndi-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Mehndi Artist</Link>
+                            <Link href={`/best-mehendi-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Mehndi Artist</Link>
                         </li>
 
 

@@ -58,7 +58,7 @@ export default function LeadModel() {
       const data = await response.json();
       setCsrfToken(data.csrfToken);
       // console.log(data.csrfToken);
-    } catch (error) {}
+    } catch (error) { }
   };
   const onRecaptchaChange = (value) => {
     setrecaptcha(value);
@@ -106,6 +106,14 @@ export default function LeadModel() {
 
   async function submitHandler() {
     try {
+      if (!phoneNumber) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          phoneNumber: "Phone number is required",
+        }));
+        return;
+      }
+
       if (errors.phoneNumber || errors.name) {
         return;
       }
@@ -123,7 +131,7 @@ export default function LeadModel() {
           name: name,
           token: csrfToken,
           recaptcha: recaptcha,
-          is_ad : utm_source_active,
+          is_ad: utm_source_active,
           user_ip: userIP,
         }),
       });
@@ -239,6 +247,8 @@ export default function LeadModel() {
                   className={`input ${errors.phoneNumber ? "error" : ""}`}
                   placeholder="Phone Number"
                   max={10}
+                  inputMode="numeric"
+                  pattern="[0-9]"
                   value={phoneNumber}
                   onChange={handlePhoneInput}
                 />
@@ -268,13 +278,13 @@ export default function LeadModel() {
             >
               {isLoading ? <Spinner1 /> : "SUBMIT"}
             </button>
-          //   <button
-          //   className="discount-btn"
-          //   disabled={recaptcha === null}
-          //   onClick={submitHandler}
-          // >
-          //   {isLoading ? <Spinner1 /> : "SUBMIT"}
-          // </button>
+            //   <button
+            //   className="discount-btn"
+            //   disabled={recaptcha === null}
+            //   onClick={submitHandler}
+            // >
+            //   {isLoading ? <Spinner1 /> : "SUBMIT"}
+            // </button>
           )}
         </div>
       </div>
@@ -310,13 +320,19 @@ const Wrapper = styled.div`
     transform: scale(0.5);
 
     ${({ show }) =>
-      show &&
-      css`
+    show &&
+    css`
         transform: scale(1);
       `}
 
     max-width: 45rem;
     min-width: 45rem;
+@media only screen and (min-device-width: 375px) and (max-device-width: 414px) 
+and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+max-width: 40rem;
+    min-width: 40rem;
+}
+
     position: relative;
     background-color: white;
     z-index: 9;

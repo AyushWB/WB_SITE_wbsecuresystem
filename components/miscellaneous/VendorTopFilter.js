@@ -202,10 +202,10 @@ export default function VendorTopFilter({
   if (
     category == "makeup-artists" ||
     category == "wedding-photographers" ||
-    category == "best-decorators"
+    category == "wedding-decorators"
   ) {
     gridvalue = "1.4fr 1.4fr 2fr 2fr 2fr 1.4fr";
-  } else if (category == "best-mehndi-artists" || category == "band-baja-ghodiwala") {
+  } else if (category == "best-mehendi-artists" || category == "band-baja-ghodiwala") {
     gridvalue = "1.4fr 1.4fr 2fr 2fr 1.4fr";
   }
 
@@ -243,11 +243,11 @@ export default function VendorTopFilter({
       query = `?makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
     } else if (category === "wedding-photographers") {
       query = `?photographer_occation=${filterPhotographerService || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
-    } else if (category === "best-mehndi-artists") {
+    } else if (category === "best-mehendi-artists") {
       query = `?mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
     } else if (category === "band-baja-ghodiwala") {
       query = `?band_baja_ghodiwala_budget=${filterBandBajaGhodiwalaBudget || ""}`;
-    } else if (category === "best-decorators") {
+    } else if (category === "wedding-decorators") {
       query = `?banquet_decor_package_budget=${filterBanquetDecorPackageBudget || ""}&home_decor_package_budget=${filterHomeDecorPackageBudget || ""}`;
     }
     router.push(baseUrl + query);
@@ -466,7 +466,7 @@ export default function VendorTopFilter({
           </>
         )}
 
-        {category === "best-mehndi-artists" && (
+        {category === "best-mehendi-artists" && (
           <>
             <div className="mehndiPackageBudget-wrapper filter-item">
               <div className="dropdown mehndiPackageBudget-dropdown">
@@ -491,7 +491,7 @@ export default function VendorTopFilter({
           </>
         )}
 
-        {category === "best-decorators" && (
+        {category === "wedding-decorators" && (
           <>
             <div className="banquetDecorPackageBudget-wrapper filter-item">
               <div className="dropdown banquetDecorPackageBudget-dropdown">
