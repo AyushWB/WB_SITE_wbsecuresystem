@@ -20,6 +20,8 @@ export default function LeadModel() {
     phoneNumber: "",
     name: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   useEffect(() => {
     if (isLeadsModelOpen) {
@@ -106,6 +108,7 @@ export default function LeadModel() {
 
   async function submitHandler() {
     try {
+      setIsSubmitted(true);
       if (!phoneNumber) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -204,6 +207,7 @@ export default function LeadModel() {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)'}}
                 />
               </div>
               <div className="discount-form">
@@ -226,6 +230,7 @@ export default function LeadModel() {
                   min={today}
                   placeholder="Event Date"
                   onClick={(e) => e.target.showPicker()}
+                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)'}}
                 />
               </div>
               <div className="discount-form">
@@ -251,7 +256,11 @@ export default function LeadModel() {
                   pattern="[0-9]"
                   value={phoneNumber}
                   onChange={handlePhoneInput}
-                />
+                  style={{
+                    borderColor: isSubmitted && (!phoneNumber || errors.phoneNumber) ? "red" : "var(--primary-color)",
+                    borderStyle: 'solid'
+                  }}
+                                                    />
               </div>
               {errors.phoneNumber && (
                 <span className="error-text">{errors.phoneNumber}</span>
