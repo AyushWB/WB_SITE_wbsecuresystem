@@ -101,77 +101,19 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                         <script
                             type="application/ld+json"
                             dangerouslySetInnerHTML={{
-                                __html: JSON.stringify({
-                                    "@context": "https://schema.org",
-                                    "@type": "LocalBusiness",
-                                    "name": "Wedding Banquets",
-                                    "image": "https://weddingbanquets.in/_next/image?url=https%3A%2F%2Fcms.wbcrm.in%2Fstorage%2Fuploads%2Fvenue_la_fo_1719475089.jpg&w=3840&q=100",
-                                    "address": {
-                                        "@type": "PostalAddress",
-                                        "streetAddress": "Mayapuri Industrial Area",
-                                        "addressLocality": "Mayapuri",
-                                        "addressRegion": "Delhi",
-                                        "postalCode": "110064",
-                                        "addressCountry": "IN"
-                                    },
-                                    "telephone": "+917969071916",
-                                    "url": "https://weddingbanquets.in/banquet-halls/delhi/mayapuri",
-                                    "description": "Best Banquet Halls in Mayapuri Marriage Halls Party Halls 40 Off With The Best Prices, Discounts, And Great Deals in Mayapuri And Near Mayapuri"
-                                })
-                            }}
-                        />
-                        <script
-                            type="application/ld+json"
-                            dangerouslySetInnerHTML={{
                                 __html: JSON.stringify(
                                     {
                                         "@context": "https://schema.org",
-                                        "@type": "LocalBusiness",
+                                        "@type": "ImageObject",
+                                        "contentUrl": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475184.jpg",
+                                        "url": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475184.jpg",
+                                        "description": "Best Banquet Halls in Mayapuri /Marriage Halls/ Party Halls @40% Off With The Best Prices, Discounts, And Great Deals in Mayapuri And Near Mayapuri.",
                                         "name": "Banquet Halls in Mayapuri",
-                                        "image": "https://weddingbanquets.in/_next/image?url=https%3A%2F%2Fcms.wbcrm.in%2Fstorage%2Fuploads%2Fvenue_la_fo_1719475089.jpg&w=3840&q=100", 
-                                        "description": "Find the best banquet halls in Mayapuri, Delhi with top services for weddings, receptions, and other events.",
-                                        "address": {
-                                          "@type": "PostalAddress",
-                                          "streetAddress": "Mayapuri, Delhi",
-                                          "addressLocality": "Delhi",
-                                          "addressRegion": "DL",
-                                          "postalCode": "110064",
-                                          "addressCountry": "IN"
-                                        },
-                                        "aggregateRating": {
-                                          "@type": "AggregateRating",
-                                          "ratingValue": "4.5",
-                                          "reviewCount": "100"
-                                        },
-                                        "review": [
-                                          {
-                                            "@type": "Review",
-                                            "author": {
-                                              "@type": "Person",
-                                              "name": "Payal Rajput"
-                                            },
-                                            "datePublished": "2024-10-16",
-                                            "reviewRating": {
-                                              "@type": "Rating",
-                                              "ratingValue": "5"
-                                            },
-                                            "reviewBody": "Great banquet hall with excellent service and food options!"
-                                          },
-                                          {
-                                            "@type": "Review",
-                                            "author": {
-                                              "@type": "Person",
-                                              "name": "Angel Jain"
-                                            },
-                                            "datePublished": "2024-09-20",
-                                            "reviewRating": {
-                                              "@type": "Rating",
-                                              "ratingValue": "4"
-                                            },
-                                            "reviewBody": "Beautiful venue but slightly expensive."
-                                          }
-                                       ]                                      
-                                })
+                                        "thumbnail": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475185.jpg",
+                                        "width": "1200",
+                                        "height": "800"
+                                    }
+                                )
                             }}
                         />
                     </>
