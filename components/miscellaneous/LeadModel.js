@@ -165,7 +165,7 @@ export default function LeadModel() {
             />
           ) : (
             <Image
-              src="/common/happy-diwali-diwali.png"
+              src="/common/discount.png"
               alt="An example image"
               width={160}
               height={160}
@@ -174,7 +174,7 @@ export default function LeadModel() {
           {isSent ? (
             <h3 className="title"> Thank You</h3>
           ) : (
-            <h3 className="title"> Deepawali Offer</h3> //Send Enquiry
+            <h3 className="title"> Send Enquiry</h3> //Send Enquiry
           )}
           <h3 className="discount-heading">{!isSent && "get upto 40% off"}</h3>
           <p className="discount-text">
