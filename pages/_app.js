@@ -54,6 +54,7 @@ export default function App({ Component, pageProps }) {
           type="image/png"
           href="https://weddingbanquets.in/fav-icon/favicon14.png"
         />
+        <link rel="prefetch" href="/logo.png" />
 
         {/* Open graph meta tag */}
         <meta property="og:site_name" content="Weddingbanquets" />
