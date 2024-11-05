@@ -1,12 +1,16 @@
 // components/LoadingScreen.js
+import Image from 'next/image';
 import React from 'react';
 
 const LoadingScreen = () => {
   return (
     <div style={styles.container}>
-      <img
+      <Image
         src="https://weddingbanquets.in/logo.png"
         alt="Loading"
+        height={100}
+        width={100}
+        quality={100}
         style={styles.loader}
       />
     </div>

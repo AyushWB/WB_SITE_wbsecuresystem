@@ -136,6 +136,8 @@ export default function LeadForm() {
                     id="phone"
                     required
                     name="mobile"
+                    inputMode="numeric"
+                    pattern="[0-9]"  
                     {...formik.getFieldProps("mobile")}
                   />
                   <label htmlFor="phone" className="label">
@@ -234,13 +236,13 @@ const Wrapper = styled.section`
 
   .img-banner {
     position: relative;
-    height: 630px;
+    height: 500px;
     width: auto;
   }
 
   .form {
     position: relative;
-    height: 630px;
+    height: 500px;
 
     .form-items {
       padding: 2rem;
@@ -369,7 +371,7 @@ const Wrapper = styled.section`
 
   @media (max-width: 600px) {
     .form {
-      height: 550px;
+      height: 450px;
     }
   }
 `;

@@ -96,7 +96,7 @@ export async function getStaticProps() {
     let homePageData = await fetch(url);
     homePageData = await homePageData.json();
 
-    let  blogposts = [];
+    let  blogposts = homePageData.data.blogs;
 
     return {
       props: {
