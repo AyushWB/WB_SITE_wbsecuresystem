@@ -5,7 +5,7 @@ const LoadingScreen = () => {
   return (
     <div style={styles.container}>
       <img
-        src="/logo.png"
+        src="https://weddingbanquets.in/logo.png"
         alt="Loading"
         style={styles.loader}
       />
