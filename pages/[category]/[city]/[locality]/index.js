@@ -129,6 +129,12 @@ export async function getServerSideProps({ query, req, res }) {
 
     const result = await fetchData(url);
     const localities = await fetchData(getlocalitiesURL);
+    
+    if(result.success === false){
+      return {
+        notFound: true,
+      }
+    }
 
     return {
       props: {
