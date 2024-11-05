@@ -1,12 +1,34 @@
 import { MyContextProvider } from "@/context/MyContext";
 import "@/styles/globals.css";
 import { GlobalStyles } from "@/styles/GlobalStyle";
-import Script from "next/script";
+import { useRouter } from 'next/router';
 import Layout from "@/components/layout.js/Layout";
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import LoadingScreen from "./loading";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = () => setLoading(true);
+    const handleComplete = () => setLoading(false);
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, [router]);
+
+
+
   return (
     <MyContextProvider>
       <GlobalStyles />
@@ -60,7 +82,10 @@ export default function App({ Component, pageProps }) {
         >
           <Image alt='weddingbanquets whatsapp' src="https://i.ibb.co/VgSspjY/whatsapp-button.png" width={55} height={55}></Image>
         </a>
+        {loading && <LoadingScreen />}
+
         <Component {...pageProps} />
+
       </Layout>
     </MyContextProvider>
   );
