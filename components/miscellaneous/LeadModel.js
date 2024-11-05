@@ -207,7 +207,7 @@ export default function LeadModel() {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)', borderRadius: 0, borderWidth: '1px', width: '350px'}}
+                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)', borderRadius: 0, borderWidth: '1px'}}
                 />
               </div>
               <div className="discount-form">
@@ -230,7 +230,7 @@ export default function LeadModel() {
                   min={today}
                   placeholder="Event Date"
                   onClick={(e) => e.target.showPicker()}
-                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)', borderRadius: 0, borderWidth: '1px', width: '350px'}}
+                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)' , borderRadius: 0, borderWidth: '1px'}}
                 />
               </div>
               <div className="discount-form">
@@ -258,7 +258,7 @@ export default function LeadModel() {
                   onChange={handlePhoneInput}
                   style={{
                     borderColor: isSubmitted && (!phoneNumber || errors.phoneNumber) ? "red" : "var(--primary-color)",
-                    borderStyle: 'solid', borderRadius: 0, borderWidth: '1px', width: '350px'
+                    borderStyle: 'solid', borderRadius: 0, borderWidth: '1px'
                   }}
                                                     />
               </div>
