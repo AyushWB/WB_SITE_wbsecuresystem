@@ -18,7 +18,7 @@ export default function Page({ response }) {
             name="og:image"
             content={
               response.data.venue && response.data.venue.images
-                ? `${process.env.MEDIA_PREFIX}/${response.data.venue.images.split(',')[0]}`
+                ? `${process.env.SITE_MEDIA_PREFIX}/${response.data.venue.images.split(',')[0]}`
                 : 'https://weddingbanquets.in/twitter-img.png'
             }
           />
