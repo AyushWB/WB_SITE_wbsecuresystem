@@ -15,10 +15,10 @@ function Gallery({ images }) {
   const [visibleImages, setVisibleImages] = useState(12);
   const [open,setOpen]=useState(false);
 
-  const slides = images.map(image => ({ src: `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}` }));
+  const slides = images.map(image => ({ src: `${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${image}` }));
 
   const itemData = images.map((url, i) => ({
-    img: `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`,
+    img: `${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${url}`,
   }));
 
   const showViewLess = visibleImages === images.length && visibleImages > 12;
