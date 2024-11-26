@@ -29,7 +29,7 @@ function Venue({popularVenues, validCity, caption, metadata}) {
             name="og:image"
             content={
               metadata && metadata.data && metadata.data.length > 0 && metadata.data[0].images
-                ? `${process.env.MEDIA_PREFIX || '/default/prefix'}/${metadata.data[0].images.split(',')[0]}`
+                ? `${process.env.SITE_MEDIA_PREFIX || '/default/prefix'}/${metadata.data[0].images.split(',')[0]}`
                 : 'https://weddingbanquets.in/twitter-img.png'
             }
           />

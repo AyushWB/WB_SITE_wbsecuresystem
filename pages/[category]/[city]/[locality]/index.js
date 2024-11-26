@@ -33,17 +33,16 @@ function Venue(props) {
         <meta property="og:description" content={props.result.meta?.meta_description} />
         <meta property="og:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
-            ? `${process.env.MEDIA_PREFIX || '/default/prefix'}/${props.result.data[0].images.split(',')[0]}`
+            ? `${process.env.SITE_MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
             : 'https://weddingbanquets.in/twitter-img.png'
         }
         />
         <meta property="og:url" content={`https://weddingbanquets.in${router.asPath}`} />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={props.result.meta?.meta_title} />
         <meta name="twitter:description" content={props.result.meta?.meta_description} />
         <meta name="twitter:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
-            ? `${process.env.MEDIA_PREFIX || '/default/prefix'}/${props.result.data[0].images.split(',')[0]}`
+            ? `${process.env.SITE_MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
             : 'https://weddingbanquets.in/twitter-img.png'
         }
         />

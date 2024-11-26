@@ -64,9 +64,6 @@ export default function App({ Component, pageProps }) {
         {/* twiiter card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Weddingbanquets" />
-        <meta name="twitter:url" content="https://weddingbanquets.in" />
-        <meta name="twitter:description" content="Your one-stop shop for all of your wedding needs. Browse 1000+ party halls &amp; wedding banquets. Get budget-friendly photographers, mehndi artists, makeup artists, &amp; more..." />
-        <meta name="twitter:image" content="https://weddingbanquets.in/twitter-img.png" />
       </Head>
       <Layout>
         <a
