@@ -83,7 +83,7 @@ function VenueCard2({
           {images?.slice(0, 4).map((image, index) => (
             <SwiperSlide key={index} className="image-container">
               <Image
-                src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+                src={`${process.env.SITE_MEDIA_PREFIX}/${image}`}
                 fill
                 sizes="(100vw)"
                 quality={100}

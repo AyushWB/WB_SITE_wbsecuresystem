@@ -42,7 +42,7 @@ export default function ImageSlider({ images, wb_assured, altname, rating, ratin
 
 
     //For image gallary
-    const slides = images.map(image => ({ src: `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}` }));
+    const slides = images.map(image => ({ src: `${process.env.SITE_MEDIA_PREFIX}/${image}` }));
 
     return (
         <Section className="section section-image-slider">

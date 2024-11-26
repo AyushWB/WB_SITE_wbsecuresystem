@@ -23,7 +23,7 @@ function VenueCard({ venue, openLeadModel, callConversion, selectedCity }) {
       <div className="card-items">
         <div className="banner">
           <Image
-            src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+            src={`${process.env.SITE_MEDIA_PREFIX}/${image}`}
             alt="An example image"
             fill={true}
             sizes="(100vw)"
