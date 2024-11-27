@@ -7,15 +7,15 @@ import useCallConversion from "@/lib/hook/useCallConversion";
 
 
 
-export default function PriceListCard({min_capacity,max_capacity,nonveg_price,veg_price,phone,slug,openLeadsModel,id}) {
-    
-
-    const {callConversion} = useCallConversion();    
+export default function PriceListCard({ min_capacity, max_capacity, nonveg_price, veg_price, phone, slug, openLeadsModel, id }) {
 
 
+    const { callConversion } = useCallConversion();
 
 
-    async function handleAnchorClick(e,slug) {
+
+
+    async function handleAnchorClick(e, slug) {
         // e.stopPropagation();
         await CallingRequest(slug);
 
@@ -52,7 +52,7 @@ export default function PriceListCard({min_capacity,max_capacity,nonveg_price,ve
                     </p>
                 </div>
             </div>
-            {nonveg_price !== 'null' ? (
+            {(nonveg_price && nonveg_price !== 'null' && nonveg_price > 0) ? (
                 <div className="detail">
                     <div className="detail-title">
                         <span className="icon">
@@ -64,19 +64,20 @@ export default function PriceListCard({min_capacity,max_capacity,nonveg_price,ve
                     </div>
                     <div className="detail-content">
                         <p className="desc bold">
-                            <del> {nonveg_price}</del>/plate
+                            <del>{nonveg_price}</del>/plate
                         </p>
                     </div>
                 </div>
-            ) : ""}
+            ) : ('')}
+
 
 
         </div>
         <div className="action-btns">
-            <button className="venue-card-btn" onClick={()=>{ openLeadsModel()}}>Get Quotation</button>
+            <button className="venue-card-btn" onClick={() => { openLeadsModel() }}>Get Quotation</button>
 
             <span className="call-btn">
-                <a href={`tel:0${phone}`} onClick={(e)=>{handleAnchorClick(e,slug);callConversion(e,slug,id)}} aria-label="call icon ">
+                <a href={`tel:0${phone}`} onClick={(e) => { handleAnchorClick(e, slug); callConversion(e, slug, id) }} aria-label="call icon ">
                     <IoIosCall className="call-icon" size={30} />
                 </a>
             </span>

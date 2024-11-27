@@ -59,7 +59,7 @@ export default function VenueDetailsPage({ response }) {
             <ImageSlider images={venue.images} rating={venue.place_rating ?? 4.5} ratingcount={reviews.length === 0 ? 158 : reviews.length} altname={venue.name} wb_assured={venue?.wb_assured} />
             <VenueBasicInfo venue={venue} openLeadsModel={openLeadsModel} openAvailableCheck={openAvailableCheck} id={venue.id} />
             <VenueFeatures />
-            <FoodPackage nonveg_foods={venue?.nonveg_foods} veg_foods={venue?.veg_foods} />
+            <FoodPackage venue={venue} nonveg_foods={venue?.nonveg_foods} veg_foods={venue?.veg_foods} />
             {/* <HaveUsCallYou /> */}
             <VenuePolicy venue={venue} />
             <VenueReview venue_place_id={venue_place_id} venue={venue} reviews={reviews} />

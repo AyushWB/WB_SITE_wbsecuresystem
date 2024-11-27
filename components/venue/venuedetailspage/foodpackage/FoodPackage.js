@@ -2,7 +2,7 @@ import Heading from "@/components/miscellaneous/Heading";
 import styled from "styled-components";
 import FoodCardTemplate from "./FoodCardTemplate";
 
-export default function FoodPackage({veg_foods,nonveg_foods}) {
+export default function FoodPackage({ venue, veg_foods, nonveg_foods }) {
 
     // veg_foods = JSON.parse(veg_foods)
     // // console.log(veg_foods)
@@ -15,18 +15,20 @@ export default function FoodPackage({veg_foods,nonveg_foods}) {
 
     veg_foods = veg_foods ? JSON.parse(veg_foods) : [];
     // console.log(veg_foods)
-    
+
     nonveg_foods = nonveg_foods ? JSON.parse(nonveg_foods) : [];
     // console.log(nonveg_foods)
-    
-    
+
+
 
     return (
         <Section>
             <Heading text={"Food Package"} />
             <div className="container package-container">
-                <FoodCardTemplate title={"Vegetarian"} type={"green"} foods={veg_foods}/>
-                <FoodCardTemplate title={"Non Vegetarian"} type={"red"} foods={nonveg_foods} />
+                <FoodCardTemplate title={"Vegetarian"} type={"green"} foods={veg_foods} />
+                {(venue.nonveg_price && venue.nonveg_price > 0) && (
+                    <FoodCardTemplate title={"Non Vegetarian"} type={"red"} foods={nonveg_foods} />
+                )}
             </div>
         </Section>
     )

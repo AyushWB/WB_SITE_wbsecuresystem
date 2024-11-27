@@ -169,15 +169,15 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
                 Veg: <del className="price">₹{venue?.veg_price}</del>/Plate
               </p>
             </div>
-            {venue?.nonveg_price != "0" && (
+            {(venue.nonveg_price && venue.nonveg_price !== 'null' && venue.nonveg_price > 0) ? (
               <div className="nonveg-price">
                 <Veg color={"red"} />
                 <p>
-                  Non Veg: <del className="price">₹{venue?.nonveg_price}</del>
+                  Non Veg: <del className="price">₹{venue.nonveg_price}</del>
                   /Plate
                 </p>
               </div>
-            )}
+            ) : ('')}
           </div>
           <div className="cts-contianer">
             <div className="action-btns">
