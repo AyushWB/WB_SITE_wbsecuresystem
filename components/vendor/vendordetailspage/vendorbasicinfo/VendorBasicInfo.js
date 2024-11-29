@@ -78,13 +78,12 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                   <BsFillSuitcaseLgFill className="icon" />
                   <p>
                     Exp.{" "}
-                    {`${
-                      vendor?.yrs_exp !== undefined &&
+                    {`${vendor?.yrs_exp !== undefined &&
                       vendor?.yrs_exp !== null &&
                       vendor?.yrs_exp !== 0
-                        ? vendor.yrs_exp
-                        : "5+"
-                    } Yr's`}
+                      ? vendor.yrs_exp
+                      : "5+"
+                      } Yr's`}
                   </p>
                 </div>
                 <div className="detail-circle">
@@ -93,13 +92,12 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                     Event Completed:
                     <span className="price">
                       &nbsp;
-                      {`${
-                        vendor?.event_completed !== undefined &&
+                      {`${vendor?.event_completed !== undefined &&
                         vendor?.event_completed !== null &&
                         vendor?.event_completed !== 0
-                          ? vendor.event_completed
-                          : 150
-                      }+`}
+                        ? vendor.event_completed
+                        : 150
+                        }+`}
                     </span>
                   </p>
                 </div>
@@ -128,20 +126,21 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
               </div>
             </div>
             <div className="vendor-ad">
-              <AccordionContainer>
-                <AccordionItem>
-                  <AccordionTitle onClick={() => toggleAccordion(1)}>
-                    <div className="d-flex">
-                      <div>Packages</div>
-                      {openIndex === 1 ? (
-                        <div className="see-pricing">Hide Pricing</div>
-                      ) : (
-                        <div className="see-pricing">See Pricing</div>
-                      )}
-                    </div>
-                  </AccordionTitle>
-                  <AccordionContent isOpen={openIndex === 1}>
-                    {hasValidPrice ? (
+
+              {hasValidPrice ? (
+                <AccordionContainer>
+                  <AccordionItem>
+                    <AccordionTitle onClick={() => toggleAccordion(1)}>
+                      <div className="d-flex">
+                        <div>Packages</div>
+                        {openIndex === 1 ? (
+                          <div className="see-pricing">Hide Pricing</div>
+                        ) : (
+                          <div className="see-pricing">See Pricing</div>
+                        )}
+                      </div>
+                    </AccordionTitle>
+                    <AccordionContent isOpen={openIndex === 1}>
                       <div className="venue-category">
                         {vendor.air_brush_makeup_price && (
                           <div className="category-item">
@@ -238,14 +237,12 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           </div>
                         )}
                       </div>
-                    ) : (
-                      packages?.map((price_package, i) => (
-                        <p key={i}>{price_package}</p>
-                      ))
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
-              </AccordionContainer>
+                    </AccordionContent>
+                  </AccordionItem>
+                </AccordionContainer>
+              ) : (
+                ''
+              )}
               <div className="package-card card">
                 <h2 className="price">
                   <BiRupee className="rupee-icon" />
