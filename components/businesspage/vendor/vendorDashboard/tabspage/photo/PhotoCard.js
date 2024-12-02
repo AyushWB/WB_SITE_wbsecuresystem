@@ -7,7 +7,7 @@ export default function PhotoCard({ url }) {
     return (<Wrapper>
 
         <Image
-            src={`${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${url}`}
+            src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`}
             fill={true}
             sizes="(100vw)"
             alt="image"

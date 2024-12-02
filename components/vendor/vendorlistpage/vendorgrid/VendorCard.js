@@ -35,7 +35,7 @@ function VendorCard({ vendor, openLeadModel, city, category, locality }) {
     <CardWrapper onClick={() => router.push(`/delhi/${vendor?.slug}`)}>
       <ImageContainer>
         <StyledImage
-          src={`${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${imageUrl}`}
+          src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${imageUrl}`}
           layout="fill"
           objectFit="cover"
           alt={`${category} in ${locality === "all" ? city : locality}`}

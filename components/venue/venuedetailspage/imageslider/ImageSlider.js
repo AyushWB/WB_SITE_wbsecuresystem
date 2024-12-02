@@ -42,7 +42,7 @@ export default function ImageSlider({ images, wb_assured, altname, rating, ratin
 
 
     //For image gallary
-    const slides = images.map(image => ({ src: `${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${image}` }));
+    const slides = images.map(image => ({ src: `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}` }));
 
     return (
         <Section className="section section-image-slider">
@@ -76,7 +76,7 @@ export default function ImageSlider({ images, wb_assured, altname, rating, ratin
                                 <SwiperSlide className="img-container" key={i}>
                                     {/* <img src="/img-slider1.png" /> */}
                                     <Image
-                                        src={`${process.env.NEXT_PUBLIC_SITE_MEDIA_PREFIX}/${url}`}
+                                        src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`}
                                         fill
                                         sizes="(100vw)"
                                         alt={altname}
