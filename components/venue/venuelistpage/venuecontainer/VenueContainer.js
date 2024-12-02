@@ -105,11 +105,11 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                                     {
                                         "@context": "https://schema.org",
                                         "@type": "ImageObject",
-                                        "contentUrl": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475184.jpg",
-                                        "url": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475184.jpg",
+                                        "contentUrl": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475184.jpg",
+                                        "url": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475184.jpg",
                                         "description": "Best Banquet Halls in Mayapuri /Marriage Halls/ Party Halls @40% Off With The Best Prices, Discounts, And Great Deals in Mayapuri And Near Mayapuri.",
                                         "name": "Banquet Halls in Mayapuri",
-                                        "thumbnail": "https://cms.wbcrm.in/storage/uploads/venue_la_fo_1719475185.jpg",
+                                        "thumbnail": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475185.jpg",
                                         "width": "1200",
                                         "height": "800"
                                     }
