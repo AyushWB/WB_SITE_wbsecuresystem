@@ -116,6 +116,29 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                                 )
                             }}
                         />
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={{
+                                __html: JSON.stringify(
+                                    {
+                                        "@context": "https://schema.org",
+                                        "@type": "LocalBusiness",
+                                        "name": "Banquet Halls in Delhi",
+                                        "image": "https://i.postimg.cc/NMBRqSjW/banquet-halls-in-mayapuri.jpg",
+                                        "@id": "",
+                                        "url": "https://weddingbanquets.in/banquet-halls/delhi/mayapuri",
+                                        "telephone": "",
+                                        "address": {
+                                          "@type": "PostalAddress",
+                                          "streetAddress": "",
+                                          "addressLocality": "Delhi",
+                                          "postalCode": "110064",
+                                          "addressCountry": "IN"
+                                        }  
+                                      }
+                                )
+                            }}
+                        />
                     </>
                 )}
             </Head>
