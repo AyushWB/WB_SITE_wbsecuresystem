@@ -49,7 +49,7 @@ export default function PriceListCard({ min_capacity, max_capacity, nonveg_price
                 <div className="detail-content">
                     <p className="desc bold">
                     {veg_price ? (
-                      <del>{numberFormat(veg_price)}</del>) : ("On Demand")}/plate
+                      <del>{veg_price}</del>) : ("On Demand")}/plate
                     </p>
                 </div>
             </div>
