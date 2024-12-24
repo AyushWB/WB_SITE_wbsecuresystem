@@ -79,7 +79,7 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
                 quality={10}
                 loading="eager"
                 title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
               />
             </SwiperSlide>
           ))}
@@ -112,7 +112,7 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
                 sizes="(100vw)"
                 quality={1}
                 title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
               />
             </SwiperSlide>
           ))}
