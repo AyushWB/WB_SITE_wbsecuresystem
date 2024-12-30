@@ -105,9 +105,7 @@ export default function App({ Component, pageProps }) {
               </div>
               <div style={{ padding: "15px" }}>
                 <p style={{ margin: 0, fontSize: "11px" }}>
-                  Looking for the best offer? 🤔 I'm happy to tell you about our
-                  fantastic sale - get up to 40% discount on all our services!
-                  Let me know if you've got questions.
+                Looking for the perfect wedding venue at an amazing price? Get up to 40% off on all our wedding services! Let us make your dream wedding come true. 🎉 Have questions? Reach out now!
                 </p>
                 <a
                   href="https://api.whatsapp.com/send?phone=918882198989&text=Hi"
