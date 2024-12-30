@@ -128,7 +128,6 @@ export default function App({ Component, pageProps }) {
               </div>
             </div>
           )}
-          {/* Floating WhatsApp Icon */}
           <div
             onClick={() => setChatOpen(true)}
             style={{
