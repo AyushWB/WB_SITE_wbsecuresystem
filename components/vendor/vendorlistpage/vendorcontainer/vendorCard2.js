@@ -217,7 +217,7 @@ function VenueCard2({
           )}
           {vendor['albums_price'] && (
             <div className="category">
-              <p>Albums Price</p>
+              <p>Albums</p>
             </div>
           )}
           {vendor['engagement_mehndi_price'] && (
