@@ -88,7 +88,7 @@ export default function App({ Component, pageProps }) {
               >
                 <div>
                   <strong style={{ fontSize: "13px" }}>Dolly</strong>
-                  <p style={{ margin: 0, fontSize: "13px" }}>Sales Manager</p>
+                  <p style={{ margin: 0, fontSize: "13px" }}>Event Manager</p>
                 </div>
                 <button
                   onClick={() => setChatOpen(false)}
@@ -105,7 +105,7 @@ export default function App({ Component, pageProps }) {
               </div>
               <div style={{ padding: "15px" }}>
                 <p style={{ margin: 0, fontSize: "11px" }}>
-                Looking for the perfect wedding venue at an amazing price? Get up to 40% off on all our wedding services! Let us make your dream wedding come true. 🎉 Have questions? Reach out now!
+                Wedding Banquets is your one-stop solution to all your wedding requirements, offering the best deals on wedding banquet halls with top wedding vendors. Explore endless options on our website. Get the best deal in Town. Contact us now and get discounts Upto 40%!
                 </p>
                 <a
                   href="https://api.whatsapp.com/send?phone=918882198989&text=Hi"
