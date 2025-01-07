@@ -195,7 +195,7 @@ export default function App({ Component, pageProps }) {
                       Hi! I'm {eventManager?.name || "Dolly"}, your wedding planning assistant! Let me help you discover the best vendors and venues to make your wedding day perfect.
                     </p>
                     <a
-                      href="https://api.whatsapp.com/send?phone=918882198989&text=Hi"
+                      href={`https://api.whatsapp.com/send?phone=918882198989&text=Hi%20${eventManager?.name || ""}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
