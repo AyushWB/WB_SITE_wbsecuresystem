@@ -43,10 +43,14 @@ function Venue(props) {
         <meta name="twitter:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
             ? `${process.env.MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
-            : 'https://weddingbanquets.in/twitter-img.png'  
+            : 'https://weddingbanquets.in/twitter-img.png'
         }
         />
-        <meta name="twitter:site" content="@yourtwitterhandle" />
+        {props.result.meta?.header_script && (
+          <div
+            dangerouslySetInnerHTML={{ __html: props.result.meta?.header_script }}
+          />
+        )}
       </Head>
       {props.result.tag === "venues" ? (
         <>
@@ -128,8 +132,8 @@ export async function getServerSideProps({ query, req, res }) {
 
     const result = await fetchData(url);
     const localities = await fetchData(getlocalitiesURL);
-    
-    if(result.success === false){
+
+    if (result.success === false) {
       return {
         notFound: true,
       }
