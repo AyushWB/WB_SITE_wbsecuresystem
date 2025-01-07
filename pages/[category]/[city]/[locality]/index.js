@@ -43,7 +43,7 @@ function Venue(props) {
         <meta name="twitter:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
             ? `${process.env.MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
-            : 'https://weddingbanquets.in/twitter-img.png'
+            : 'https://weddingbanquets.in/twitter-img.png'  
         }
         />
         <meta name="twitter:site" content="@yourtwitterhandle" />

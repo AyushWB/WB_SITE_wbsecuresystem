@@ -338,7 +338,7 @@ const Wrapper = styled.div`
     min-width: 45rem;
 @media only screen and (min-device-width: 375px) and (max-device-width: 414px) 
 and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-max-width: 40rem;
+    max-width: 40rem;
     min-width: 40rem;
 }
 
@@ -437,6 +437,7 @@ max-width: 40rem;
           -webkit-appearance: textfield;
           -moz-appearance: textfield;
           min-height: 1.2em;
+          width: 500px;
         }
 
         .date-picker {

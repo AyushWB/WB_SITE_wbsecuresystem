@@ -192,10 +192,7 @@ export default function App({ Component, pageProps }) {
                   </div>
                   <div style={{ padding: "15px" }}>
                     <p style={{ margin: 0, fontSize: "11px" }}>
-                      Hi! I'm {eventManager?.name || "Dolly"}, your (totally
-                      free) wedding planning assistant. Would you like me to
-                      help you find venues and wedding vendors for your
-                      wedding?
+                      Hi! I'm {eventManager?.name || "Dolly"}, your wedding planning assistant! Let me help you discover the best vendors and venues to make your wedding day perfect.
                     </p>
                     <a
                       href="https://api.whatsapp.com/send?phone=918882198989&text=Hi"
