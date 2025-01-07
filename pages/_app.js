@@ -102,7 +102,30 @@ export default function App({ Component, pageProps }) {
     <MyContextProvider>
       <GlobalStyles />
       <Head>
-        <title>My Application</title>
+        <title>Best Banquet Halls And Wedding Venues at 40% Discount</title>
+        <meta
+          name="description"
+          content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion. Look Over 10000+ Indian Wedding Venues For Corporate Events, Weddings And Parties"
+        />
+        <meta
+          name="keywords"
+          content="Affordable Banquet Halls, Banquet Halls, Top Banquet Halls, Best Banquet Halls with price, Banquet Halls with review, Luxury Banquet Halls, Best Banquet Halls, List of Banquet Halls, Cheapest Banquet Halls, Banquet Halls near by, Banquet Halls near, Marriage Halls, Party Halls, Birthday Party Halls, Function Halls, Wedding Venues"
+        />
+        <meta name="author" content="y@sh" />
+        <meta name="theme-color" content="#870808" />
+        <meta name="msapplication-navbutton-color" content="#870808" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#870808" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="https://weddingbanquets.in/fav-icon/favicon14.png"
+        />
+        <link rel="prefetch" href="https://weddingbanquets.in/logo.png" />
+        <meta property="og:site_name" content="Weddingbanquets" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Weddingbanquets" />
       </Head>
       <Layout>
         {loading && <LoadingScreen />}
