@@ -47,7 +47,7 @@ function Venue(props) {
         }
         />
         {props.result.meta?.header_script && (
-          <script
+          <script type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: props.result.meta?.header_script }}
           />
         )}
