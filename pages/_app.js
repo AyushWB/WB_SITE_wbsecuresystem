@@ -126,6 +126,9 @@ export default function App({ Component, pageProps }) {
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Weddingbanquets" />
+        {eventManager?.profile_image && (
+          <link rel="preload" as="image" href={eventManager.profile_image} />
+        )}
       </Head>
       <Layout>
         {loading && <LoadingScreen />}
