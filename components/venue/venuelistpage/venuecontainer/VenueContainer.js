@@ -95,53 +95,6 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
 
     return (
         <>
-            <Head>
-                {(category === 'banquet-halls' && city === 'delhi' && locality === 'mayapuri') && (
-                    <>
-                        <script
-                            type="application/ld+json"
-                            dangerouslySetInnerHTML={{
-                                __html: JSON.stringify(
-                                    {
-                                        "@context": "https://schema.org",
-                                        "@type": "ImageObject",
-                                        "contentUrl": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475184.jpg",
-                                        "url": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475184.jpg",
-                                        "description": "Best Banquet Halls in Mayapuri /Marriage Halls/ Party Halls @40% Off With The Best Prices, Discounts, And Great Deals in Mayapuri And Near Mayapuri.",
-                                        "name": "Banquet Halls in Mayapuri",
-                                        "thumbnail": "https://cms.weddingbanquets.in/storage/uploads/venue_la_fo_1719475185.jpg",
-                                        "width": "1200",
-                                        "height": "800"
-                                    }
-                                )
-                            }}
-                        />
-                        <script
-                            type="application/ld+json"
-                            dangerouslySetInnerHTML={{
-                                __html: JSON.stringify(
-                                    {
-                                        "@context": "https://schema.org",
-                                        "@type": "LocalBusiness",
-                                        "name": "Banquet Halls in Delhi",
-                                        "image": "https://i.postimg.cc/NMBRqSjW/banquet-halls-in-mayapuri.jpg",
-                                        "@id": "",
-                                        "url": "https://weddingbanquets.in/banquet-halls/delhi/mayapuri",
-                                        "telephone": "",
-                                        "address": {
-                                          "@type": "PostalAddress",
-                                          "streetAddress": "",
-                                          "addressLocality": "Delhi",
-                                          "postalCode": "110064",
-                                          "addressCountry": "IN"
-                                        }  
-                                      }
-                                )
-                            }}
-                        />
-                    </>
-                )}
-            </Head>
             <Section className="section section-venue-container">
                 <div className="sticky-head">
                     <div className="page-title">
