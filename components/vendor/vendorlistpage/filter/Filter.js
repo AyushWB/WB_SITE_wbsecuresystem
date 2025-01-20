@@ -107,7 +107,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
     },
     {
       id: "birdal-makeup",
-      name: "BridalMakeup",
+      name: "Bridal Makeup",
     },
     {
       id: "engagement-makeup",
