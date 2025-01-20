@@ -143,7 +143,7 @@ export default function VendorTopFilter({
     },
     {
       id: "birdal-makeup",
-      name: "Birdal Makeup",
+      name: "BridalMakeup",
     },
     {
       id: "engagement-makeup",
