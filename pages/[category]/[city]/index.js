@@ -47,6 +47,7 @@ export default function Page({ response }) {
                 : 'https://weddingbanquets.in/twitter-img.png'
             }
           />
+                    <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
           <meta property="og:title" content={response.data.vendor.meta_title} />
           <meta property="og:description" content={response.data.vendor.meta_description} />
           <meta property="og:url" content={`https://weddingbanquets.in${router.asPath}`} />
