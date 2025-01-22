@@ -17,6 +17,7 @@ function BlogDetailPage({ data }) {
         <meta name="og:image" content={`${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${blog.image}`} />
         <meta property="og:title" content={blog.og_title} />
         <meta property="og:description" content={blog.og_description} />
+        <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
         <meta property="og:url" content={`https://weddingbanquets.in${router.asPath}`} />
       </Head>
       <div className="position">

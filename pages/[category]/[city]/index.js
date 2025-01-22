@@ -7,7 +7,7 @@ export default function Page({ response }) {
   const router = useRouter();
 
   if (response.tag === 'venue') {
-   
+
     return (
       <>
         <Head>
@@ -22,6 +22,7 @@ export default function Page({ response }) {
                 : 'https://weddingbanquets.in/twitter-img.png'
             }
           />
+          <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
           <meta property="og:title" content={response.data.venue.meta_title} />
           <meta property="og:description" content={response.data.venue.meta_description} />
           <meta property="og:url" content={`https://weddingbanquets.in${router.asPath}`} />
@@ -31,7 +32,7 @@ export default function Page({ response }) {
     )
   }
   else {
-    
+
     return (
       <>
         <Head>
@@ -75,7 +76,7 @@ export async function getServerSideProps({ query, req, res }) {
       };
     }
     // console.log(response.is_redirect)
-    if(response.is_redirect == 1){
+    if (response.is_redirect == 1) {
       return {
         redirect: {
           permanent: true,
