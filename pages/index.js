@@ -17,6 +17,31 @@ export default function Home({
   blogposts,
   vendorCategories,
 }) {
+  const schema = {
+    "@context": "https://schema.org/",
+    "@type": "Organization",
+    "url": "https://weddingbanquets.in/",
+    "logo": "https://weddingbanquets.in/",
+    "name": "Wedding Banquets",
+    "image": "https://weddingbanquets.in/_next/image?url=%2Fbanner%2Fdelhi.jpg&w=3840&q=60",
+    "description": "Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion Look Over 10000 Indian Wedding Venues For Corporate Events, Weddings And Parties",
+    "identifier": "wedding banquets",
+    "brand": {
+      "@type": "Organization",
+      "name": "wedding banquets",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://weddingbanquets.in/"
+      },
+      "url": ""
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "1002"
+    }
+  }
+
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -68,6 +93,7 @@ export default function Home({
         <meta property="og:title" content="Best Banquet Halls And Wedding Venues at 40% Discount" />
         <meta property="og:description" content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion. Look Over 10000+ Indian Wedding Venues For Corporate Events, Weddings And Parties" />
         <meta property="og:url" content="https://weddingbanquets.in" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}></script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}></script>
       </Head>
       <Navbar />
