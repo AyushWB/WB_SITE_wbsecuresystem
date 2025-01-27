@@ -2,13 +2,24 @@ import fs from 'fs';
 import path from 'path';
 
 export default async function handler(req, res) {
+  const escapeXml = (unsafe) =>
+    unsafe
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/'/g, '&apos;')
+      .replace(/"/g, '&quot;');
     const fetchPages = async () => {
       const response = await fetch('https://cms.weddingbanquets.in/api/sitemap_venue/1');
       const data = await response.json();
       return data.sitemap.map((page) => ({
         loc: `${process.env.SITE_URL || 'https://weddingbanquets.in'}/${page.url}`,
         lastmod: new Date().toISOString(),
-        images: page.images || [],
+        images: page.images?.map((image) => ({
+          loc: `${process.env.SITE_URL || 'https://weddingbanquets.in'}/_next/image?url=${encodeURIComponent(image.loc)}&amp;w=1200&amp;q=75`,
+          title: image.title ? escapeXml(image.title) : null,
+          caption: image.caption ? escapeXml(image.caption) : null,
+          })) || [],
       }));
     };
   

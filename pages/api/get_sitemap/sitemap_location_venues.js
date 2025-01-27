@@ -5,7 +5,11 @@ export default async function handler(req, res) {
     return data.sitemap.map((page) => ({
       loc: `${process.env.SITE_URL || 'https://weddingbanquets.in'}/${page.url}`,
       lastmod: new Date().toISOString(),
-      images: page.images || [],
+      images: page.images?.map((image) => ({
+        loc: `${process.env.SITE_URL || 'https://weddingbanquets.in'}/_next/image?url=${encodeURIComponent(image.loc)}&amp;w=1200&amp;q=75`,
+        title: image.title || null,
+        caption: image.caption || null,
+      })) || [],
     }));
   };
 
