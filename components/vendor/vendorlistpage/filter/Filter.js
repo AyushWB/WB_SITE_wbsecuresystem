@@ -16,10 +16,6 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
       slug: "roka"
     },
     {
-      name: "Sagan",
-      slug: "sagan"
-    },
-    {
       name: "Engagement",
       slug: "engagement"
     },

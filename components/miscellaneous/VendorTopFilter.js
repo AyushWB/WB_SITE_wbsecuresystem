@@ -83,10 +83,6 @@ export default function VendorTopFilter({
       slug: "roka"
     },
     {
-      name: "Sagan",
-      slug: "sagan"
-    },
-    {
       name: "Engagement",
       slug: "engagement"
     },
@@ -427,7 +423,6 @@ export default function VendorTopFilter({
                 >
                   <option value="">Occasion</option>
                   <option value="roka">Roka</option>
-                  <option value="sagan">Sagan</option>
                   <option value="engagement">Engagement</option>
                   <option value="haldi-mehndi">Haldi & Mehndi</option>
                   <option value="cocktail">Cocktail</option>
