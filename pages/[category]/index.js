@@ -93,6 +93,7 @@ export async function getServerSideProps({ params, req, res }) {
       return {
         redirect: {
           permanent: true, //This is permanent reirection 301. setting this permanent means telling the google that we have moved our old url to new url permanet and our old url is no more valid.
+          statusCode: 301,
           destination: `/${url[0]}/delhi/${url[1]}`,
         },
         props: {
@@ -103,6 +104,7 @@ export async function getServerSideProps({ params, req, res }) {
       return {
         redirect: {
           permanent: true,
+          statusCode: 301,
           destination: `/delhi/${url[0]}`,
         },
       };

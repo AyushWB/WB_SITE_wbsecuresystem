@@ -72,6 +72,7 @@ export async function getServerSideProps({ query, req, res }) {
       return {
         redirect: {
           permanent: true,
+          statusCode: 301,
           destination: `/${response.city.slug}/${slug}`,
         },
       };
@@ -81,6 +82,7 @@ export async function getServerSideProps({ query, req, res }) {
       return {
         redirect: {
           permanent: true,
+          statusCode: 301,
           destination: `/${response.redirect_url}`,
         },
       };
