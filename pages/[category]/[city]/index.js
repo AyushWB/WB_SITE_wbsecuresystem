@@ -71,7 +71,6 @@ export async function getServerSideProps({ query, req, res }) {
     if (response.city.slug !== city) {
       return {
         redirect: {
-          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${response.city.slug}/${slug}`,
         },
@@ -81,7 +80,6 @@ export async function getServerSideProps({ query, req, res }) {
     if (response.is_redirect == 1) {
       return {
         redirect: {
-          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${response.redirect_url}`,
         },

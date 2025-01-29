@@ -92,7 +92,6 @@ export async function getServerSideProps({ params, req, res }) {
 
       return {
         redirect: {
-          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${url[0]}/delhi/${url[1]}`,
         },
@@ -103,7 +102,6 @@ export async function getServerSideProps({ params, req, res }) {
     } else if (url.length === 1) {
       return {
         redirect: {
-          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/delhi/${url[0]}`,
         },
