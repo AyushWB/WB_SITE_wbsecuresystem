@@ -47,7 +47,7 @@ export default function Page({ response }) {
                 : 'https://weddingbanquets.in/twitter-img.png'
             }
           />
-                    <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
+          <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
           <meta property="og:title" content={response.data.vendor.meta_title} />
           <meta property="og:description" content={response.data.vendor.meta_description} />
           <meta property="og:url" content={`https://weddingbanquets.in${router.asPath}`} />
@@ -71,7 +71,7 @@ export async function getServerSideProps({ query, req, res }) {
     if (response.city.slug !== city) {
       return {
         redirect: {
-          permanent: true,
+          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${response.city.slug}/${slug}`,
         },
@@ -81,7 +81,7 @@ export async function getServerSideProps({ query, req, res }) {
     if (response.is_redirect == 1) {
       return {
         redirect: {
-          permanent: true,
+          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${response.redirect_url}`,
         },

@@ -63,7 +63,7 @@ export async function getServerSideProps({ params, req, res }) {
       let homePageData = await fetch(url);
       homePageData = await homePageData.json();
 
-      let blogposts = homePageData.data.blogs;      
+      let blogposts = homePageData.data.blogs;
 
       return {
         props: {
@@ -92,7 +92,7 @@ export async function getServerSideProps({ params, req, res }) {
 
       return {
         redirect: {
-          permanent: true, //This is permanent reirection 301. setting this permanent means telling the google that we have moved our old url to new url permanet and our old url is no more valid.
+          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/${url[0]}/delhi/${url[1]}`,
         },
@@ -103,7 +103,7 @@ export async function getServerSideProps({ params, req, res }) {
     } else if (url.length === 1) {
       return {
         redirect: {
-          permanent: true,
+          permanent: false, // Prevents 308 (Next.js default)
           statusCode: 301,
           destination: `/delhi/${url[0]}`,
         },
