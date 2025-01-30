@@ -18,29 +18,22 @@ export default function Home({
   vendorCategories,
 }) {
   const schema = {
-    "@context": "https://schema.org/",
-    "@type": "Organization",
-    "url": "https://weddingbanquets.in/",
-    "logo": "https://weddingbanquets.in/",
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
     "name": "Wedding Banquets",
-    "image": "https://weddingbanquets.in/_next/image?url=%2Fbanner%2Fdelhi.jpg&w=3840&q=60",
-    "description": "Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion Look Over 10000 Indian Wedding Venues For Corporate Events, Weddings And Parties",
-    "identifier": "wedding banquets",
-    "brand": {
-      "@type": "Organization",
-      "name": "wedding banquets",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://weddingbanquets.in/"
-      },
-      "url": ""
-    },
+    "url": "https://weddingbanquets.in/",
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "ratingCount": "1002"
+      "ratingValue": "4.7",
+      "reviewCount": "256"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Subhash Nagar",
+      "addressRegion": "Delhi",
+      "addressCountry": "India"
     }
-  }
+  };
 
   const jsonLdData = {
     "@context": "https://schema.org",
@@ -84,6 +77,7 @@ export default function Home({
       },
     ],
   };
+  
 
   return (
     <div>
