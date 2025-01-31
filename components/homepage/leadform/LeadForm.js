@@ -16,22 +16,10 @@ export default function LeadForm() {
 
   const today = new Date().toISOString().split("T")[0];
   const [isLoading, setIsLoading] = useState(false);
-  const { localities, userIP } = useGlobalContext();
+  const { localities, userIP, secureToken } = useGlobalContext();
   const [csrfToken, setCsrfToken] = useState("");
 
-  useEffect(() => {
-    fetchCsrfToken();
-  }, []);
 
-  const fetchCsrfToken = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAIN_API}/get-csrf`
-      );
-      const data = await response.json();
-      setCsrfToken(data.csrfToken);
-    } catch (error) {}
-  };
   const onRecaptchaChange = (value) => {
     setrecaptcha(value);
   };
@@ -56,8 +44,7 @@ export default function LeadForm() {
     onSubmit: async (values) => {
       try {
         setIsLoading(true);
-        fetchCsrfToken();
-        values.token = csrfToken;
+        values.token = secureToken;
         values.recaptcha = recaptcha;
         values.user_ip = userIP;
         const response = await leadGen(values);

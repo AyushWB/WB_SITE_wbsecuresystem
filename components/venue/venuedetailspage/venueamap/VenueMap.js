@@ -12,7 +12,7 @@ import { useGlobalContext } from "@/context/MyContext";
 
 export default function VenueMap({ location_map }) {
     const [recaptcha, setrecaptcha] = useState(null);
-    const { userIP } = useGlobalContext();
+    const { userIP, secureToken } = useGlobalContext();
 
     const today = new Date().toISOString().split('T')[0];
     const [csrfToken, setCsrfToken] = useState("");
@@ -22,14 +22,6 @@ export default function VenueMap({ location_map }) {
           
       const onRecaptchaChange = (value) => {
         setrecaptcha(value);
-      };
-      const fetchCsrfToken = async () => {
-        try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAIN_API}/get-csrf`);
-          const data = await response.json();
-          await setCsrfToken(data.csrfToken);
-        } catch (error) {
-        }
       };
       
     const formik = useFormik({
@@ -70,14 +62,10 @@ export default function VenueMap({ location_map }) {
 
     })
 
-    useEffect(() => {
-        fetchCsrfToken()
-      }, []);
     async function handleSubmit (values) {
         try {
             setIsLoading(true);
-            fetchCsrfToken();
-            const response = await leadGen({ mobile: values.phone, token: csrfToken, recaptcha: recaptcha, user_ip: userIP })
+            const response = await leadGen({ mobile: values.phone, token: secureToken, recaptcha: recaptcha, user_ip: userIP })
             if (response.status) {
                 formik.resetForm();
                 setrecaptcha(null);

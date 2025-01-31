@@ -16,7 +16,8 @@ export default function AvailableCheck() {
     setIsAvailableCheckOpen,
     setIsAvailableCheckShow,
     setIsAvailableCheckID,
-    userIP
+    userIP,
+    secureToken
   } = useGlobalContext();
   const [recaptcha, setrecaptcha] = useState(null);
   const [isSent, setIsSent] = useState(false);
@@ -32,7 +33,6 @@ export default function AvailableCheck() {
   useEffect(() => {
     if (isAvailableCheckOpen) {
       conversionHandler("click");
-      fetchCsrfToken();
     } else {
       console.log("Lead model close");
     }
@@ -58,15 +58,7 @@ export default function AvailableCheck() {
     }
   }
 
-  const fetchCsrfToken = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAIN_API}/get-csrf`
-      );
-      const data = await response.json();
-      setCsrfToken(data.csrfToken);
-    } catch (error) { }
-  };
+ 
 
   const onRecaptchaChange = (value) => {
     setrecaptcha(value);
@@ -112,8 +104,7 @@ export default function AvailableCheck() {
       }
       setIsLoading(true);
       const utm_source_active = localStorage.getItem('utm_source_active');
-      const url = `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAIN}/venue-lead`;
-      let response = await fetch(url, {
+      let response = await fetch("/api/save_lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +113,7 @@ export default function AvailableCheck() {
           mobile: phoneNumber,
           preference: leadFormData.venue_slug,
           name: name,
-          token: csrfToken,
+          token: secureToken,
           recaptcha: recaptcha,
           is_ad : utm_source_active,
           user_ip: userIP,

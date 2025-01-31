@@ -29,6 +29,7 @@ export const MyContextProvider = ({ children }) => {
   const [userIP, setUserIP] = useState('');
   const [userAgent, setUserAgent] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState("");
+  const [secureToken, setSecureToken] = useState();
 
   const getUserIP = async () => {
     try {
@@ -44,6 +45,11 @@ export const MyContextProvider = ({ children }) => {
     async function fetchIP() {
       const getuserip = await getUserIP();
       setUserIP(getuserip);
+      const response = await fetch("/api/s-token");
+      const result = await response.json();
+      if (result) {
+        setSecureToken(result.csrfToken);
+      }
     }
     const requestt = userAgentFromString();
     setUserAgent(requestt);
@@ -147,6 +153,7 @@ export const MyContextProvider = ({ children }) => {
         setSelectedCity,
         userIP,
         setUserIP,
+        secureToken,
         userAgent,
         setUserAgent,
         cities,

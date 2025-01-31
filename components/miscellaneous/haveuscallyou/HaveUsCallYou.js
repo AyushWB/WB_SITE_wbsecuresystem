@@ -8,24 +8,12 @@ import { useGlobalContext } from "@/context/MyContext";
 
 export default function HaveUsCallYou() {
   const [recaptcha, setrecaptcha] = useState(null);
-  const { userIP } = useGlobalContext();
+  const { userIP,secureToken } = useGlobalContext();
   const [number, setNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState("");
 
-  useEffect(() => {
-    fetchCsrfToken();
-  }, []);
 
-  const fetchCsrfToken = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAIN_API}/get-csrf`
-      );
-      const data = await response.json();
-      setCsrfToken(data.csrfToken);
-    } catch (error) {}
-  };
   function handerInputNumber(e) {
     if (e.target.value.length <= 10) {
       setNumber(e.target.value);
@@ -41,10 +29,9 @@ export default function HaveUsCallYou() {
         return;
       }
       setIsLoading(true);
-      fetchCsrfToken();
       const response = await leadGen({
         mobile: number,
-        token: csrfToken,
+        token: secureToken,
         recaptcha: recaptcha,
         user_ip: userIP,
       });
