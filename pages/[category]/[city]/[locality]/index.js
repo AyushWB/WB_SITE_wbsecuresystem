@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -48,7 +47,7 @@ function Venue(props) {
         />
         {props.result.meta?.header_script && (
           <script type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: props.result.meta?.header_script }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(props.result.meta?.header_script) }}
           />
         )}
       </Head>
