@@ -18,7 +18,7 @@ import Assured from "@/components/miscellaneous/Assured";
 import { useGlobalContext } from "@/context/MyContext";
 import RatingCardDynamic from "@/components/miscellaneous/RatingCardDynamic";
 
-function VenueCard2({venue, city, openLeadModel, locality, category, callConversion, index }) {
+function VenueCard2({ venue, city, openLeadModel, locality, category, callConversion, index }) {
 
   const images = venue.images?.split(",");
   const { selectedCity } = useGlobalContext();
@@ -72,15 +72,26 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
           }} >
           {images?.slice(0, 4).map((image, index) => (
             <SwiperSlide key={index} className="image-container">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
-                fill
-                sizes="(100vw)"
-                quality={10}
-                loading="eager"
-                title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
-              />
+              {category === 'banquet-halls' && locality === 'mayapuri' ? (
+                <img
+                  src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+                  height='100%'
+                  width='100%'
+                  loading="lazy"
+                  title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
+                />
+              ) : (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+                  fill
+                  sizes="(100vw)"
+                  quality={10}
+                  loading="lazy"
+                  title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
+                />
+              )}
             </SwiperSlide>
           ))}
 
@@ -106,14 +117,27 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
         >
           {images?.slice(0, 4).map((image, index) => (
             <SwiperSlide key={index} className="image-container">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
-                fill
-                sizes="(100vw)"
-                quality={1}
-                title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
-              />
+              {category === 'banquet-halls' && locality === 'mayapuri' ? (
+                <img
+                  src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+                  height='100%'
+                  width='100%'
+                  loading="lazy"
+                  title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
+                />
+              ) : (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
+                  fill
+                  sizes="(100vw)"
+                  quality={1}
+                  loading="lazy"
+                  title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
+                />
+              )}
+
             </SwiperSlide>
           ))}
         </Swiper>
@@ -158,7 +182,7 @@ function VenueCard2({venue, city, openLeadModel, locality, category, callConvers
             <div className="category" key={index}>
               <p>{item}</p>
             </div>
-          ))} 
+          ))}
         </div>
 
         <div className="d-flex">
