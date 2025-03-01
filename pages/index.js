@@ -10,6 +10,8 @@ import LeadForm from "@/components/homepage/leadform/LeadForm";
 import CityVenueHall from "@/components/miscellaneous/footer/CityVenueHall";
 import VendorCategoryCardGrid from "@/components/miscellaneous/vendorcategorycardgrid/VendorCategoryCardGrid";
 import Head from "next/head";
+import { useEffect } from "react";
+import Script from "next/script";
 
 const FB_PIXEL_ID = "852285655467761";
 export default function Home({
