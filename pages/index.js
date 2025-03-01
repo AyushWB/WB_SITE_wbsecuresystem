@@ -100,7 +100,7 @@ export default function Home({
         <meta property="og:url" content="https://weddingbanquets.in" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}></script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}></script>
-        <Script
+        <script
           id="facebook-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -117,7 +117,7 @@ export default function Home({
             fbq('track', 'PageView');
           `,
           }}
-        />
+        ></script>
         <noscript>
           <img
             height="1"
