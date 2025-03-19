@@ -14,7 +14,6 @@ import { useEffect } from "react";
 import Script from "next/script";
 
 const FB_PIXEL_ID = "852285655467761";
-const GTM_ID = "GTM-P2LJ8GNM";  // Replace with your actual GTM ID
 export default function Home({
   venueCategogies,
   cities,
@@ -99,22 +98,9 @@ export default function Home({
         <meta property="og:title" content="Best Banquet Halls And Wedding Venues at 40% Discount" />
         <meta property="og:description" content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion. Look Over 10000+ Indian Wedding Venues For Corporate Events, Weddings And Parties" />
         <meta property="og:url" content="https://weddingbanquets.in" />
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id=${GTM_ID}'+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `,
-          }}
-        />
-
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}></script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}></script>
-        {/* <script
+        <script
           id="facebook-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -139,7 +125,7 @@ export default function Home({
             style={{ display: "none" }}
             src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
           />
-        </noscript> */}
+        </noscript>
       </Head>
       <Navbar />
       <Hero
@@ -156,8 +142,6 @@ export default function Home({
       <Contact />
       <VendorCategoryCardGrid />
       <CityVenueHall cities={cities} />
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2LJ8GNM"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   );
 }
