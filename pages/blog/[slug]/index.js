@@ -35,12 +35,18 @@ export async function getServerSideProps(context) {
   const url = `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/api/blog_detail/${params.slug}`;
   let bloddata = await fetch(url);
   let data = await bloddata.json();
-  return {
-    props: {
-      data,
-      params,
-    },
-  };
+  if (data.status == "error") {
+    return {
+      notFound: true,
+    };
+  } else {
+    return {
+      props: {
+        data,
+        params,
+      },
+    };
+  }
 }
 
 const Wrapper = styled.section`
