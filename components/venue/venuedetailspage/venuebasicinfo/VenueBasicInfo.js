@@ -73,7 +73,7 @@ background-color: var(--bg-color);
 
 .about-desSc {
 h1{
-font-size: 24px !important;
+font-size: 26px !important;
 }
 h2{
 font-size: 22px !important;
