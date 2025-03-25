@@ -83,6 +83,16 @@ font-size: 20px !important;
 }
 }
 
+table{
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 1.5rem;
+        th, td{
+            border: 1px solid #ececec;
+            padding: 5px 3px;
+        }
+    }
+
 .basic-venue-info-content{
     display: flex;
     flex-direction: column;
