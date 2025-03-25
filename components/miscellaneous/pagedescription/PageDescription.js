@@ -41,6 +41,18 @@ const Wrapper = styled.section`
       letter-spacing: 1px;
       line-height: 25px;
     }
+
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 1.5rem;
+        th, td{
+            border: 1px solid #ececec;
+            padding: 5px 3px;
+        }
+    }
+    
+
     ul {
       li {
         list-style: disc !important;
