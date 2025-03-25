@@ -138,7 +138,7 @@ table{
             color: var(--primary-color);
             font-weight: 700;
         }
-        .about-desc,span,p{
+        .about-desc,span,p,div{
             font-family: "Poppins" !important;
             font-size: 1.8rem !important;
             color: var(--para);
