@@ -31,7 +31,7 @@ function Footer() {
                                 sizes="(100vw)"
                             />
                         </Link>
-                        <p className='about'>Wedding Banquets is a reliable and well known name in the wedding industry catering all your wedding wants  in one go. </p>
+                        <p className='about'>Planning Your Dream Wedding? Wedding Banquets brings you the hottest trends in wedding decor, bridal fashion, photography, and beyond to ensure your big day is nothing short of magical ! </p>
                     </div>
                     <div className="f-section f-service">
                         <h3>Service</h3>
@@ -40,14 +40,14 @@ function Footer() {
                                 <Link href={`/banquet-halls/${selectedCity}/all`} className='f-link'>Wedding venues</Link>
                             </li>
                             <li>
-                                <Link href={`/wedding-photographers/${selectedCity}/all`} className='f-link'>Photographer</Link>
+                                <Link href={`/wedding-photographers/${selectedCity}/all`} className='f-link'>Photographers</Link>
                             </li>
                             <li>
-                                <Link href={`/makeup-artists/${selectedCity}/all`} className='f-link'>Makeup Artist</Link>
+                                <Link href={`/makeup-artists/${selectedCity}/all`} className='f-link'>Makeup Artists</Link>
                             </li>
 
                             <li>
-                                <Link href={`/best-mehendi-artists/${selectedCity}/all`} className='f-link'>Mehndi Artist</Link>
+                                <Link href={`/best-mehendi-artists/${selectedCity}/all`} className='f-link'>Mehndi Artists</Link>
                             </li>
 
                             <li>
@@ -92,7 +92,7 @@ function Footer() {
                             <li className='f-phone'>
                                 <IoIosCall />
                                 <a href="tel: 07969100321" className='f-link'>07969100321</a>
-                            </li>
+                            </li>   
                             <li className='f-phone'>
                                 <IoIosCall />
                                 <a href="tel: 07969100329" className='f-link'>07969100329</a>

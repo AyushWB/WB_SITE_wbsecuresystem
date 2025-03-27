@@ -9,7 +9,7 @@ function Blog({ posts }) {
 
     return (
         <Section className="section section-blog">
-            <Heading text={"Take a cue - Trending Blogs"} desc={"Looking for Wedding Inspiration? Put a full stop to your search as Wedding Banquets has got your back! Keep up to date with the hot trends on Wedding decor,Fashion inspirations, Phtography and much more to make your D-Day a phenomenal affair. "} />
+            <Heading text={"Take a cue - Trending Blogs"} desc={"Looking for Wedding Inspiration? Put a full stop to your search as Wedding Banquets has got your back! Keep up to date with the hot trends on Wedding decor, Fashion inspirations, Photography and much more to make your D-Day a phenomenal affair.. "} />
             <div className="container">
                 <div className="blog-cards">
 

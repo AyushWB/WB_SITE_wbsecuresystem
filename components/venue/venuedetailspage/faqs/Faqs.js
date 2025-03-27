@@ -48,8 +48,7 @@ function Faqs({ faqs, name }) {
                                         <BsChevronDown className={`icon ${activeIndex === index ? 'rotate' : ''}`} size={20} />
                                     </div>
                                     <ul className={`list-unstyled ${activeIndex === index ? 'active' : ''} `}>
-
-                                        <li>{item.answer}</li>
+                                        <li dangerouslySetInnerHTML={{__html: `${item.answer}`}}></li>
                                     </ul>
                                 </Wrapper>
                             )
@@ -129,9 +128,9 @@ const Wrapper = styled.div`
             padding: 1rem;
 
         }
+            strong{
+            font-weight: 500 !important;
+            }
     }
-
-
-
 `
 export default Faqs;

@@ -58,7 +58,7 @@ function HowItWorks() {
                             </div>
                             <div className="item-details">
                                 <h2 className="title">BOOK VENUE</h2>
-                                <p className="description">Finalise with the vendor the best deals we have for you in our Pandora’s Box.</p>
+                                <p className="description">Finalize your booking today with your dream venue and grab the best deals.</p>
                             </div>
                             <BsThreeDotsVertical className="dot" sizes={30} />
 
