@@ -31,7 +31,9 @@ function Footer() {
                                 sizes="(100vw)"
                             />
                         </Link>
-                        <p className='about'>Planning Your Dream Wedding? Wedding Banquets brings you the hottest trends in wedding decor, bridal fashion, photography, and beyond to ensure your big day is nothing short of magical ! </p>
+                        <p className='about'>
+Wedding Banquets is here to make your dream wedding come true. With expert services and trendy ideas, we take care of all your wedding needs.
+ </p>
                     </div>
                     <div className="f-section f-service">
                         <h3>Service</h3>

@@ -87,8 +87,9 @@ function VenueCity() {
 const Div = styled.div`
 
 
-display: grid;
-row-gap: 5rem;
+
+display: flex;
+gap: 50px;
 grid-template-columns: repeat(5,1fr);
 
 
