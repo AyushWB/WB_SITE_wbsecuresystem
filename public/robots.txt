@@ -3,6 +3,3 @@ Disallow:
 Disallow: /cgi-bin/
 Disallow: /yash
 
-
-
-Sitemap: https://weddingbanquets.in/sitemap.xml
