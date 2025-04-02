@@ -103,7 +103,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                     </div>
                     <div className="filter-btn" onClick={() => { setShowFilter(true) }}>
                         <BiSlider className="filter-icon" />
-                        <span className="filter-label">Filter</span>
+                        <span className="">Filter</span>
                     </div>
                 </div>
                 <div className="venue-list-container">

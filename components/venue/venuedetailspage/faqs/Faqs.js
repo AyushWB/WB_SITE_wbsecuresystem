@@ -44,11 +44,11 @@ function Faqs({ faqs, name }) {
                             return (
                                 <Wrapper key={index}>
                                     <div className='faqs-header' onClick={() => { onItemClick(index) }}>
-                                        <span className='faqs-ques'>{item.question}</span>
+                                        <h3 className='faqs-ques'>{item.question}</h3>
                                         <BsChevronDown className={`icon ${activeIndex === index ? 'rotate' : ''}`} size={20} />
                                     </div>
                                     <ul className={`list-unstyled ${activeIndex === index ? 'active' : ''} `}>
-                                        <li dangerouslySetInnerHTML={{__html: `${item.answer}`}}></li>
+                                        <p dangerouslySetInnerHTML={{__html: `${item.answer}`}}></p>
                                     </ul>
                                 </Wrapper>
                             )
@@ -119,9 +119,8 @@ const Wrapper = styled.div`
         gap: 1rem;
         /* display: ${(props) => props.show ? "block" : 'none'}; */
         display: none;
-
-
-        li{
+        
+        p{
             font-size: 1.6rem;
             font-family: Poppins;
             transition: all .3s linear;
@@ -132,5 +131,11 @@ const Wrapper = styled.div`
             font-weight: 500 !important;
             }
     }
+
+    
+        
+
+
+
 `
 export default Faqs;
