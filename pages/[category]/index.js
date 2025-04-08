@@ -81,8 +81,6 @@ export async function getServerSideProps({ params, req, res }) {
       };
     }
   } else {
-      return {
-        notFound,
-      };
+    
   }
 }
