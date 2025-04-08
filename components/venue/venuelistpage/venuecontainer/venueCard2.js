@@ -205,7 +205,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                   e.stopPropagation();
                 }}
               >
-                Ckeck Prices
+                Check Prices
               </button>
               <a
                 className="call-us-btn"
