@@ -63,6 +63,9 @@ export async function getServerSideProps({ params, req, res }) {
       let homePageData = await fetch(url);
       homePageData = await homePageData.json();
 
+      // console.log(homePageData.data);
+      console.log(url);
+
       let blogposts = homePageData.data.blogs;
 
       return {

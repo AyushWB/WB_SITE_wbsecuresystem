@@ -25,7 +25,7 @@ export default function BudgetRangeSlider({ perBudget, setPerBudget, perPlate, s
     return (<Wrapper show={toggleTab}>
         <div className="header-title">
 
-            <h4>Budget</h4>
+            <div>Budget</div>
             <span className="clear-btn" onClick={handleClear}>Clear</span>
         </div>
         <div className="tabs">
@@ -79,7 +79,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h4{
+    div{
         font-size: 2rem !important;
         font-weight: 500;
     }

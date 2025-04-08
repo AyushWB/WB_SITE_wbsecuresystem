@@ -42,9 +42,9 @@ export function RedioFilter({ name, items, list, setList ,handleApplyFilter}) {
 
         <div className="header-title">
 
-            <h4>{name}   <span className="badge-count">
+            <div>{name}   <span className="badge-count">
                 {`(${items.length})`}
-            </span></h4>
+            </span></div>
             <span className="clear-btn" onClick={handleClear}>Clear</span>
 
 
@@ -117,7 +117,7 @@ gap: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h4{
+    div{
         font-size: 2rem !important  ;
         font-weight: 500;
     }

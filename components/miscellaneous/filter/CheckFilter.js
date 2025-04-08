@@ -38,7 +38,7 @@ export function CheckFilter({ name, items, list, setList, handleApplyFilter, typ
     return (
         <Box show={show}>
             <div className="header-title">
-                <h4>{name} <span className="badge-count">{`(${items.length})`}</span></h4>
+                <div>{name} <span className="badge-count">{`(${items.length})`}</span></div>
                 <span className="clear-btn" onClick={handleClear}>Clear</span>
             </div>
 
@@ -107,7 +107,7 @@ gap: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h4{
+    div{
         font-size: 2rem !important;
         font-weight: 500;
     }

@@ -25,7 +25,7 @@ export default function SideFilter({ city, locality, category, localities, venue
             <div className="filter-container">
 
                 <div className="header">
-                    <h2>Filter</h2>
+                    <div>Filter</div>
                     <span onClick={e=>setShowFilter(false)}>
                         <AiOutlineClose className="icon"/>
                     </span>
@@ -101,7 +101,7 @@ ${({ show }) =>
         align-items:center;
         justify-content:space-between;
 
-        h2{
+        div{
             font-size:2.5rem;
             font-family:"Poppins";
             /* color:var(--primary-color); */

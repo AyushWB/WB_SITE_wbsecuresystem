@@ -98,7 +98,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
             <Section className="section section-venue-container">
                 <div className="sticky-head">
                     <div className="page-title">
-                        <h2 className="main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city : locality}`}</h2>
+                        <h1 className="main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city : locality}`}</h1>
                         <span className="count">{` Total result : ${count || 0} `}</span>
                     </div>
                     <div className="filter-btn" onClick={() => { setShowFilter(true) }}>
