@@ -151,7 +151,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
             <p>{`${venue?.get_locality.name} , ${venue?.get_city.name}`}</p>
           </div>
           <div className="guests detail-circle">
-            <ImWhatsapp className="icon" />
+          <IoIosPeople className="icon" />
             <p>{`${venue?.min_capacity}-${venue?.max_capacity} guests`}</p>
           </div>
         </div>
@@ -301,6 +301,7 @@ const Wrapper = styled.div`
     transition: all 0.3s linear;
     background: #870808;
     color: white;
+    border-radius: 7px;
   }
 
   .call-us-btn {
@@ -326,7 +327,7 @@ const Wrapper = styled.div`
 
   .action-btns {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     .phone {
       display: none;
     }
@@ -542,7 +543,7 @@ const Wrapper = styled.div`
     }
     .action-btns {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
       .phone {
         display: block;
       }
