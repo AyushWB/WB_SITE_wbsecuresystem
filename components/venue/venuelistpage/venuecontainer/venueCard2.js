@@ -13,7 +13,8 @@ import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { FreeMode, Thumbs, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
-import CallingRequest from "@/lib/request/callingrequest/CallingRequest";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { ImWhatsapp } from "react-icons/im";
 import Assured from "@/components/miscellaneous/Assured";
 import { useGlobalContext } from "@/context/MyContext";
 import RatingCardDynamic from "@/components/miscellaneous/RatingCardDynamic";
@@ -139,7 +140,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
           <div className="phone">
             <div className="" onClick={(e) => shareViaWhatsApp(e)}>
               <div className="whatsapp-btn">
-                <IoLogoWhatsapp className="whatsapp-icon" />
+              <ImWhatsapp className="whatsapp-icon" />
               </div>
             </div>
           </div>
@@ -150,7 +151,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
             <p>{`${venue?.get_locality.name} , ${venue?.get_city.name}`}</p>
           </div>
           <div className="guests detail-circle">
-            <IoIosPeople className="icon" />
+            <ImWhatsapp className="icon" />
             <p>{`${venue?.min_capacity}-${venue?.max_capacity} guests`}</p>
           </div>
         </div>
@@ -194,7 +195,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                   e.stopPropagation();
                 }}
               >
-                See Best
+                Check
                 <br /> Prices
               </button>
               <button
@@ -204,7 +205,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                   e.stopPropagation();
                 }}
               >
-                See Best Prices
+                Ckeck Prices
               </button>
               <a
                 className="call-us-btn"
@@ -216,7 +217,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                 aria-label="call icon"
               >
                 <div className="">
-                  <IoIosCall className="phone-icon" />
+                <BiSolidPhoneCall className="phone-icon" />
                 </div>
               </a>
             </div>
@@ -257,18 +258,19 @@ const ringingAnimation = keyframes`
 
 const Wrapper = styled.div`
   .whatsapp-icon {
-    font-size: 2.5rem;
-    color: #fff;
+    font-size: 3.5rem;
+    color: #17c434;
+    background-color: #fff;
   }
   .phone-icon {
     cursor: pointer;
     color: white;
+    margin-top: 4px;
+    margin-left: -2px;
     font-size: 3.5rem;
         animation: ${ringingAnimation} 1s ease-in-out infinite;
   }
   .phone {
-    border: 1px solid var(--phone);
-    background-color: var(--phone);
     color: white;
     padding: 0.7rem 1.8rem;
     text-transform: uppercase;
@@ -293,11 +295,11 @@ const Wrapper = styled.div`
     padding: 0.5rem 1.2rem;
     text-transform: uppercase;
     border-radius: 0.5rem;
-
+    font-weight: 600;
     font-size: 1.8rem;
     cursor: pointer;
     transition: all 0.3s linear;
-    background: #f33232;
+    background: #870808;
     color: white;
   }
 
@@ -316,6 +318,10 @@ const Wrapper = styled.div`
     background: var(--phone);
     color: white;
     animation: ${ringingAnimationn} 1s ease-in-out infinite;
+    border-radius: 60%;
+    display: flex;
+    align-item: center;
+    justify-content: center;
   }
 
   .action-btns {

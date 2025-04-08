@@ -166,9 +166,9 @@ export default function LeadModel() {
           {isSent ? (
             <h3 className="title"> Thank You</h3>
           ) : (
-            <h3 className="title"> Send Enquiry</h3> //Send Enquiry
+            <div className="title"> Send Enquiry</div> //Send Enquiry
           )}
-          <h3 className="discount-heading">{!isSent && "get upto 40% off"}</h3>
+          <div className="discount-heading">{!isSent && "get upto 40% off"}</div>
           <p className="discount-text">
             {isSent
               ? "Our team will reach you soon with best price.."

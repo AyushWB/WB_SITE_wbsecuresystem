@@ -54,7 +54,7 @@ export default function SideSearchMenuBar() {
         <Wrapper {...handlers} isActive={isSearchMenuOpen}>
             <Div isActive={isSearchMenuOpen} onBlur={handleBlur} tabIndex="1">
                 <div className="menu-img">
-                        <h3 className="searchBarMenuTitle">Plan Your Dream Wedding!</h3>
+                        <div className="searchBarMenuTitle">Plan Your Dream Wedding!</div>
                         <p className="searchBarMenuDesc">Search for venues, Makeup Artists, Photographers and more!</p>
                         <MdCancel className="cancel-icon" onClick={() => setIsSearchMenuOpen(false)} />
                     <SearchBarForSideBar
@@ -89,6 +89,7 @@ transition: all .3s linear;
     text-align: center;
     font-size: 2.5rem;
     color: #870808;
+    font-weight: 600;
 }
 .searchBarMenuDesc{
     max-width: 260px;
