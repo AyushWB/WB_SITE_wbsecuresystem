@@ -16,7 +16,7 @@ export default function VendorCategoryCardGrid (){
                     <VendorCategoryCard bgColor={"#F7FFE5"} imgUrl={'/vendor-cat/mehndi-artist.jpeg'} title={"Mehndi Artists"} desc={"Wedding Mehndi Artist"}  url={"/best-mehendi-artists/delhi/all"}/>
                     <VendorCategoryCard bgColor={"#F9F5F6"} imgUrl={'/vendor-cat/wedding-decorator.jpeg'} title={"Decorators"} desc={"Decorators "}  url={"/wedding-decorators/delhi/all"}/>
                     <VendorCategoryCard bgColor={"#F0EDD4"} imgUrl={'/vendor-cat/wedding-transport.jpeg'} title={"Wedding Transports"} desc={"Transport for Wedding"}  url={"/wedding-transportation-vintage-cars/delhi/all"}/>
-                    <VendorCategoryCard bgColor={"#E3F4F4"} imgUrl={'/vendor-cat/band-baja.jpeg'} title={"Wedding-band"} desc={"Wedding-band"}  url={"/wedding-band/delhi/all"}/>
+                    <VendorCategoryCard bgColor={"#E3F4F4"} imgUrl={'/vendor-cat/band-baja.jpeg'} title={"Wedding-Band"} desc={"Wedding-Band"}  url={"/wedding-band/delhi/all"}/>
                </div>
             </div>
         
