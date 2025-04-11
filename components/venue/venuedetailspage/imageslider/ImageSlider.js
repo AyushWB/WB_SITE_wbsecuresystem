@@ -99,7 +99,7 @@ export default function ImageSlider({ images, wb_assured, altname, rating, ratin
 
                
                     <div className="view-gellary-contianer" onClick={() => setOpen(true)}>
-                        <FaLayerGroup className="gallary-icon" /> <h2> View Gallery </h2>
+                        <FaLayerGroup className="gallary-icon" /> <div> View Gallery </div>
                     </div>
 
 
@@ -177,7 +177,7 @@ padding: 0px 0px !important;
 
 
     }
-    h2{
+    div{
         font-family: "Poppins";
         font-weight: 600;
         font-size: 1.5rem;

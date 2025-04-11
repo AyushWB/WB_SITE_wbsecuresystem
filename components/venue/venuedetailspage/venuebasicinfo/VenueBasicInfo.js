@@ -24,7 +24,7 @@ export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck
         <div className="basic-venue-info-container">
             <div className="basic-venue-info-content">
                 <div className="venue-details">
-                    <h2 className="basic-venue-info-name">{venue.name || ""}</h2>
+                    <div className="basic-venue-info-name">{venue.name || ""}</div>
                     <p className="basic-venue-info-address">{venue.venue_address || " "}</p>
 
                 </div>
@@ -32,9 +32,9 @@ export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck
                     <PriceListCard min_capacity={venue.min_capacity} max_capacity={venue.max_capacity} nonveg_price={venue.nonveg_price} veg_price={venue.veg_price} phone={venue.phone} slug={venue.slug} id={id} openLeadsModel={openLeadsModel}/>
                 </div>
                 <div className="about">
-                    <h2 className="about-title">
+                    <div className="about-title">
                         About
-                    </h2>
+                    </div>
                     <div className="about-desSc"  dangerouslySetInnerHTML={{ __html: showSummary ? venue.summary : venue.summary.slice(0,500)}}></div>
                     <span className="read-more-btn" onClick={() => { setShowSumary(!showSummary) }}>  {showSummary ? "Read less" : "Read more"}</span> 
 
@@ -138,15 +138,17 @@ table{
             color: var(--primary-color);
             font-weight: 700;
         }
-        .about-desc,span,p,div{
-            font-family: "Poppins" !important;
-            font-size: 1.8rem !important;
-            color: var(--para);
-            text-align: justify;
-            line-height: 2;
-            font-weight: 400;
-
-        }
+        .about-desc,
+            .about p,
+            .about span,
+            .about div:not(.about-title) {
+                font-family: "Poppins" !important;
+                font-size: 1.8rem !important;
+                color: var(--para);
+                text-align: justify;
+                line-height: 2;
+                font-weight: 400;
+            }
         .read-more-btn{
 
     
