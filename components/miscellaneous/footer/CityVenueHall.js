@@ -7,7 +7,7 @@ function CityVenueHall({cities}) {
     return (
         <Section className='section section-city-venue'>
             <div className="container">
-                <h2 className='venue-heading'>Wedding venues by location</h2>
+                <h2 className='venue-heading'>Wedding Venues by Location</h2>
 
               
                 <VenueCity cities={cities}/>

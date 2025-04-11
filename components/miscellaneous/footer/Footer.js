@@ -53,7 +53,7 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                             </li>
 
                             <li>
-                                <Link href={`/band-baja-ghodiwala/${selectedCity}/all`} className='f-link'>Band baja</Link>
+                                <Link href={`/wedding-band/${selectedCity}/all`} className='f-link'>Wedding Band</Link>
                             </li>
 
                         </ul>
