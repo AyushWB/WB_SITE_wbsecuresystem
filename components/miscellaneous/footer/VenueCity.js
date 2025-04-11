@@ -51,7 +51,6 @@ function VenueCity() {
                                 <span className='venue-city'>{city.name}</span>
                                 <BsChevronDown className={`icon ${activeIndex === index ? 'rotate' : ''}`} size={20} />
                             </div>
-                            <span className='venue-title'>VENUES</span>
 
                             <ul className={`list-unstyled ${activeIndex === index ? 'active' : ''} `}>
                                 {
