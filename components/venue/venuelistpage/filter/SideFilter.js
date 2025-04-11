@@ -33,7 +33,7 @@ export default function SideFilter({ city, locality, category, localities, venue
 
                 <Filter locality={locality} filterQuery={filterQuery} localities={localities} venueCategories={venueCategories} city={city} category={category} />
                 <div className="footer" onClick={e=>setShowFilter(false)}>
-                    <h2 className="filter-label">Apply</h2>
+                    <div className="filter-label">Apply</div>
                     <BsArrowRight className="arrow-icon" />
 
                 </div>

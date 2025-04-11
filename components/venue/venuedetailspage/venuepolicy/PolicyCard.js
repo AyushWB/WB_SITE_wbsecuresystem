@@ -14,7 +14,7 @@ export default function PolicyCard({img_url,name,data}){
             alt="img"
             />
         </div>
-        <h2>{name}</h2>
+        <div>{name}</div>
         <div className="description"  dangerouslySetInnerHTML={{ __html: data }} />
         {/* <p>25% at the time of booking, Advance can be adjusted against future bookings in NA months.</p> */}
     
@@ -43,7 +43,7 @@ gap: 1rem;
     height: 100px;
 }
 
-h2{
+div{
     font-size: 1.8rem;
     font-family: "Poppins";
     font-weight: 500;
