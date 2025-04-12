@@ -189,20 +189,26 @@ export default function VenueDetailsPage({ response }) {
         "review": reviews.slice(0, 4).map((review) => ({
             "@type": "Review",
             "datePublished": review.created_at,
-             "reviewBody": review?.comment || "Great experience!",
+            "reviewBody": review?.comment || "Great experience!",
             "author": {
-              "@type": "Person",
-              "name": review?.users_name || "Anonymous"
+                "@type": "Person",
+                "name": review?.users_name || "Anonymous"
             },
             "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": review?.rating || 0,
-              "bestRating": "5",
-              "worstRating": "1"
+                "@type": "Rating",
+                "ratingValue": review?.rating || 0,
+                "bestRating": "5",
+                "worstRating": "1"
             },
-          })),
-          "priceRange": `Rs. ${venue.veg_price} - ${venue.nonveg_price}`,
-        };
+        })),
+        "priceRange": venue.veg_price && venue.nonveg_price
+            ? `Rs. ${venue.veg_price} - ${venue.nonveg_price}`
+            : venue.veg_price
+                ? `Rs. ${venue.veg_price}`
+                : venue.nonveg_price
+                    ? `Rs. ${venue.nonveg_price}`
+                    : undefined,
+    };
 
 
     return (
