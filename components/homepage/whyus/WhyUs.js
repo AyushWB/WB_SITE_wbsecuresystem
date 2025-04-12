@@ -46,7 +46,7 @@ export default function WhyUs() {
                     </div>
                     <div className="details-contianer">
                         <h2 className="title">One Stop Solution</h2>
-                        <p className="short-desc">With our one-stop shop, you will get A to Z wedding necessities by booking multiple spaces and trusted vendors under one roof.</p>
+                        <p className="short-desc">With our one-stop solution, you will get A to Z wedding necessities by booking multiple spaces and trusted vendors under one roof.</p>
                         <p className="content">No more endless hours spent scrolling through websites or dealing with the headache of coordinating multiple vendors - we've got you covered. You will experience the magic of stress-free & hassle-free event planning.</p>
                     </div>
                 </div>
