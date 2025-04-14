@@ -112,7 +112,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                     </aside>
                     <main className="venues-list box">
                         <div className="d-flex">
-                            <div className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></div>
+                            <h1 className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></h1>
                             <SearchBarVenue
                                 suggestions={suggestions}
                                 selectedCity={selectedCity}

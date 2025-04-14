@@ -182,6 +182,7 @@ import VendorListPage from '@/components/vendor/vendorlistpage/VendorListPage';
 import VenueListPage from '@/components/venue/venuelistpage/VenueListPage';
 import FooterLocalities from '@/components/miscellaneous/footer/FooterLocalites';
 import FooterRelatedSearch from '@/components/miscellaneous/footer/FooterRelatedSearch';
+import FooterRelatedHall from '@/components/miscellaneous/footer/FooterRelatedHall';
 import FooterKeyword from '@/components/miscellaneous/footer/FooterKeyword';
 import Faqs from '@/components/venue/venuedetailspage/faqs/Faqs';
 
@@ -235,6 +236,7 @@ function Venue(props) {
             <FooterLocalities city={props.city} category={props.category} localities={props.localities?.data} />
           )}
           <FooterRelatedSearch city={props.city} locality={props.locality} />
+          <FooterRelatedHall city={props.city} locality={props.locality} />
         </>
       ) : (
         <>
