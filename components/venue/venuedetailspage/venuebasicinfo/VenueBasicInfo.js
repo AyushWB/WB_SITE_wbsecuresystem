@@ -24,7 +24,7 @@ export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck
         <div className="basic-venue-info-container">
             <div className="basic-venue-info-content">
                 <div className="venue-details">
-                    <div className="basic-venue-info-name">{venue.name || ""}</div>
+                    <h1 className="basic-venue-info-name">{venue.name || ""}</h1>
                     <p className="basic-venue-info-address">{venue.venue_address || " "}</p>
 
                 </div>
