@@ -49,7 +49,7 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                             </li>
 
                             <li>
-                                <Link href={`/best-mehendi-artists/${selectedCity}/all`} className='f-link'>Mehndi Artists</Link>
+                                <Link href={`/best-mehendi-artists/${selectedCity}/all`} className='f-link'>Mehendi Artists</Link>
                             </li>
 
                             <li>
