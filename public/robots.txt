@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: 
+Sitemap :  https://weddingbanquets.in/sitemap.xml 
 Disallow: /cgi-bin/
 Disallow: /yash
 
