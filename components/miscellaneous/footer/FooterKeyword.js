@@ -8,7 +8,7 @@ function FooterKeyword({ category, locality, city }) {
 
     return (
         <Section className='section-vendors'>
-            <div className="container">
+            {/* <div className="container">
                 <h2 className='vendors-heading'>Frequent Searches Leading To This Page</h2>
                 <div className="vendors-container">
                     <div className="vendors-list">
@@ -51,7 +51,7 @@ function FooterKeyword({ category, locality, city }) {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </Section>
     )
 }

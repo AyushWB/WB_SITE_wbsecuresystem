@@ -29,7 +29,7 @@ function FooterRelatedSearch({city,locality}) {
         },
         {
             "id": 7,
-            "name": "5 Start Wedding Hotels",
+            "name": "5 Star Wedding Hotels",
             "slug": "5-star-wedding-hotels"
         },
         {
@@ -53,7 +53,7 @@ function FooterRelatedSearch({city,locality}) {
     return (
         <Section className='section-vendors'>
             <div className="container">
-                <h2 className='vendors-heading'>Other Related Searches</h2>
+                <h2 className='vendors-heading'>Other Popular Searches</h2>
                 <div className="vendors-container">
                     <div className="vendors-list">
                         {
