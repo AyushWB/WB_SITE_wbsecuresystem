@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link';
 
-function FooterRelatedHall({city,locality}) {
+function FooterWeddingServices({city,locality}) {
 
 
 
-    const venue_categorieshall = [
+    const venue_categoriesServices = [
         {
             "id": 15,
             "name": "Wedding Photographers",
@@ -67,7 +67,7 @@ function FooterRelatedHall({city,locality}) {
                 <div className="vendors-container">
                     <div className="vendors-list">
                         {
-                            venue_categorieshall?.map((cat) => {
+                            venue_categoriesServices?.map((cat) => {
                                 return (
                                     <span key={cat.id}>
                                         <Link className='vendor-link' href={`/${cat.slug}/${city}/${locality}`}>
@@ -132,4 +132,4 @@ margin-top: 2rem;
 
 
 
-export default FooterRelatedHall
+export default FooterWeddingServices
