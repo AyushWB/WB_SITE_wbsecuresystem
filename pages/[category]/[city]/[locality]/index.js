@@ -182,6 +182,7 @@ import FooterRelatedSearch from '@/components/miscellaneous/footer/FooterRelated
 import FooterWeddingServices from '@/components/miscellaneous/footer/FooterWeddingSevices';
 import FooterKeyword from '@/components/miscellaneous/footer/FooterKeyword';
 import Faqs from '@/components/venue/venuedetailspage/faqs/Faqs';
+// import FooterRelatedHall from '@/components/miscellaneous/footer/FooterRelatedHall';
 
 function Venue(props) {
   const { setSelectedCity, localities } = useGlobalContext();
@@ -234,6 +235,7 @@ function Venue(props) {
           )}
           <FooterRelatedSearch city={props.city} locality={props.locality} />
           <FooterWeddingServices city={props.city} locality={props.locality} />
+          {/* <FooterRelatedHall city={props.city} locality={props.locality} /> */}
         </>
       ) : (
         <>

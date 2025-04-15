@@ -2,7 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link';
 
+
+const formatName = (name) => {
+    return name
+      ?.replace(/-/g, ' ')
+      ?.replace(/\b\w/g, (char) => char.toUpperCase()) || '';
+  };
+
 function FooterWeddingServices({city,locality}) {
+
+    const displayName = formatName(locality === 'all' ? city : locality);
 
 
 
@@ -63,7 +72,7 @@ function FooterWeddingServices({city,locality}) {
     return (
         <Section className='section-vendors'>
             <div className="container">
-                <h2 className='vendors-heading'>Other Wedding Services</h2>
+                <h2 className='vendors-heading'>Other Wedding Services in {displayName}</h2>
                 <div className="vendors-container">
                     <div className="vendors-list">
                         {

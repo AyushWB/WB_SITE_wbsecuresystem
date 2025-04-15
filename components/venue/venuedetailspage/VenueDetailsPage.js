@@ -75,34 +75,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import Head from "next/head";
 import BreadCrumb from "@/components/miscellaneous/NavigationHeader";
 import StickyButton from "@/components/miscellaneous/StickyButton";
@@ -154,12 +126,11 @@ export default function VenueDetailsPage({ response }) {
         if (e) e.stopPropagation();
     }
 
-    // ✅ SEO schema for AggregateRating
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": venue?.name || "Venue Name",
-        "url": `https://weddingbanquets.in/${router.asPath}`,
+        "url": `https://weddingbanquets.in${router.asPath}`,
         "logo": {
             "@type": "ImageObject",
             "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${venue?.images?.split(",")[0]}`,
@@ -210,7 +181,6 @@ export default function VenueDetailsPage({ response }) {
                     : undefined,
     };
 
-
     return (
         <>
             <Head>
@@ -218,6 +188,23 @@ export default function VenueDetailsPage({ response }) {
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
                 />
+                {venue?.images &&
+                    venue.images
+                        .split(",")
+                        .slice(0, 10)
+                        .map((img, index) => (
+                            <script
+                                key={index}
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        "@context": "https://schema.org",
+                                        "@type": "ImageObject",
+                                        "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`,
+                                    }),
+                                }}
+                            />
+                        ))}
             </Head>
 
             <Header />
