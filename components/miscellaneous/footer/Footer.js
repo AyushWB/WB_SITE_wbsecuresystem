@@ -804,9 +804,3 @@ background-color:#870808;
 `
 
 export default Footer
-
-
-
-
-
-// whbgsjhdbgjhbd
