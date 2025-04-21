@@ -22,3 +22,4 @@ pm2 reload 3
 pm2 reload 9
 
 echo "Deployment Finished!"
+echo "No errors!"
