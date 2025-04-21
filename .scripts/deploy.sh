@@ -19,6 +19,6 @@ echo "PM2 Reload"
 
 pm2 reload 3
 
-pm2 reload 4
+pm2 reload 9
 
 echo "Deployment Finished!"
