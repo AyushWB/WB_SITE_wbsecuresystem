@@ -155,4 +155,4 @@ export async function getServerSideProps({ query, req, res }) {
     };
   }
 }
-
+export default Venue;
