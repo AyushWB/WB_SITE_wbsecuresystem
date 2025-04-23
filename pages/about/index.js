@@ -15,7 +15,7 @@ export default function Page() {
             <section className="container">
                 <article className="header-article">
                     <div className="contant">
-                        <h2 className="title"> About us </h2>
+                        <h1 className="title"> About us </h1>
                         <p className="desc">Wedding Banquets is one of India’s largest and most trusted Wedding Company, connecting wed-to-be couples with local wedding specialists, including Wedding Venues and Vendors around Delhi NCR. Millions of couples worldwide can search, compare, and book from a directory of over Pan India 50,000 Venues and vendors. Wedding banquets disrupt the event management industry by providing versatility for discovering and booking venues and vendors.</p>
                         <p className="desc">Our team at Wedding Banquets works around the clock to ensure that every event booked through Wedding Banquets upholds the highest professional quality. Wedding management will be calm and uncomplicated when you choose us as your wedding planners. </p>
                     </div>

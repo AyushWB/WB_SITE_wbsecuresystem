@@ -20,7 +20,7 @@ export default function Hero() {
 
                         </div>
                     </Link>
-                    <h2 className="hero-title">TAKE YOUR BUSINESS TO NEXT LEVEL WITH WB </h2>
+                    <h1 className="hero-title">TAKE YOUR BUSINESS TO NEXT LEVEL WITH WEDDING BANQUETS </h1>
                     <ul className="hero-lists">
                         <li className="hero-list">Promote your services on our best in business site.</li>
                         <li className="hero-list"> Commute to local engaged couples and book more weddings</li>
