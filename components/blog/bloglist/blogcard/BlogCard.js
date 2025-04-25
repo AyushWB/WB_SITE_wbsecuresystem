@@ -13,7 +13,7 @@ function BlogCard({ image, heading, excerpt, publish_date, slug, image_alt, auth
   return (
     <Card onClick={handleCardClick}>
       <ImgWrapper>
-        <Img src={`${process.env.NEXT_PUBLIC_SERVER_DOMAIN}${image}`} 
+        <Img src={`${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${image}`} 
         alt={image_alt} 
         fill={true}
         quality={50}
