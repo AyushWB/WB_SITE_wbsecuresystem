@@ -2,11 +2,39 @@
 import styled from "styled-components"
 import Header from "@/components/layout.js/Header"
 import Image from "next/image"
+import Head from "next/head";
 
 export default function Page() {
 
 
     return (<Wrapper>
+        <Head>
+        <title>Plan Your Dream Wedding Come True with Wedding Banquets.</title>
+        <meta
+          name="description"
+          content="Wedding Banquets is your one-stop platform for planning the dream wedding. Explore venues, photographers, makeup artists, and more for a memorable celebration."
+        />
+        <meta name="robots" content="index, follow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Wedding Banquets",
+              "url": "https://www.weddingbanquets.in",
+              "logo": "https://www.weddingbanquets.in/logo.png",
+              "sameAs": [
+                "https://www.instagram.com/weddingbanquets",
+                "https://www.facebook.com/weddingbanquets"
+              ],
+              "description":
+                "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+            })
+          }}
+        />
+      </Head>
+
 
         <Header />
 
@@ -15,7 +43,7 @@ export default function Page() {
             <section className="container">
                 <article className="header-article">
                     <div className="contant">
-                        <h2 className="title"> About us </h2>
+                        <h1 className="title"> About us </h1>
                         <p className="desc">Wedding Banquets is one of India’s largest and most trusted Wedding Company, connecting wed-to-be couples with local wedding specialists, including Wedding Venues and Vendors around Delhi NCR. Millions of couples worldwide can search, compare, and book from a directory of over Pan India 50,000 Venues and vendors. Wedding banquets disrupt the event management industry by providing versatility for discovering and booking venues and vendors.</p>
                         <p className="desc">Our team at Wedding Banquets works around the clock to ensure that every event booked through Wedding Banquets upholds the highest professional quality. Wedding management will be calm and uncomplicated when you choose us as your wedding planners. </p>
                     </div>

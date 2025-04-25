@@ -11,14 +11,14 @@ import { Spinner1 } from "@/styles/components/spinner";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useFormik } from "formik";
-
 import { vendor_signup_validation } from "@/lib/formvalidation/formValidation";
+import Head from "next/head";
 
 
 
 export default function SignUpPage() {
-   const { userIP } = useGlobalContext();
-   
+    const { userIP } = useGlobalContext();
+
     const router = useRouter();
     const cookies = parseCookies()
 
@@ -27,15 +27,15 @@ export default function SignUpPage() {
         router.push('/business/dashboard')
     }
 
-    const { cities, vendorCategories,venueCategories} = useGlobalContext();
+    const { cities, vendorCategories, venueCategories } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(false)
-    const [businessCategory,setBusinessCategory] = useState([]);
+    const [businessCategory, setBusinessCategory] = useState([]);
 
     const formik = useFormik({
         initialValues: {
             name: "",
             business_name: "",
-            business_type:"",
+            business_type: "",
             business_category: "",
             email: "",
             phone: "",
@@ -49,13 +49,13 @@ export default function SignUpPage() {
 
 
 
-    const handleBusinessCategory = (e)=>{
+    const handleBusinessCategory = (e) => {
 
-        if(e.target.value === "1"){
+        if (e.target.value === "1") {
             setBusinessCategory(venueCategories)
             formik.values.business_type = "1"
         }
-        else if(e.target.value === "2"){
+        else if (e.target.value === "2") {
             setBusinessCategory(vendorCategories)
             formik.values.business_type = "2"
 
@@ -79,7 +79,7 @@ export default function SignUpPage() {
                 body: data
             })
 
-            const crmUrl =  `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAINN}/api/business_lead`
+            const crmUrl = `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAINN}/api/business_lead`
             let crmResponse = await fetch(crmUrl, {
                 method: "POST",
                 headers: {
@@ -88,7 +88,7 @@ export default function SignUpPage() {
                 body: data
             })
 
-            
+
             response = await response.json();
             if (response.success === true) {
                 formik.resetForm();
@@ -115,130 +115,248 @@ export default function SignUpPage() {
 
 
     return (
-        <Wrapper>
-            {/* <Alert title={"Success"} desc={"Login Success"} col={"#198754"} /> */}
-            <div className="container">
-                <Link href={"/"}>
+        <>
+            <Head>
+                <title>List Your Venue on Wedding Banquets Platform Today.</title>
+                <meta
+                    name="description"
+                    content="Sign up by filling in your venue details on WeddingBanquets and start connecting with many individuals looking for the ideal place to celebrate big day."
+                />
+                <meta name="robots" content="index, follow" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "Wedding Banquets",
+                            "url": "https://www.weddingbanquets.in",
+                            "logo": "https://www.weddingbanquets.in/logo.png",
+                            "sameAs": [
+                                "https://www.instagram.com/weddingbanquets",
+                                "https://www.facebook.com/weddingbanquets"
+                            ],
+                            "description":
+                                "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+                        })
+                    }}
+                />
+            </Head>
 
-                    <div className="logo-container">
-                        <Image
-                            src={'/logo.png'}
-                            fill={true}
-                            sizes="(100vw)"
-                        />
+            <Wrapper>
+                {/* <Alert title={"Success"} desc={"Login Success"} col={"#198754"} /> */}
+                <div className="container">
+                    <Link href={"/"}>
 
-                    </div>
+                        <div className="logo-container">
+                            <Image
+                                src={'/logo.png'}
+                                fill={true}
+                                sizes="(100vw)"
+                                alt="logo img"
+                            />
 
-                </Link>
+                        </div>
 
-                <div className="form-container">
-                    <div className="img-banner">
-                        <Image
-                            src={"/business/5.png"}
-                            fill={true}
-                            sizes="(100vw)"
-                            alt="banner img"
-                        />
-                    </div>
-                    <div className="form">
-                        {/* <Image
+                    </Link>
+
+                    <div className="form-container">
+                        <div className="img-banner">
+                            <Image
+                                src={"/business/5.png"}
+                                fill={true}
+                                sizes="(100vw)"
+                                alt="banner img"
+                            />
+                        </div>
+                        <div className="form">
+                            {/* <Image
                             src={"/common/signup-single-flip.png"}
                             fill={true}
                             sizes="()"
                         /> */}
-                        <div className="form-items">
+                            <div className="form-items">
 
-                            <div className="card">
-                                <div className="card-header">
-                                    <h2 className="head-title">Signup With Your Details</h2>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <h1 className="head-title">Signup With Your Venue Details</h1>
 
-                                    <p className="label">Try WeddingBanquet.in for free and grow your business.</p>
-                                    <p className="label-sm">Create your own storefront and be visible to thousands of couples.</p>
-                                </div>
+                                        <p className="label">Try WeddingBanquet.in for free and grow your business.</p>
+                                        <p className="label-sm">Create your own storefront and be visible to thousands of couples.</p>
+                                    </div>
 
-                                <div className="form-item" style={formik.errors.name && formik.touched.name ? errorStyle : {}}>
-                                    <input type="text" placeholder="Name " name="name"  {...formik.getFieldProps('name')} />
-                                    <FaUser className="placeholder-icon" />
-                                </div>
+                                    <div className="form-item" style={formik.errors.name && formik.touched.name ? errorStyle : {}}>
+                                        <input type="text" placeholder="Name " name="name"  {...formik.getFieldProps('name')} />
+                                        <FaUser className="placeholder-icon" />
+                                    </div>
 
-                                <div className="form-item" style={formik.errors.business_name && formik.touched.business_name ? errorStyle : {}}>
-                                    <input type="text" placeholder="Your Business name " name="business_name" {...formik.getFieldProps("business_name")} />
-                                    <FaUser className="placeholder-icon" />
-                                </div>
+                                    <div className="form-item" style={formik.errors.business_name && formik.touched.business_name ? errorStyle : {}}>
+                                        <input type="text" placeholder="Your Business name " name="business_name" {...formik.getFieldProps("business_name")} />
+                                        <FaUser className="placeholder-icon" />
+                                    </div>
 
-                                <div className="form-item"  style={formik.errors.business_type && formik.touched.business_type ? errorStyle : {}}>
-                                    <div className="dropdown locality-dropdown">
+                                    <div className="form-item" style={formik.errors.business_type && formik.touched.business_type ? errorStyle : {}}>
+                                        <div className="dropdown locality-dropdown">
 
-                                        <select name="business_type" {...formik.getFieldProps("business_type")} onChange={(e)=>handleBusinessCategory(e)}>
-                                            <option value=""  >Business Type</option>
-                                            <option value="1"  >Venue</option>
-                                            <option value="2"  >Vendor</option>
-                                        </select>
+                                            <select name="business_type" {...formik.getFieldProps("business_type")} onChange={(e) => handleBusinessCategory(e)}>
+                                                <option value=""  >Business Type</option>
+                                                <option value="1"  >Venue</option>
+                                                <option value="2"  >Vendor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-item" style={formik.errors.business_category && formik.touched.business_category ? errorStyle : {}}>
+                                        <div className="dropdown locality-dropdown">
+
+                                            <select name="business_category" {...formik.getFieldProps("business_category")}>
+                                                <option value=""  >Business Category</option>
+                                                {
+                                                    businessCategory?.map((cat) => {
+                                                        return (<option value={cat.slug} key={cat.id}>{cat.name}</option>)
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+                                        <AiFillCaretDown className="down-arrow" size={15} />
+                                    </div>
+
+                                    <div className="form-item" style={formik.errors.email && formik.touched.email ? errorStyle : {}}>
+                                        <input type="email" placeholder="Email " name="email" {...formik.getFieldProps('email')} />
+                                        <AiTwotoneMail className="placeholder-icon" />
+                                    </div>
+
+                                    <div className="form-item" style={formik.errors.phone && formik.touched.phone ? errorStyle : {}}>
+                                        <input type="number" min={10} max={10} placeholder="Phone Number " name="phone" {...formik.getFieldProps('phone')} />
+                                        <AiFillPhone className="placeholder-icon" />
+                                    </div>
+
+                                    <div className="form-item" style={formik.errors.city && formik.touched.city ? errorStyle : {}}>
+                                        <div className="dropdown city-dropdown" >
+
+                                            <select name="city" {...formik.getFieldProps('city')}>
+                                                <option value="null" name="city" >Select city</option>
+                                                {
+                                                    cities.map((locality) => {
+                                                        return (<option value={locality.slug} key={locality.id}>{locality.name}</option>)
+                                                    })
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <AiFillCaretDown className="down-arrow" size={15} />
+                                    </div>
+
+                                    <div className="form-item" style={formik.errors.address && formik.touched.address ? errorStyle : {}}>
+                                        <input type="text" placeholder="Address " name="address" {...formik.getFieldProps('address')} />
+                                        <FaLocationArrow className="placeholder-icon" />
+                                    </div>
+
+
+                                    <ButtonDark onClick={formik.handleSubmit} > {isLoading ? <Spinner1 /> : "Submit"}</ButtonDark>
+                                    <div className="already-have-account">
+                                        <h2>Already have an account? </h2> <Link href={'/business'} className="btn">Log In</Link>
                                     </div>
                                 </div>
 
-                                <div className="form-item" style={formik.errors.business_category && formik.touched.business_category ? errorStyle : {}}>
-                                    <div className="dropdown locality-dropdown">
-
-                                        <select name="business_category" {...formik.getFieldProps("business_category")}>
-                                            <option value=""  >Business Category</option>
-                                            {
-                                                businessCategory?.map((cat) => {
-                                                    return (<option value={cat.slug} key={cat.id}>{cat.name}</option>)
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <AiFillCaretDown className="down-arrow" size={15} />
-                                </div>
-
-                                <div className="form-item" style={formik.errors.email && formik.touched.email ? errorStyle : {}}>
-                                    <input type="email" placeholder="Email " name="email" {...formik.getFieldProps('email')} />
-                                    <AiTwotoneMail className="placeholder-icon" />
-                                </div>
-
-                                <div className="form-item" style={formik.errors.phone && formik.touched.phone ? errorStyle : {}}>
-                                    <input type="number" min={10} max={10} placeholder="Phone Number " name="phone" {...formik.getFieldProps('phone')} />
-                                    <AiFillPhone className="placeholder-icon" />
-                                </div>
-
-                                <div className="form-item" style={formik.errors.city && formik.touched.city ? errorStyle : {}}>
-                                    <div className="dropdown city-dropdown" >
-
-                                        <select name="city" {...formik.getFieldProps('city')}>
-                                            <option value="null" name="city" >Select city</option>
-                                            {
-                                                cities.map((locality) => {
-                                                    return (<option value={locality.slug} key={locality.id}>{locality.name}</option>)
-                                                })
-                                            }
-
-                                        </select>
-                                    </div>
-                                    <AiFillCaretDown className="down-arrow" size={15} />
-                                </div>
-
-                                <div className="form-item" style={formik.errors.address && formik.touched.address ? errorStyle : {}}>
-                                    <input type="text" placeholder="Address " name="address" {...formik.getFieldProps('address')} />
-                                    <FaLocationArrow className="placeholder-icon" />
-                                </div>
-
-
-                                <ButtonDark onClick={formik.handleSubmit} > {isLoading ? <Spinner1 /> : "Submit"}</ButtonDark>
-                                <div className="already-have-account">
-                                    <h2>Already have an account? </h2> <Link href={'/business'} className="btn">Log In</Link>
-                                </div>
                             </div>
 
                         </div>
+                    </div>
+                    <div className="section">
 
+                        <section className="container">
+                            <article className="header-article">
+                                <div className="contant">
+                                    <p className="par">If you are a venue owner or provide services and want to expand or grow your business? Join Wedding Banquets right now! Connect with multiple individuals who are searching for skilled and trustworthy vendors.</p>
+                                </div>
+                            </article>
+
+                            <article>
+                                <div className="contant">
+
+                                    <h2 className="title">
+                                        Why Choose Wedding Banquets?
+                                    </h2>
+                                </div>
+                            </article>
+
+                            <article>
+                                <div className="contant">
+
+                                    <h3 className="title">
+                                        1. Exceptional Clarity
+                                    </h3>
+
+                                    <p className="desc">
+                                        With 1000+ venues and trusted wedding vendors listed. Wedding Banquets is one of the most largest event planner platform.  Working with us will gain your business to millions of client's who are planning their dream wedding.
+                                    </p>
+                                </div>
+                            </article>
+                            <article>
+                                <div className="contant">
+
+                                    <h3 className="title">
+                                        2. Leads
+                                    </h3>
+
+                                    <p className="desc">
+                                        Wedding Banquets can directly connect you with the vast clients who are looking for all the services. whether you provide banquet halls services, photography services, makeup artists services, we can surely help you reach out to the potential clients.
+                                    </p>
+
+
+                                </div>
+                            </article>
+                            <article>
+                                <div className="contant">
+
+                                    <h3 className="title">
+                                        3. Increase Credibility
+                                    </h3>
+
+                                    <p className="desc">
+                                        Being a part of a most reputed platform, Wedding Banquets will enhance your credibility. All the client's trust our listings and your work with us can make your booking increase.
+                                    </p>
+
+
+                                </div>
+                            </article>
+                            <article>
+                                <div className="contant">
+
+                                    <h3 className="title">
+                                        4. Support
+                                    </h3>
+
+                                    <p className="desc">
+                                        You will get lot's of benefits from our external activities like listings, blogs, social media that will spotlight all your services and facilities to gain more and more clients.
+                                    </p>
+
+
+                                </div>
+                            </article>
+                            <article>
+                                <div className="contant">
+
+                                    <h3 className="title">
+                                        5. Onboarding
+                                    </h3>
+
+                                    <p className="desc">
+                                        Wedding Banquets manageable signup criteria makes sure that you can quickly list your business and services and start getting the benefits without any problem.
+                                    </p>
+
+                                    <p className="cta">
+                                        Don’t miss this golden opportunity! Expand your business with us. List all your services now!
+                                    </p>
+                                </div>
+                            </article>
+
+                        </section>
                     </div>
                 </div>
-
-
-
-            </div>
-        </Wrapper>
+            </Wrapper>
+        </>
     )
 }
 
@@ -390,6 +508,78 @@ background-color: var(--bg-color);
         }
     }
 }
+
+
+article{
+    /* display: flex; */
+    .title{
+        font-size: 3rem;
+        font-weight: 600;
+        font-family: Montserrat;
+        color: var(--primary-color);
+        text-transform: capitalize;
+
+
+    }
+
+    .desc{
+        color: var(--para);
+        font-family: "Poppins";
+        font-size: 1.7rem;
+        /* letter-spacing: 2px; */
+        line-height: 1.9;
+        word-spacing: 2px;
+        font-weight: 500;
+
+
+    }
+    .contant{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        gap:2rem;
+        padding: 3rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+        .par{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: var(--para);
+        }
+
+        h3.title {
+        font-size: 2.8rem;
+        font-weight: 450;
+    }
+}
+
+.header-article{
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+
+    .title{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
+    .desc{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+}
+    .cta {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        text-transform: capitalize;
+}
+
 
 
 @media (max-width:800px) {

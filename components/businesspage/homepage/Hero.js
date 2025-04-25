@@ -2,10 +2,40 @@ import styled from "styled-components";
 import Image from "next/image";
 import { ButtonDark } from "@/styles/components/buttons";
 import Link from "next/link";
+import Head from "next/head";
+import Script from "next/script"; 
 
 export default function Hero() {
+  return (
+    <>
+      <Head>
+        <title>Connect with WeddingBanquets to grow your wedding business, connect with many individuals, and increase your visibility and clarity in the wedding industry.</title>
+        <meta
+          name="description"
+          content="Learn about Wedding Banquets and how it helps you plan weddings and events with top venues vendors like makeup artists, photographers, mehendi artists and more."
+        />
+        <meta name="robots" content="index, follow" />
+      </Head>
 
-    return (
+      <Script
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Wedding Banquets",
+            "url": "https://www.weddingbanquets.in",
+            "logo": "https://www.weddingbanquets.in/logo.png",
+            "sameAs": [
+              "https://www.instagram.com/weddingbanquets",
+              "https://www.facebook.com/weddingbanquets"
+            ],
+            "description":
+              "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+          })
+        }}
+      />
         <Wrapper className="section">
             <div className="hero-container">
                 <div className="hero-content">
@@ -20,7 +50,7 @@ export default function Hero() {
 
                         </div>
                     </Link>
-                    <h2 className="hero-title">TAKE YOUR BUSINESS TO NEXT LEVEL WITH WB </h2>
+                    <h1 className="hero-title">TAKE YOUR BUSINESS TO NEXT LEVEL WITH WEDDING BANQUETS </h1>
                     <ul className="hero-lists">
                         <li className="hero-list">Promote your services on our best in business site.</li>
                         <li className="hero-list"> Commute to local engaged couples and book more weddings</li>
@@ -41,6 +71,7 @@ export default function Hero() {
             </div>
 
         </Wrapper>
+        </>
     )
 }
 

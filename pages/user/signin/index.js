@@ -14,6 +14,7 @@ import { useState } from "react";
 import { setCookie } from "nookies";
 import { useGlobalContext } from "@/context/MyContext";
 import Header from "@/components/layout.js/Header";
+import Head from "next/head";
 export default function SignInPage() {
   //------------------------------------------------------------
   // If user is already login then redirect to the dashboard
@@ -103,10 +104,37 @@ export default function SignInPage() {
   }
 
   return (
-    <Wrapper>
-      <Header />
-      <div className="container">
-        {/* <Link href={"/"}>
+    <>
+      <Head>
+        <title>Login to Your Vendor Profile on Wedding Banquets.</title>
+        <meta
+          name="description"
+          content="Login to your vendor profile on Wedding Banquets to update your details, manage leads, and improve and expand your wedding services across India."
+        />
+        <meta name="robots" content="index, follow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Wedding Banquets",
+              "url": "https://www.weddingbanquets.in",
+              "logo": "https://www.weddingbanquets.in/logo.png",
+              "sameAs": [
+                "https://www.instagram.com/weddingbanquets",
+                "https://www.facebook.com/weddingbanquets"
+              ],
+              "description":
+                "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+            })
+          }}
+        />
+      </Head>
+      <Wrapper>
+        <Header />
+        <div className="container">
+          {/* <Link href={"/"}>
                     <div className="logo-container">
                         <Image
                             src={'/logo.png'}
@@ -118,110 +146,188 @@ export default function SignInPage() {
                     </div>
                 </Link> */}
 
-        <div className="form-container">
-          <div className="img-banner">
-            <Image
-              src={"/common/signup-single.png"}
-              fill={true}
-              alt="image"
-              sizes="(100vw)"
-            />
-          </div>
-          <div className="form">
-            <Image
-              src={"/common/signup-single-flip.png"}
-              alt="image"
-              fill={true}
-              sizes="(100vw)"
-            />
-            <div className="form-items">
-              <div className="card">
-                <div className="card-header">
-                  <h2 className="head-title">Log In To Your Accunt</h2>
-                  <p className="label">
-                    Are you a vendor?{" "}
-                    <Link href={"/business"} className="btn">
-                      Vendor Login
+          <div className="form-container">
+            <div className="img-banner">
+              <Image
+                src={"/common/signup-single.png"}
+                fill={true}
+                alt="image"
+                sizes="(100vw)"
+              />
+            </div>
+            <div className="form">
+              <Image
+                src={"/common/signup-single-flip.png"}
+                alt="image"
+                fill={true}
+                sizes="(100vw)"
+              />
+              <div className="form-items">
+                <div className="card">
+                  <div className="card-header">
+                    <h1 className="head-title">Sign In with Wedding Banquets</h1>
+                    <p className="label">
+                      Are you a vendor?{" "}
+                      <span className="btn">Vendor Login</span>
+                    </p>
+                    {/* <p className="label">Dont have an account? <Link href={"/user/signup"} className="btn">Free SignUp</Link></p> */}
+                  </div>
+
+                  <div className="google-facebook-title">
+                    <div className="line"></div>
+                    <p className="label">Sign in with</p>
+                  </div>
+
+                  <div className="google-facebook">
+                    <div className="facebook">
+                      <FcGoogle className="google-icon" />
+                    </div>
+                    <div className="google">
+                      <FaFacebook className="facebook-icon" />
+                    </div>
+                    ;
+                  </div>
+                  <p className="label">Or Login with your email</p>
+
+                  <div
+                    className="form-item"
+                    style={
+                      formik.errors.username && formik.touched.username
+                        ? errorStyle
+                        : {}
+                    }
+                  >
+                    <input
+                      type="text"
+                      placeholder="Email or phone "
+                      name="username"
+                      {...formik.getFieldProps("username")}
+                    />
+                    <AiTwotoneMail className="placeholder-icon" />
+                  </div>
+                  <div
+                    className="form-item"
+                    style={
+                      formik.errors.password && formik.touched.password
+                        ? errorStyle
+                        : {}
+                    }
+                  >
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password "
+                      name="password"
+                      {...formik.getFieldProps("password")}
+                    />
+
+                    {showPassword ? (
+                      <AiFillUnlock
+                        className="placeholder-icon"
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <AiFillLock
+                        className="placeholder-icon"
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )}
+                  </div>
+
+                  <ButtonDark onClick={formik.handleSubmit}>
+                    {isLoading ? <Spinner1 /> : "Log in"}
+                  </ButtonDark>
+                  <div className="already-have-account">
+                    <h2>Dont have an account? </h2>{" "}
+                    <Link href={"/user/signup"} className="btn">
+                      Free SignUp
                     </Link>
-                  </p>
-                  {/* <p className="label">Dont have an account? <Link href={"/user/signup"} className="btn">Free SignUp</Link></p> */}
-                </div>
-
-                <div className="google-facebook-title">
-                  <div className="line"></div>
-                  <p className="label">Sign in with</p>
-                </div>
-
-                <div className="google-facebook">
-                  <div className="facebook">
-                    <FcGoogle className="google-icon" />
                   </div>
-                  <div className="google">
-                    <FaFacebook className="facebook-icon" />
-                  </div>
-                  ;
-                </div>
-                <p className="label">Or Login with your email</p>
-
-                <div
-                  className="form-item"
-                  style={
-                    formik.errors.username && formik.touched.username
-                      ? errorStyle
-                      : {}
-                  }
-                >
-                  <input
-                    type="text"
-                    placeholder="Email or phone "
-                    name="username"
-                    {...formik.getFieldProps("username")}
-                  />
-                  <AiTwotoneMail className="placeholder-icon" />
-                </div>
-                <div
-                  className="form-item"
-                  style={
-                    formik.errors.password && formik.touched.password
-                      ? errorStyle
-                      : {}
-                  }
-                >
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password "
-                    name="password"
-                    {...formik.getFieldProps("password")}
-                  />
-
-                  {showPassword ? (
-                    <AiFillUnlock
-                      className="placeholder-icon"
-                      onClick={() => setShowPassword(false)}
-                    />
-                  ) : (
-                    <AiFillLock
-                      className="placeholder-icon"
-                      onClick={() => setShowPassword(true)}
-                    />
-                  )}
-                </div>
-
-                <ButtonDark onClick={formik.handleSubmit}>
-                  {isLoading ? <Spinner1 /> : "Log in"}
-                </ButtonDark>
-                <div className="already-have-account">
-                  <h2>Dont have an account? </h2>{" "}
-                  <Link href={"/user/signup"} className="btn">
-                    Free SignUp
-                  </Link>
                 </div>
               </div>
             </div>
           </div>
+          <div className="section">
+
+            <section className="container">
+              <article className="header-article">
+                <div className="contant">
+                  <p className="par">Planning to dream wedding starts right here with Wedding Banquets. Log in to the account. Whether you are searching for venues, hotels, trused vendors. We are here to make your event goes in a smooth process without any stress for all the couples and family.</p>
+                  <p className="par">We truely believes turning your most dreamy wedding into reality at Wedding Banquets. From choosing the extraordinary banquet halls with vendors like photographers, makeup artists, mehendi artists & more, everything that you are looking for is right here only!
+                  </p>
+                </div>
+              </article>
+
+              <article>
+                <div className="contant">
+
+                  <h2 className="title">
+                    Why Should You Sign In at Wedding Banquets?
+                  </h2>
+                </div>
+              </article>
+
+              <article>
+                <div className="contant">
+
+                  <h3 className="title">
+                    1. Save or select your venues or vendors
+                  </h3>
+                </div>
+              </article>
+              <article>
+                <div className="contant">
+
+                  <h3 className="title">
+                    2. Easily get recommendations
+                  </h3>
+                </div>
+              </article>
+              <article>
+                <div className="contant">
+
+                  <h3 className="title">
+                    3. Get deals and best offers
+                  </h3>
+                </div>
+              </article>
+              <article>
+                <div className="contant">
+
+                  <h3 className="title">
+                    4. Always stay updated with notifications
+                  </h3>
+                </div>
+              </article>
+              <article>
+                <div className="contant">
+
+                  <h3 className="title">
+                    5. Easily get all the wedding services from one place
+                  </h3>
+
+                  <p className="desc">
+                     It is very simple to use, secured and customize only for you. We are always here to support you to make your process totally easy.
+                  </p>
+
+                  <p className="desc">
+                     It's time to turn your dreamy wedding come true at one click at a time.
+                  </p>
+
+                  <p className="desc">
+                     Let’s create your dream wedding, one click at a time.
+                  </p>
+
+                  <p className="cta">
+                     Log in at Wedding Banquets and start your journey with us.
+                  </p>
+                </div>
+              </article>
+
+            </section>
+          </div>
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
 }
 
@@ -398,6 +504,76 @@ const Wrapper = styled.section`
       }
     }
   }
+    article{
+    /* display: flex; */
+    .title{
+        font-size: 3rem;
+        font-weight: 600;
+        font-family: Montserrat;
+        color: var(--primary-color);
+        text-transform: capitalize;
+
+
+    }
+
+    .desc{
+        color: var(--para);
+        font-family: "Poppins";
+        font-size: 1.7rem;
+        /* letter-spacing: 2px; */
+        line-height: 1.9;
+        word-spacing: 2px;
+        font-weight: 500;
+
+
+    }
+    .contant{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        gap:2rem;
+        padding: 3rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+        .par{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: var(--para);
+        }
+
+        h3.title {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: black;
+    }
+}
+
+.header-article{
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+
+    .title{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
+    .desc{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+}
+    .cta {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        text-transform: capitalize;
+}
 
   @media (max-width: 800px) {
     .form-container {
