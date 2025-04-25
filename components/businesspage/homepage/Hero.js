@@ -18,6 +18,7 @@ export default function Hero() {
       </Head>
 
       <Script
+        id="wedding-banquet-schema-businesspage-hero"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
