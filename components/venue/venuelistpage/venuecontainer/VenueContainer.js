@@ -9,6 +9,7 @@ import useLeadModel from "@/lib/hook/useLeadModel";
 import useCallConversion from "@/lib/hook/useCallConversion";
 import SearchBarVenue from "@/components/miscellaneous/SearchBarVenue";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 function VenueContainer({ city, lists, locality, category, count, localities, venueCategories, vendorCategories, filterQuery }) {
     const { setShowFilter, selectedCity, venue_list, vendor_list } = useGlobalContext();
@@ -19,6 +20,8 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
     const observer = useRef();
+    const router = useRouter();
+
 
     const venueNames = venueCategories.map(category => category.name);
     const vendorNames = vendorCategories.map(category => category.name);
@@ -95,6 +98,41 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
 
     return (
         <>
+            <Head>
+                {venuelists?.map((venue, index) => (
+                    <script
+                        key={index}
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "LocalBusiness",
+                                "name": venue?.name || "Venue Name",
+                                "url": `https://weddingbanquets.in/${city}/${venue.slug}`,
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${venue?.images?.split(",")[0]}`,
+                                },
+                                "image": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${venue?.images?.split(",")[0]}`,
+                                "address": {
+                                    "@type": "PostalAddress",
+                                    "streetAddress": venue?.venue_address,
+                                    // "postalCode": venue?.postalCode||"",
+                                    "addressLocality": `${venue.slug}`,
+                                    "addressRegion": city,
+                                },
+                                "aggregateRating": {
+                                    "@type": "AggregateRating",
+                                    "ratingValue": venue?.place_rating,
+                                    // "reviewCount": reviews?.length || 158,
+                                    "bestRating": "5",
+                                    "worstRating": "1"
+                                },
+                            }),
+                        }}
+                    />
+                ))}
+            </Head>
             <Section className="section section-venue-container">
                 <div className="sticky-head">
                     <div className="page-title">
@@ -112,7 +150,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                     </aside>
                     <main className="venues-list box">
                         <div className="d-flex">
-                            <h1 className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></h1>
+                            <h2 className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></h2>
                             <SearchBarVenue
                                 suggestions={suggestions}
                                 selectedCity={selectedCity}
