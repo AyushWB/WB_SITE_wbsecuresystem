@@ -122,7 +122,7 @@ export default function OTPCard({ data }) {
   return (
     <Section show={data?.showOTPCard || false}>
       <Wrapper>
-        <h2>Enter OTP</h2>
+        <div>Enter OTP</div>
 
         <div>
           {otp.map((digit, index) => (
@@ -191,7 +191,7 @@ position: relative;
     font-size: 2rem;
     cursor: pointer;
 }
-h2{
+div{
     font-size: 2rem;
     font-family: "Montserrat";
     font-weight: 500;

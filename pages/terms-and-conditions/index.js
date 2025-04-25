@@ -2,12 +2,38 @@
 import styled from "styled-components"
 import Header from "@/components/layout.js/Header"
 import Image from "next/image"
+import Head from "next/head";
 
 export default function Page() {
 
 
     return (<Wrapper>
-
+        <Head>
+                <title>Wedding Banquets Terms: Rules, Responsibilities & Policies.</title>
+                <meta
+                    name="description"
+                    content="Understand the rules, policies, and responsibilities of Wedding Banquets to learn how to use our services responsibly before using our platform."
+                />
+                <meta name="robots" content="index, follow" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "Wedding Banquets",
+                            "url": "https://www.weddingbanquets.in",
+                            "logo": "https://www.weddingbanquets.in/logo.png",
+                            "sameAs": [
+                                "https://www.instagram.com/weddingbanquets",
+                                "https://www.facebook.com/weddingbanquets"
+                            ],
+                            "description":
+                                "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+                        })
+                    }}
+                />
+            </Head>
         <Header />
 
         <div className="section">
@@ -15,7 +41,7 @@ export default function Page() {
             <section className="container">
                 <article className="header-article">
                     <div className="contant">
-                        <h2 className="title"> Terms and Conditions </h2>
+                        <h1 className="title">Wedding Banquets Terms and Conditions</h1>
                         <p className="desc">The following terms and conditions ("Terms") set for weddingbanquets.in, herein binds us (Partners) legally. This also initiates an agreement between "US" partners. These set of terms are applicable to each and every application that is being handled by weddingbanquets.in or Our associated Affiliates who are linked through the term, set for both online as well as offline services.</p>
 
                         <p className="desc">

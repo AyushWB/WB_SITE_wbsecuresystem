@@ -2,11 +2,39 @@
 import styled from "styled-components"
 import Header from "@/components/layout.js/Header"
 import Image from "next/image"
+import Head from "next/head";
 
 export default function Page() {
 
 
     return (<Wrapper>
+        <Head>
+        <title>Plan Your Dream Wedding Come True with Wedding Banquets.</title>
+        <meta
+          name="description"
+          content="Wedding Banquets is your one-stop platform for planning the dream wedding. Explore venues, photographers, makeup artists, and more for a memorable celebration."
+        />
+        <meta name="robots" content="index, follow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Wedding Banquets",
+              "url": "https://www.weddingbanquets.in",
+              "logo": "https://www.weddingbanquets.in/logo.png",
+              "sameAs": [
+                "https://www.instagram.com/weddingbanquets",
+                "https://www.facebook.com/weddingbanquets"
+              ],
+              "description":
+                "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+            })
+          }}
+        />
+      </Head>
+
 
         <Header />
 

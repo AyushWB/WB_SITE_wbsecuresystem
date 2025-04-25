@@ -1,17 +1,44 @@
 import styled from "styled-components";
 import Header from "@/components/layout.js/Header";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Page() {
   return (
     <Wrapper>
+       <Head>
+            <title>Your Privacy Matters – We Keep Your Data Secure</title>
+            <meta
+                name="description"
+                content="Read the Wedding Banquets explained Privacy Policy about how your information is collected, used, and protected when you use Wedding Banquets services."
+            />
+            <meta name="robots" content="index, follow" />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Wedding Banquets",
+                        "url": "https://www.weddingbanquets.in",
+                        "logo": "https://www.weddingbanquets.in/logo.png",
+                        "sameAs": [
+                            "https://www.instagram.com/weddingbanquets",
+                            "https://www.facebook.com/weddingbanquets"
+                        ],
+                        "description":
+                            "Wedding Banquets connects couples with trusted venues and vendors across India. Discover, compare, and book from 50,000+ listings."
+                    })
+                }}
+            />
+        </Head>
       <Header />
 
       <div className="section">
         <section className="container">
           <article className="header-article">
             <div className="contant">
-              <h2 className="title"> Privacy Policy </h2>
+              <h1 className="title">Wedding Banquets Privacy Policy</h1>
               <p className="desc">
                 As valuable customers, our Privacy Policies are constantly being
                 used by you. Therefore, it is important that you have complete

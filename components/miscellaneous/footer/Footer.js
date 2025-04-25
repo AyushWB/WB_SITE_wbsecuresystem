@@ -32,8 +32,8 @@ function Footer() {
                             />
                         </Link>
                         <p className='about'>
-Wedding Banquets is here to make your dream wedding come true. With expert services and trendy ideas, we take care of all your wedding needs.
- </p>
+                            Wedding Banquets is here to make your dream wedding come true. With expert services and trendy ideas, we take care of all your wedding needs.
+                        </p>
                     </div>
                     <div className="f-section f-service">
                         <h3>Service</h3>
@@ -61,7 +61,7 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                     <div className="f-section f-quick-links">
                         <h3>Quick Links</h3>
                         <ul className='list-unstyled'>
-               
+
                             <li>
                                 <Link className='f-link' href="/about"> About Us  </Link>
                             </li>
@@ -69,13 +69,13 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                                 <Link className='f-link' href="/career"> Career  </Link>
                             </li>
                             <li>
-                                <Link className='f-link' href="/privacy_policy"> Privacy Policy  </Link>
+                                <Link className='f-link' href="/privacy-policy"> Privacy Policy  </Link>
                             </li>
                             <li>
-                                <Link className='f-link' href="/terms_and_conditions"> Terms & Conditions  </Link>
+                                <Link className='f-link' href="/terms-and-conditions"> Terms & Conditions  </Link>
                             </li>
                             <li>
-                                <Link className='f-link' href="/terms_of_use"> Terms Of Use </Link>
+                                <Link className='f-link' href="/terms-of-use"> Terms Of Use </Link>
                             </li>
 
                         </ul>
@@ -94,7 +94,7 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                             <li className='f-phone'>
                                 <IoIosCall />
                                 <a href="tel: 07969100321" className='f-link'>07969100321</a>
-                            </li>   
+                            </li>
                             <li className='f-phone'>
                                 <IoIosCall />
                                 <a href="tel: 07969100329" className='f-link'>07969100329</a>
@@ -113,7 +113,7 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                     <Link href={"https://api.whatsapp.com/send?phone=918882198989&text=Hi"} className='f-icon' passHref target='_blank' aria-label="icon">
                         <span><RiWhatsappFill size={25} className='social-icon' /> </span>
                     </Link>
-                
+
                     <Link href={"https://www.facebook.com/WeddingBanquets"} className='f-icon' passHref target='_blank' aria-label="icon">
                         <span ><RiFacebookCircleFill size={25} className='social-icon' /></span>
                     </Link>
@@ -125,16 +125,16 @@ Wedding Banquets is here to make your dream wedding come true. With expert servi
                     <Link href={"https://www.linkedin.com/company/wedding-banquets/"} className='f-icon' passHref target='_blank' aria-label="icon">
                         <span><RiLinkedinBoxFill size={25} className='social-icon' /></span>
                     </Link>
-                    
+
                     <Link className='f-icon' href={"https://www.youtube.com/@weddingbanquetsofficial/"} passHref target='_blank' aria-label="icon">
-                        <span ><FaYoutube  size={25} className='social-icon' /></span>
+                        <span ><FaYoutube size={25} className='social-icon' /></span>
                     </Link>
 
                     <Link className='f-icon' href={"https://www.instagram.com/weddingbanquetsindia/"} passHref target='_blank' aria-label="icon">
                         <span ><RiInstagramFill size={25} className='social-icon' /></span>
                     </Link>
-                    
-                    
+
+
                 </div>
                 <div className="newsletter">
                     <p>Subscribe to our Newsletter</p>
@@ -404,4 +404,3 @@ background-color:#870808;
 `
 
 export default Footer
-// Ayush Kumar Suman
