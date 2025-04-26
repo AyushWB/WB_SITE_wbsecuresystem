@@ -124,7 +124,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                                 "aggregateRating": {
                                     "@type": "AggregateRating",
                                     "ratingValue": venue?.place_rating,
-                                    // "reviewCount": reviews?.length || 158,
+                                    "reviewCount": "158",
                                     "bestRating": "5",
                                     "worstRating": "1"
                                 },

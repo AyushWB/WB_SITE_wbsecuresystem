@@ -10,7 +10,7 @@ import AreaCapacity from "./AreaCapacity";
 //For Testing only.
 // import { parse } from 'node-html-parser';    ////This nm package is not install to use this first install from npm 
 
-export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck,id }) {
+export default function VenueBasicInfo({ venue, openLeadsModel, openAvailableCheck, id }) {
 
     // const htmldata = parse('<ul id="list"><li>Hello World</li></ul>');
     // console.log(venue.summary)
@@ -20,7 +20,7 @@ export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck
     // const venue_summary = parse(venue.summary)
 
     return (<Section className="section section-venue-basic-info">
-        
+
         <div className="basic-venue-info-container">
             <div className="basic-venue-info-content">
                 <div className="venue-details">
@@ -29,29 +29,29 @@ export default function VenueBasicInfo({ venue,openLeadsModel,openAvailableCheck
 
                 </div>
                 <div className="price-details-card">
-                    <PriceListCard min_capacity={venue.min_capacity} max_capacity={venue.max_capacity} nonveg_price={venue.nonveg_price} veg_price={venue.veg_price} phone={venue.phone} slug={venue.slug} id={id} openLeadsModel={openLeadsModel}/>
+                    <PriceListCard min_capacity={venue.min_capacity} max_capacity={venue.max_capacity} nonveg_price={venue.nonveg_price} veg_price={venue.veg_price} phone={venue.phone} slug={venue.slug} id={id} openLeadsModel={openLeadsModel} />
                 </div>
                 <div className="about">
                     <div className="about-title">
                         About
                     </div>
-                    <div className="about-desSc"  dangerouslySetInnerHTML={{ __html: showSummary ? venue.summary : venue.summary.slice(0,500)}}></div>
-                    <span className="read-more-btn" onClick={() => { setShowSumary(!showSummary) }}>  {showSummary ? "Read less" : "Read more"}</span> 
+                    <div className="about-desSc" dangerouslySetInnerHTML={{ __html: showSummary ? venue.summary : venue.summary.slice(0, 500) }}></div>
+                    <span className="read-more-btn" onClick={() => { setShowSumary(!showSummary) }}>  {showSummary ? "Read less" : "Read more"}</span>
 
                     {/* <p className="about-desc">{`${showSummary ? venue_summary.text : venue_summary.text.slice(0, 250)} `}<span className="read-more-btn" onClick={() => { setShowSumary(!showSummary) }}>  {showSummary ? "Read less" : "Read more"}</span> */}
                     {/* </p> */}
-                   
+
                 </div>
                 <div className="cards">
 
-                    <AreaCapacity venue={venue} openAvailableCheck={openAvailableCheck}/>
+                    <AreaCapacity venue={venue} openAvailableCheck={openAvailableCheck} />
                     <DemandCard />
                     <DiscountCard openLeadsModel={openLeadsModel} />
 
                 </div>
             </div>
             <div className="venue-price-list">
-                <PriceListCard min_capacity={venue.min_capacity} max_capacity={venue.max_capacity} nonveg_price={venue.nonveg_price} veg_price={venue.veg_price} phone={venue.phone} slug={venue.slug} openLeadsModel={openLeadsModel}/>
+                <PriceListCard min_capacity={venue.min_capacity} max_capacity={venue.max_capacity} nonveg_price={venue.nonveg_price} veg_price={venue.veg_price} phone={venue.phone} slug={venue.slug} openLeadsModel={openLeadsModel} />
             </div>
         </div>
     </Section>)
@@ -80,6 +80,11 @@ font-size: 22px !important;
 }
 h3{
 font-size: 20px !important;
+}
+p{
+font-family: Poppins !important;
+font-size: 1.8rem !important;
+color: var(--para) !important;
 }
 }
 
