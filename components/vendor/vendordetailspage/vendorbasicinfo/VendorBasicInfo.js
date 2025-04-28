@@ -1,3 +1,5 @@
+import React from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import { IoIosCall } from "react-icons/io";
 import { useState } from "react";
@@ -7,8 +9,10 @@ import Image from "next/image";
 import TabsComponent from "../tabsComponent/TabsComponent";
 import { BsFillSuitcaseLgFill } from "react-icons/bs";
 import { MdEventAvailable } from "react-icons/md";
+import { useRouter } from 'next/router';
 
 export default function VendorBasicInfo({ vendor, openLeadsModel }) {
+  const router = useRouter();
   const [showSummary, setShowSummary] = useState(false);
   const [openIndex, setOpenIndex] = useState(1);
 
@@ -47,6 +51,35 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
 
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "http://schema.org",
+              "@type": "LocalBusiness",
+              name: vendor.brand_name,
+              logo: vendor?.images ? `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${vendor.images.split(",")[0]}` : "",
+              url: `https://weddingbanquets.in${router.asPath}`,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: vendor.vendor_address,
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "reviewCount": "158",
+                "ratingValue": "4.5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "image": vendor?.images?.split(",").map((img) => ({
+                "@type": "ImageObject",
+                "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`
+              })) || [],
+            }),
+          }}
+        />
+      </Head>
       <Wrapper className="section-venue-basic_info info-section">
         <div className="container-l">
           <div className="info-container">
@@ -157,7 +190,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>HD Bridal Makeup</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.hd_bridal_makeup_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.hd_bridal_makeup_price)}
@@ -168,7 +201,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>Engagement Makeup</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.engagement_makeup_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.engagement_makeup_price)}
@@ -179,29 +212,29 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>Party Makeup</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.party_makeup_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.party_makeup_price)}
-                                </p>
+                            </p>
                           </div>
                         )}
                         {vendor.cinematography_price && (
                           <div className="category-item">
                             <p>Cinematography</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.cinematography_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.cinematography_price)}
-                                </p>
+                            </p>
                           </div>
                         )}
                         {vendor.candid_photography_price && (
                           <div className="category-item">
                             <p>Candid Photography</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.candid_photography_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.candid_photography_price)}
@@ -212,7 +245,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>Traditional Photography</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.traditional_photography_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.traditional_photography_price)}
@@ -223,7 +256,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>Traditional Videography</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.traditional_video_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.traditional_video_price)}
@@ -234,7 +267,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                           <div className="category-item">
                             <p>Pre Wedding Photoshoot</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.pre_wedding_photoshoot_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.pre_wedding_photoshoot_price)}
@@ -248,7 +281,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                               {isNaN(vendor.albums_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.albums_price)}
-                                </p>
+                            </p>
                           </div>
                         )}
                         {vendor.bridal_mehndi_price && (
@@ -258,14 +291,14 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                               {isNaN(vendor.bridal_mehndi_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.bridal_mehndi_price)}
-                                </p>
+                            </p>
                           </div>
                         )}
                         {vendor.engagement_mehndi_price && (
                           <div className="category-item">
                             <p>Engagement Mehndi</p>
                             <p>
-                            ₹{" "}
+                              ₹{" "}
                               {isNaN(vendor.engagement_mehndi_price)
                                 ? "On Demand"
                                 : numberFormat(vendor.engagement_mehndi_price)}
