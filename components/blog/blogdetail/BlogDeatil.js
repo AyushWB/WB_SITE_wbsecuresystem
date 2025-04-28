@@ -1,46 +1,85 @@
-  import React from "react";
-  import styled from "styled-components";
-  import FetureImg from "./description/FetureImg";
-  import PopularPost from "./sidebar/PopularPost";
-  import LatestPost from "./sidebar/LatestPost";
-  import Ad from "./sidebar/Ad";
-  import AuthorCard from "./authorcard/AuthorCard";
+import React from "react";
+import Head from "next/head";
+import styled from "styled-components";
+import FetureImg from "./description/FetureImg";
+import PopularPost from "./sidebar/PopularPost";
+import LatestPost from "./sidebar/LatestPost";
+import Ad from "./sidebar/Ad";
+import AuthorCard from "./authorcard/AuthorCard";
 
-  const BlogDetail = ({ data }) => {
-    const blog = data.data;
-    const popular = data.popular;
-    const latest = data.latest;
-    const author = data.author;
+const BlogDetail = ({ data }) => {
+  const blog = data.data;
+  const popular = data.popular;
+  const latest = data.latest;
+  const author = data.author;
 
-    return (
-      <Wrapper>
-        <Container>
-          <Description>
-            <Heading>{blog.heading}</Heading>
-            <FetureImg image={blog.image} image_alt={blog.image_alt} />
-            <div
-              className="description"
-              dangerouslySetInnerHTML={{ __html: blog.summary }}
-            />
-            <AuthorCard {...author} />
-          </Description>
-          <RightSidebar>
-            <PopularPost popular={popular}/>
-            <LatestPost latest={latest} />
-            <Ad />
-          </RightSidebar>
-        </Container>
-      </Wrapper>
-    );
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": blog.heading,
+    "description": blog.meta_description, 
+    "datePublished": `${blog.publish_date}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": blog.slug 
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${blog.image}`,
+      "width": 823,
+      "height": 548
+    },
+    "author": {
+      "@type": "Person",
+      "name": author.name,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "www.weddingbanquets.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.weddingbanquets.in/logo.png", 
+        "width": 280,
+        "height": 60
+      }
+    }
   };
 
-  export default BlogDetail;
+  return (
+    <Wrapper>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </Head>
+      <Container>
+        <Description>
+          <Heading>{blog.heading}</Heading>
+          <FetureImg image={blog.image} image_alt={blog.image_alt} />
+          <div
+            className="description"
+            dangerouslySetInnerHTML={{ __html: blog.summary }}
+          />
+          <AuthorCard {...author} />
+        </Description>
+        <RightSidebar>
+          <PopularPost popular={popular} />
+          <LatestPost latest={latest} />
+          <Ad />
+        </RightSidebar>
+      </Container>
+    </Wrapper>
+  );
+};
 
-  const Wrapper = styled.div`
+export default BlogDetail;
+
+const Wrapper = styled.div`
     background: var(--bg-color);
   `;
 
-  const Container = styled.div`
+const Container = styled.div`
     padding: 2rem 0;
     margin: 0 3rem;
     display: grid;
@@ -54,7 +93,7 @@
     }
   `;
 
-  const Description = styled.div`
+const Description = styled.div`
     margin-top: 10rem;
     line-height: 1.6;
     p,
@@ -82,7 +121,7 @@
     }
   `;
 
-  const RightSidebar = styled.aside`
+const RightSidebar = styled.aside`
     padding: 1rem;
     margin-top: 10rem;
 
@@ -91,7 +130,7 @@
     }
   `;
 
-  const Heading = styled.h1`
+const Heading = styled.h1`
     margin: 1rem;
     font-size: 4rem;
     text-align: center;
