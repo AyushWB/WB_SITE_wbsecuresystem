@@ -16,7 +16,7 @@ function FooterVendors() {
                     <span className='vendors-title'>Wedding Vendors</span>
                     <div className="vendors-list">
                      
-                            <Link className='vendor-link' href={`/photographers-videography/${selectedCity}/all`}>
+                            <Link className='vendor-link' href={`/wedding-photographers/${selectedCity}/all`}>
                                 Photographers / Videography
                             </Link>
                      
@@ -24,23 +24,23 @@ function FooterVendors() {
                                 Makeup Artists
                             </Link>
                         
-                            <Link className='vendor-link'  href={`/mehndi-artists/${selectedCity}/all`}>
+                            <Link className='vendor-link'  href={`/best-mehendi-artists/${selectedCity}/all`}>
                                 Mehndi Artists
                             </Link>
                       
-                            <Link className='vendor-link'  href={`/decorators-florists/${selectedCity}/all`}>
+                            <Link className='vendor-link'  href={`/wedding-decorators/${selectedCity}/all`}>
                                 Decorators / Florists
                             </Link>
                      
-                            <Link  className='vendor-link' href={`/invitation-cards/${selectedCity}/all`}>
+                            <Link  className='vendor-link' href={`/wedding-invitation-card/${selectedCity}/all`}>
                                 Invitation Cards
                             </Link>
                     
-                            <Link className='vendor-link' href={`/choreographers/${selectedCity}/all`}>
+                            <Link className='vendor-link' href={`/wedding-choreographer/${selectedCity}/all`}>
                                 Choreographers
                             </Link>
                     
-                            <Link className='vendor-link' href={`/band-baja-ghodiwala/${selectedCity}/all`}>
+                            <Link className='vendor-link' href={`/wedding-band/${selectedCity}/all`}>
                                 Band/Baja/Ghodiwala
                             </Link>
                   
@@ -48,7 +48,7 @@ function FooterVendors() {
                                 Wedding Transportation / Vintage Cars
                             </Link>
                         
-                            <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}all`}>
+                            <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}/all`}>
                                 Bridal Wear
                             </Link>
                        
