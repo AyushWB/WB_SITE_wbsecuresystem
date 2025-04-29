@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BlogCard from "./blogcard/BlogCard";
 import { Spinner2 } from "@/styles/components/spinner";
 import { FaLeaf } from "react-icons/fa";
+import Head from "next/head";
 
 const BlogList = memo(({ data }) => {
   const [activeSort, setActiveSort] = useState("latest");
@@ -62,8 +63,26 @@ const BlogList = memo(({ data }) => {
     };
   }, [fetchMoreBlogs]);
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": bloglists.map((blog, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://weddingbanquets.in/blog/${blog.slug}`,
+      "image": `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${blog.image}`
+    }))
+  };
+
   return (
     <Wrapper>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+        />
+      </Head>
+
       <Heading className="heading-text">Trending Ideas for making your wedding boom!</Heading>
       <Title activeSort={activeSort}>{activeSort === "latest" ? "Latest Posts" : "Popular Posts"}</Title>
       <SortBy>
