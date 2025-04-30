@@ -351,7 +351,6 @@ const Wrapper = styled.div`
     .price {
       color: black;
       font-family: "Poppins";
-      font-size: 1.8rem;
       font-weight: 600;
       font-size: 2.2rem;
       font-family: "Montserrat";

@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { useMemo, useState } from "react";
-import { IoLogoWhatsapp, IoIosCall } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { memo } from "react";
@@ -18,6 +17,8 @@ import { useGlobalContext } from "@/context/MyContext";
 import Head from "next/head";
 import RatingCardDynamic from "@/components/miscellaneous/RatingCardDynamic";
 import { BsFillSuitcaseLgFill } from "react-icons/bs";
+import { ImWhatsapp } from "react-icons/im";
+import { BiSolidPhoneCall } from "react-icons/bi";
 
 function VenueCard2({
   vendor,
@@ -87,8 +88,8 @@ function VenueCard2({
                 fill
                 sizes="(100vw)"
                 quality={10}
-                title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll( "-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll( "-", " ")} in ${locality.replaceAll("-", " ")}`}
+                title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                alt={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
               />
             </SwiperSlide>
           ))}
@@ -120,8 +121,8 @@ function VenueCard2({
                 fill
                 sizes="(100vw)"
                 quality={1}
-                title={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll( "-", " ")} in ${locality.replaceAll("-", " ")}`}
-                alt={locality === "all" ? `${category.replaceAll( "-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll( "-", " ")} in ${locality.replaceAll("-", " ")}`}
+                title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                alt={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
               />
             </SwiperSlide>
           ))}
@@ -142,7 +143,7 @@ function VenueCard2({
           <div className="phone">
             <div className="" onClick={(e) => shareViaWhatsApp(e)}>
               <div className="whatsapp-btn">
-                <IoLogoWhatsapp className="whatsapp-icon" />
+                <ImWhatsapp className="whatsapp-icon" />
               </div>
             </div>
           </div>
@@ -269,7 +270,7 @@ function VenueCard2({
                   e.stopPropagation();
                 }}
               >
-                See Best
+                Check 
                 <br /> Prices
               </button>
               <button
@@ -279,7 +280,7 @@ function VenueCard2({
                   e.stopPropagation();
                 }}
               >
-                See Best Prices
+                Check Prices
               </button>
               <a
                 className="call-us-btn"
@@ -291,7 +292,7 @@ function VenueCard2({
                 aria-label="call icon"
               >
                 <div className="">
-                  <IoIosCall className="phone-icon" />
+                <BiSolidPhoneCall className="phone-icon" />
                 </div>
               </a>
             </div>
@@ -330,18 +331,19 @@ const ringingAnimation = keyframes`
 
 const Wrapper = styled.div`
   .whatsapp-icon {
-    font-size: 2.5rem;
-    color: #fff;
+    font-size: 3.5rem;
+    color: #17c434;
+    background-color: #fff;
   }
   .phone-icon {
     cursor: pointer;
     color: white;
+    margin-top: 4px;
+    margin-left: -2px;
     font-size: 3.5rem;
     animation: ${ringingAnimation} 1s ease-in-out infinite;
   }
   .phone {
-    border: 1px solid var(--phone);
-    background-color: var(--phone);
     color: white;
     padding: 0.7rem 1.8rem;
     text-transform: uppercase;
@@ -366,12 +368,13 @@ const Wrapper = styled.div`
     padding: 0.5rem 1.2rem;
     text-transform: uppercase;
     border-radius: 0.5rem;
-
+    font-weight: 600;
     font-size: 1.8rem;
     cursor: pointer;
     transition: all 0.3s linear;
-    background: #f33232;
+    background: #870808;
     color: white;
+    border-radius: 7px;
   }
 
   .call-us-btn {
@@ -389,11 +392,15 @@ const Wrapper = styled.div`
     background: var(--phone);
     color: white;
     animation: ${ringingAnimationn} 1s ease-in-out infinite;
+    border-radius: 60%;
+    display: flex;
+    align-item: center;
+    justify-content: center;
   }
 
   .action-btns {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     .phone {
       display: none;
     }
@@ -417,8 +424,9 @@ const Wrapper = styled.div`
     .price {
       color: black;
       font-family: "Poppins";
-      font-size: 1.5rem;
       font-weight: 600;
+      font-size: 2.2rem;
+      font-family: "Montserrat";
     }
   }
 
@@ -607,7 +615,7 @@ const Wrapper = styled.div`
     }
     .action-btns {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
       .phone {
         display: block;
       }
