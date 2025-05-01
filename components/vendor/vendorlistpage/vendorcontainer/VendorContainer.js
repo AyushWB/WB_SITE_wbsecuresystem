@@ -150,7 +150,7 @@ function VendorContainer({ city, lists, locality, category, count, localities, v
                     <main className="vendors-list box">
                         <div className="d-flex">
                             <div className="d-flex">
-                                <div className="vendor-conatiner-h1 main-title">{`${category.replaceAll("-", " ").replace(/top|best/g, '').trim()}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} </div>
+                                <h2 className="vendor-conatiner-h1 main-title">{`${category.replaceAll("-", " ").replace(/top|best/g, '').trim()}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} </h2>
                                 <span className="count">{`(${count || 0})`}</span>
                             </div>
                             <SearchBarVenue
