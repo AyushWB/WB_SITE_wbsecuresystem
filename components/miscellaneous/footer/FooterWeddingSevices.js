@@ -3,16 +3,7 @@ import styled from 'styled-components'
 import Link from 'next/link';
 
 
-const formatName = (name) => {
-    return name
-      ?.replace(/-/g, ' ')
-      ?.replace(/\b\w/g, (char) => char.toUpperCase()) || '';
-  };
-
-function FooterWeddingServices({city,locality}) {
-
-    const displayName = formatName(locality === 'all' ? city : locality);
-
+function FooterWeddingServices({ city, locality }) {
 
 
     const venue_categoriesServices = [
@@ -28,17 +19,17 @@ function FooterWeddingServices({city,locality}) {
         },
         {
             "id": 17,
-            "name": "Mehendi Artists",
+            "name": "Mehndi Artists",
             "slug": "best-mehendi-artists"
         },
         {
             "id": 18,
-            "name": "Decorators",
+            "name": "Wedding Decorators",
             "slug": "wedding-decorators"
         },
         {
             "id": 19,
-            "name": "Invitation Cards",
+            "name": "Wedding Invitation Cards",
             "slug": "wedding-invitation-card"
         },
         {
@@ -53,17 +44,17 @@ function FooterWeddingServices({city,locality}) {
         },
         {
             "id": 22,
-            "name": "Wedding Transportation",
+            "name": "Wedding Transportation Vintage Cars",
             "slug": "wedding-transportation-vintage-cars"
         },
         {
             "id": 23,
-            "name": "Bridal Wear",
+            "name": "Bridal Outfits",
             "slug": "bridal-outfits"
         },
         {
             "id": 24,
-            "name": "Groom Wear",
+            "name": "Groom Outfits",
             "slug": "groom-outfits"
         }
     ]
@@ -72,14 +63,15 @@ function FooterWeddingServices({city,locality}) {
     return (
         <Section className='section-vendors'>
             <div className="container">
-                <h2 className='vendors-heading'>Other Wedding Services in {displayName}</h2>
+                <h2 className='vendors-heading'>
+                    Other Wedding Services</h2>
                 <div className="vendors-container">
                     <div className="vendors-list">
                         {
                             venue_categoriesServices?.map((cat) => {
                                 return (
                                     <span key={cat.id}>
-                                        <Link className='vendor-link' href={`/${cat.slug}/${city}/${locality}`}>
+                                         <Link className='vendor-link' href={`/${cat.slug}/${city}/${locality}`}>
                                             {`${cat.name} in ${locality === "all" ? city : locality}`}
                                         </Link>
                                     </span>
@@ -110,6 +102,13 @@ margin-top: 2rem;
     .vendors-list{
         padding: 2rem 0rem; 
 
+        span:not(:last-child)::after {
+        content: "|";
+        padding: 0 10px;
+        opacity: .54;
+        color: black;
+        font-size: 1.5rem;
+  }
 
         .vendor-link{
             line-height: 3rem;
@@ -124,13 +123,6 @@ margin-top: 2rem;
 
             &:hover{
                 color: red;
-            }
-
-            &::after{
-                content: "|";
-                padding: 0 10px;
-                opacity: .54;
-                color: black;
             }
 
         }

@@ -11,6 +11,7 @@ import FooterLocalities from '@/components/miscellaneous/footer/FooterLocalites'
 import FooterRelatedSearch from '@/components/miscellaneous/footer/FooterRelatedSearch';
 import FooterKeyword from '@/components/miscellaneous/footer/FooterKeyword';
 import Faqs from '@/components/venue/venuedetailspage/faqs/Faqs';
+import FooterWeddingServices from '@/components/miscellaneous/footer/FooterWeddingSevices';
 
 function Venue(props) {
   const { setSelectedCity, localities } = useGlobalContext();
@@ -62,6 +63,7 @@ function Venue(props) {
             <FooterLocalities city={props.city} category={props.category} localities={props.localities?.data} />
           )}
           <FooterRelatedSearch city={props?.city} locality={props?.locality} />
+          <FooterWeddingServices city={props?.city} locality={props?.locality} />
         </>
       ) : (
         <>

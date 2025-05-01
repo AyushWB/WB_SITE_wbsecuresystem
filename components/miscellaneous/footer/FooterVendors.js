@@ -13,49 +13,48 @@ function FooterVendors() {
             <div className="container">
                 <h2 className='vendors-heading'>Wedding vendors by category</h2>
                 <div className="vendors-container">
-                    <span className='vendors-title'>Wedding Vendors</span>
                     <div className="vendors-list">
-                     
-                            <Link className='vendor-link' href={`/wedding-photographers/${selectedCity}/all`}>
-                                Photographers / Videography
-                            </Link>
-                     
-                            <Link className='vendor-link' href={`/makeup-artists/${selectedCity}/all`}>
-                                Makeup Artists
-                            </Link>
-                        
-                            <Link className='vendor-link'  href={`/best-mehendi-artists/${selectedCity}/all`}>
-                                Mehndi Artists
-                            </Link>
-                      
-                            <Link className='vendor-link'  href={`/wedding-decorators/${selectedCity}/all`}>
-                                Decorators / Florists
-                            </Link>
-                     
-                            <Link  className='vendor-link' href={`/wedding-invitation-card/${selectedCity}/all`}>
-                                Invitation Cards
-                            </Link>
-                    
-                            <Link className='vendor-link' href={`/wedding-choreographer/${selectedCity}/all`}>
-                                Choreographers
-                            </Link>
-                    
-                            <Link className='vendor-link' href={`/wedding-band/${selectedCity}/all`}>
-                                Band/Baja/Ghodiwala
-                            </Link>
-                  
-                            <Link className='vendor-link' href={`/wedding-transportation-vintage-cars/${selectedCity}/all`}>
-                                Wedding Transportation / Vintage Cars
-                            </Link>
-                        
-                            <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}/all`}>
-                                Bridal Wear
-                            </Link>
-                       
-                            <Link className='vendor-link' href={`/groom-outfits/${selectedCity}/all`}>
-                                Groom Wear
-                            </Link>
-                        
+
+                        <Link className='vendor-link' href={`/wedding-photographers/${selectedCity}/all`}>
+                            Wedding Photographers in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/makeup-artists/${selectedCity}/all`}>
+                            Makeup Artists in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/best-mehendi-artists/${selectedCity}/all`}>
+                            Mehndi Artists in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/wedding-decorators/${selectedCity}/all`}>
+                            Wedding Decorators in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/wedding-invitation-card/${selectedCity}/all`}>
+                            Wedding Invitation Cards in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/wedding-choreographer/${selectedCity}/all`}>
+                            Choreographers in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/wedding-band/${selectedCity}/all`}>
+                            Wedding Band in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/wedding-transportation-vintage-cars/${selectedCity}/all`}>
+                            Wedding Transportation Vintage Cars in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}/all`}>
+                            Bridal Outfits in Delhi
+                        </Link>
+
+                        <Link className='vendor-link' href={`/groom-outfits/${selectedCity}/all`}>
+                            Groom Outfits in Delhi
+                        </Link>
+
 
                     </div>
                 </div>
