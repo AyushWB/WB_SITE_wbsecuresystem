@@ -167,7 +167,7 @@ function VenueCard2({
           </div>
         </div>
         <p className="venue-description">
-          {`${vendor_summary?.slice(0, 100)} `}
+          {`${vendor_summary?.slice(0, 80)} `}
           <span className="read-more-btn">read more...</span>
         </p>
         <div className="venue-category">
@@ -191,34 +191,24 @@ function VenueCard2({
               <p>Party Makeup</p>
             </div>
           )}
+           {vendor['candid_photography_price'] && (
+            <div className="category">
+              <p>Candid Photography</p>
+            </div>
+          )}
           {vendor['cinematography_price'] && (
             <div className="category">
               <p>Cinematography</p>
             </div>
           )}
-          {vendor['candid_photography_price'] && (
-            <div className="category">
-              <p>Candid Photography</p>
-            </div>
-          )}
-          {vendor['traditional_photography_price'] && (
-            <div className="category">
-              <p>Traditional Photography</p>
-            </div>
-          )}
-          {vendor['traditional_video_price'] && (
-            <div className="category">
-              <p>Traditional Videography</p>
-            </div>
-          )}
           {vendor['pre_wedding_photoshoot_price'] && (
             <div className="category">
-              <p>Pre Wedding Photoshoot</p>
+              <p>Pre Wedding Shoot</p>
             </div>
           )}
-          {vendor['albums_price'] && (
+           {vendor['traditional_photography_price'] && (
             <div className="category">
-              <p>Albums</p>
+              <p>Traditional Photo/Video</p>
             </div>
           )}
           {vendor['engagement_mehndi_price'] && (

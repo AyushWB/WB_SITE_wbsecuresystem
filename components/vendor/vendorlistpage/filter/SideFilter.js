@@ -25,7 +25,7 @@ export default function SideFilter({ city, locality, category, localities, vendo
             <div className="filter-container">
 
                 <div className="header">
-                    <h2>Filter</h2>
+                    <div>Filter</div>
                     <span onClick={e=>setShowFilter(false)}>
                         <AiOutlineClose className="icon"/>
                     </span>
@@ -33,7 +33,7 @@ export default function SideFilter({ city, locality, category, localities, vendo
 
                 <Filter locality={locality} filterQuery={filterQuery} localities={localities} vendorCategories={vendorCategories} city={city} category={category} />
                 <div className="footer" onClick={e=>setShowFilter(false)}>
-                    <h2 className="filter-label">Apply</h2>
+                    <div className="filter-label">Apply</div>
                     <BsArrowRight className="arrow-icon" />
 
                 </div>
@@ -101,7 +101,7 @@ ${({ show }) =>
         align-items:center;
         justify-content:space-between;
 
-        h2{
+        div{
             font-size:2.5rem;
             font-family:"Poppins";
             /* color:var(--primary-color); */

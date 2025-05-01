@@ -40,7 +40,7 @@ export default function RangeFilter({
   return (
     <Wrapper show={toggleTab}>
       <div className="header-title">
-        <h4>{title}</h4>
+        <div>{title}</div>
         <span className="clear-btn" onClick={handleClear}>
           Clear
         </span>
@@ -83,7 +83,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h4 {
+    div {
       font-size: 2rem !important;
         font-weight: 500;
     }
