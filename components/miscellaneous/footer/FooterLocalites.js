@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Link from "next/link";
 
 function FooterLocalities({ city, category, localities }) {
-  const category_name = category.split("-").join(" ");
+  const category_name = category.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
   const [showMore, setShowMore] = useState(false);
+
 
   return (
     <Section className="section-vendors">
@@ -14,44 +15,17 @@ function FooterLocalities({ city, category, localities }) {
           <span className="city-name">{city}</span>
         </h2>
         <div className="vendors-container">
-          <div className="vendors-list">
-            {showMore
-              ? localities?.map((locality, i) => {
-                return (
-                  <span key={locality.id}>
-                    <Link
-                      className="vendor-link"
-                      href={`/${category}/${city}/${locality.slug}`}
-                    >
-                      {`${category} in ${locality.name}`}
-                    </Link>
-                    <Link
-                      className="vendor-link"
-                      href={`/${category}/${city}/${locality.slug}`}
-                    >
-                      {`${category.split(' ').map((word, index, array) => index === array.length - 1 ? word.slice(0, -1) : word).join(' ')} hall in ${locality.name}`}
-                    </Link>
-                  </span>
-                );
-              })
-              : localities?.slice(0, 20).map((locality, i) => {
-                return (
-                  <span key={locality.id}>
-                    <Link
-                      className="vendor-link"
-                      href={`/${category}/${city}/${locality.slug}`}
-                    >
-                      {`${category_name} in ${locality.name}`}
-                    </Link>
-                    <Link
-                      className="vendor-link"
-                      href={`/${category}/${city}/${locality.slug}`}
-                    >
-                      {`${category.split(' ').map((word, index, array) => index === array.length - 1 ? word.slice(0, -1) : word).join(' ').replace('-', ' ')} in ${locality.name}`}
-                    </Link>
-                  </span>
-                );
-              })}
+        <div className="vendors-list">
+            {(showMore ? localities : localities?.slice(0, 20))?.map((locality) => (
+              <span key={locality.id}>
+                <Link
+                  className="vendor-link"
+                  href={`/${category}/${city}/${locality.slug}`}
+                >
+                  {`${category_name} in ${locality.name}`}
+                </Link>
+              </span>
+            ))}
           </div>
           <span
             className="read-more-btn"
@@ -90,6 +64,14 @@ const Section = styled.section`
     .vendors-list {
       padding: 2rem 0rem;
 
+      span:not(:last-child)::after {
+        content: "|";
+        padding: 0 10px;
+        opacity: .54;
+        color: black;
+        font-size: 1.5rem;
+  }
+
       .vendor-link {
         line-height: 3rem;
         font-family: "Poppins";
@@ -103,13 +85,6 @@ const Section = styled.section`
 
         &:hover {
           color: red;
-        }
-
-        &::after {
-          content: "|";
-          padding: 0 10px;
-          opacity: 0.54;
-          color: black;
         }
       }
     }

@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function FooterRelatedSearch({city,locality}) {
+    const router = useRouter();
 
-
+    const currentSlug = router.asPath.split('/')[1];
 
     const venue_categories = [
         {
@@ -49,6 +51,7 @@ function FooterRelatedSearch({city,locality}) {
         }
     ]
 
+    const filteredCategories = venue_categories.filter(cat => cat.slug !== currentSlug);
 
     return (
         <Section className='section-vendors'>
@@ -57,7 +60,7 @@ function FooterRelatedSearch({city,locality}) {
                 <div className="vendors-container">
                     <div className="vendors-list">
                         {
-                            venue_categories?.map((cat) => {
+                            filteredCategories.map((cat) => {
                                 return (
                                     <span key={cat.id}>
                                         <Link className='vendor-link' href={`/${cat.slug}/${city}/${locality}`}>
@@ -89,7 +92,15 @@ margin-top: 2rem;
         
     }
     .vendors-list{
-        padding: 2rem 0rem; 
+        padding: 2rem 0rem;
+        
+        span:not(:last-child)::after {
+        content: "|";
+        padding: 0 10px;
+        opacity: .54;
+        color: black;
+        font-size: 1.5rem;
+  }
 
 
         .vendor-link{
@@ -106,14 +117,6 @@ margin-top: 2rem;
             &:hover{
                 color: red;
             }
-
-            &::after{
-                content: "|";
-                padding: 0 10px;
-                opacity: .54;
-                color: black;
-            }
-
         }
     }
 }
