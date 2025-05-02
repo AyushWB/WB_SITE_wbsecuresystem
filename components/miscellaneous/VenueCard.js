@@ -254,7 +254,7 @@ const Wrapper = styled.div`
       padding: 1rem 2.5rem;
       text-transform: uppercase;
       border-radius: 0.5rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
       cursor: pointer;
       transition: all 0.3s linear;
       &:hover {
