@@ -86,7 +86,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
             <div className="card info-card">
               <div className="v-header">
                 <div>
-                  <h2 className="v-name">{vendor.brand_name}</h2>
+                  <h1 className="v-name">{vendor.brand_name}</h1>
                   <p className="address">{vendor.vendor_address || " "}</p>
                 </div>
                 <div className="action-btns">
@@ -136,7 +136,7 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                 </div>
               </div>
               <div className="card info-card info-cardd">
-                <h3 className="v-name">About</h3>
+                <div className="v-name">About</div>
                 <div
                   className="v-desc"
                   dangerouslySetInnerHTML={{
@@ -488,7 +488,7 @@ const Wrapper = styled.section`
       p,
       span {
         font-family: "Poppins" !important;
-        font-size: 1.8rem !important;
+        font-size: 1.7rem !important;
         color: var(--para) !important;
       }
       .v-desc {

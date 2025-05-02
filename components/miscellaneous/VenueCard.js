@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { IoIosCall } from "react-icons/io";
+import { BiSolidPhoneCall } from "react-icons/bi";
 import Veg from "./Veg";
 import { useRouter } from "next/router";
 import CallingRequest from "@/lib/request/callingrequest/CallingRequest";
@@ -120,7 +120,7 @@ function VenueCard({ venue, openLeadModel, callConversion, selectedCity }) {
                 }}
                 aria-label="call icon "
               >
-                <IoIosCall className="call-icon" size={30} />
+                <BiSolidPhoneCall className="call-icon" size={30} />
               </a>
             </span>
           </div>
@@ -248,8 +248,9 @@ const Wrapper = styled.div`
       border: none;
       white-space: nowrap;
       background: none;
-      border: 1px solid #f33232;
-      color: #f33232;
+      border: 1px solid white;
+      color: white;
+      background-color: #f33232;
       padding: 1rem 2.5rem;
       text-transform: uppercase;
       border-radius: 0.5rem;
@@ -257,7 +258,7 @@ const Wrapper = styled.div`
       cursor: pointer;
       transition: all 0.3s linear;
       &:hover {
-        background: #f33232;
+        background-color: var(--primary-color);
         color: white;
       }
     }
@@ -327,8 +328,9 @@ const Wrapper = styled.div`
         border: none;
         white-space: nowrap;
         background: none;
-        border: 1px solid #f33232;
-        color: #f33232;
+        border: 1px solid white;
+        color: white;
+        background-color: #f33232;
         padding: 0.7rem 1.8rem;
         text-transform: uppercase;
         border-radius: 0.5rem;
@@ -336,8 +338,8 @@ const Wrapper = styled.div`
         cursor: pointer;
         transition: all 0.3s linear;
         &:hover {
-          background: #f33232;
-          color: white;
+        background-color: var(--primary-color);
+        color: white;
         }
       }
     }
