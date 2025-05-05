@@ -54,10 +54,9 @@ export default function HaveUsCallYou() {
       <div className="container">
         <div className="call-content-container">
           <div className="header">
-            <h2>Should we call you</h2>
+            <h2>Kindly provide your details</h2>
             <p>
-              Please provide us with your contact number (10 digit mobile
-              number)
+              Our team will reach you out and assist you in finding the best vendors for your event
             </p>
           </div>
           <div className="number-form-container">
@@ -156,7 +155,7 @@ const Wrapper = styled.div`
   .verification-container {
     display: flex;
     gap: 2rem;
-    height: 7rem;
+    height: 5rem;
   }
   .call-content-container {
     display: flex;

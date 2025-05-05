@@ -11,7 +11,7 @@ export default function Policies() {
 
                 <PolicyCard img_url={"/vpolicy/cancellation.png"} name={"Cancellation"} data={`<div style="text-align: center;"><span>Non-cancellation</span></div>`} />
 
-                <PolicyCard img_url={"/vpolicy/term.png"} name={"Terms"} data={`<div style="text-align: center; "><span>Outstation travel paid by client.</span></div>`} />
+                <PolicyCard img_url={"/vpolicy/term.png"} name={"Terms"} data={`<div style="text-align: center; "><span>Outstation travel paid by client</span></div>`} />
             </div>
         </div>
     </Wrapper>)
