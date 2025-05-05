@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import PolicyCard from "@/components/venue/venuedetailspage/venuepolicy/PolicyCard";
 
 export default function Policies() {
 
@@ -7,29 +7,15 @@ export default function Policies() {
     return (<Wrapper className="section">
         <div className="container">
             <div className="policies-container">
-                <div className="booking-policy policy">
-                    <h2 className="policy-title">Booking Policy </h2>
-                    <p className="policy-description">Payment of 40% of the package is needed to be paid in advance, the rest can be paid later to the vendor on the day of the event.</p>
-                </div>
-                <div className="cancellation-policy policy">
-                    <h2 className="policy-title">Cancellation Policy</h2>
-                    <p className="policy-description">The booking is non-cancellable. However, the booking can be shifted to another date with no extra charge.</p>
-                </div>
-                <div className="terms policy">
-                    <h2 className="policy-title">
-                        Terms
-                    </h2>
-                    <p className="policy-description">TRANSPORTATION CHARGES PROVISION: No transportation costs shall be applicable within the city. However, if the event is staged outside the city, then Travel & Stay Charge shall be paid by the client.</p>
-                </div>
+                <PolicyCard img_url={"/vpolicy/advance.png"} name={"Advance"} data={"40% at the time of booking"} />
+
+                <PolicyCard img_url={"/vpolicy/cancellation.png"} name={"Cancellation"} data={`<div style="text-align: center;"><span>Non-cancellation</span></div>`} />
+
+                <PolicyCard img_url={"/vpolicy/term.png"} name={"Terms"} data={`<div style="text-align: center; "><span>Outstation travel paid by client.</span></div>`} />
             </div>
         </div>
-
-
-
     </Wrapper>)
 }
-
-
 
 const Wrapper = styled.section`
 
@@ -48,10 +34,9 @@ background-color: var(--bg-color);
         flex-direction: column;
         gap: .5rem;
         /* border: 2px solid var(--primary-color); */
-        border: 8px solid #f9f9f9;
 
         align-items: center;
-    
+
 
         .policy-title{
             font-size: 2rem;
@@ -59,11 +44,11 @@ background-color: var(--bg-color);
             font-weight: 500;
 
         }
-        .policy-description{
+        .policies-container{
             color: var(--para);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-family: "Poppins";
-            font-weight: 400;
+            font-weight: 500;
             line-height: 2;
         }
 
@@ -76,7 +61,6 @@ background-color: var(--bg-color);
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
-}
 
+}
 `

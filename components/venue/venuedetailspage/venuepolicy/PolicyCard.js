@@ -11,6 +11,7 @@ export default function PolicyCard({img_url,name,data}){
             src={img_url}
             fill
             sizes="(100vw)"
+            // sizes="(max-width: 600px) 80px, 100px"
             alt="img"
             />
         </div>
