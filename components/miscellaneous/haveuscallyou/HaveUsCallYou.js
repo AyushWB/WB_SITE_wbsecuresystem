@@ -248,7 +248,7 @@ const Wrapper = styled.div`
           font-family: "Poppins";
           font-weight: 500;
           padding: 10px;
-          width: 90%;
+          width: 25%;
           cursor: pointer;
           border-radius: 0.3rem;
         }
