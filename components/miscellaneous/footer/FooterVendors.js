@@ -1,114 +1,93 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '@/context/MyContext'
-import Link from 'next/link';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function FooterVendors() {
-
     const { selectedCity } = useGlobalContext();
+    const router = useRouter();
 
+    const currentSlug = router.asPath.split('/')[1];
+
+    const venue_categoriesServices = [
+        { id: 15, name: "Wedding Photographers", slug: "wedding-photographers" },
+        { id: 16, name: "Makeup Artists", slug: "makeup-artists" },
+        { id: 17, name: "Mehndi Artists", slug: "best-mehendi-artists" },
+        { id: 18, name: "Wedding Decorators", slug: "wedding-decorators" },
+        { id: 19, name: "Wedding Invitation Cards", slug: "wedding-invitation-card" },
+        { id: 20, name: "Choreographers", slug: "wedding-choreographer" },
+        { id: 21, name: "Wedding Band", slug: "wedding-band" },
+        { id: 22, name: "Wedding Transportation Vintage Cars", slug: "wedding-transportation-vintage-cars" },
+        { id: 23, name: "Bridal Outfits", slug: "bridal-outfits" },
+        { id: 24, name: "Groom Outfits", slug: "groom-outfits" }
+    ];
+
+    const filteredCategories = venue_categoriesServices.filter(cat => cat.slug !== currentSlug);
 
     return (
         <Section className='section-vendors'>
             <div className="container">
-                <h2 className='vendors-heading'>Wedding vendors by category</h2>
+                <h2 className='vendors-heading'>Other Wedding Services</h2>
                 <div className="vendors-container">
                     <div className="vendors-list">
-
-                        <Link className='vendor-link' href={`/wedding-photographers/${selectedCity}/all`}>
-                            Wedding Photographers in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/makeup-artists/${selectedCity}/all`}>
-                            Makeup Artists in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/best-mehendi-artists/${selectedCity}/all`}>
-                            Mehndi Artists in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/wedding-decorators/${selectedCity}/all`}>
-                            Wedding Decorators in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/wedding-invitation-card/${selectedCity}/all`}>
-                            Wedding Invitation Cards in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/wedding-choreographer/${selectedCity}/all`}>
-                            Choreographers in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/wedding-band/${selectedCity}/all`}>
-                            Wedding Band in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/wedding-transportation-vintage-cars/${selectedCity}/all`}>
-                            Wedding Transportation Vintage Cars in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/bridal-outfits/${selectedCity}/all`}>
-                            Bridal Outfits in Delhi
-                        </Link>
-
-                        <Link className='vendor-link' href={`/groom-outfits/${selectedCity}/all`}>
-                            Groom Outfits in Delhi
-                        </Link>
-
-
+                        {filteredCategories.map((cat) => (
+                            <span key={cat.id}>
+                                <Link
+                                    className='vendor-link'
+                                    href={`/${cat.slug}/${selectedCity}/all`}
+                                >
+                                    {`${cat.name} in ${selectedCity}`}
+                                </Link>
+                            </span>
+                        ))}
                     </div>
                 </div>
             </div>
         </Section>
-    )
+    );
 }
 
 const Section = styled.section`
 margin-top: 2rem;
-.vendors-heading{
+.vendors-heading {
     font-size: 2rem;
     letter-spacing: 1px;
-
 }
-.vendors-container{
+.vendors-container {
     padding: 1rem 0rem;
-    .vendors-title{
+    .vendors-title {
         font-family: Poppins;
         font-size: 1.8rem;
-        
     }
-    .vendors-list{
+    .vendors-list {
         padding: 2rem 0rem; 
 
+        span:not(:last-child)::after {
+            content: "|";
+            padding: 0 10px;
+            opacity: 0.54;
+            color: black;
+            font-size: 1.5rem;
+        }
 
-        .vendor-link{
+        .vendor-link {
             line-height: 3rem;
             font-family: "Poppins";
             margin-bottom: 10px;
-            font-size:1.5rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: all .3s linear;
+            transition: all 0.3s linear;
             color: var(--para);
             white-space: normal;
             overflow-wrap: break-word;
 
-            &:hover{
+            &:hover {
                 color: red;
             }
-
-            &::after{
-                content: "|";
-                padding: 0 10px;
-                opacity: .54;
-                color: black;
-            }
-
         }
     }
 }
+`;
 
-`
-
-
-
-export default FooterVendors
+export default FooterVendors;
