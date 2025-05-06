@@ -1,3 +1,4 @@
+// import Head from "next/head";
 // import BreadCrumb from "@/components/miscellaneous/NavigationHeader";
 // import StickyButton from "@/components/miscellaneous/StickyButton";
 // import Header from "@/components/layout.js/Header";
@@ -15,7 +16,6 @@
 // import { useRouter } from "next/router";
 
 // export default function VenueDetailsPage({ response }) {
-
 //     const { setLeadFormData, setIsLeadsModelOpen, setIsAvailableCheckOpen } = useGlobalContext();
 //     const router = useRouter();
 
@@ -33,10 +33,9 @@
 //         }
 //         setLeadFormData(leadData);
 //         setIsLeadsModelOpen(true);
-//         if (e) {
-//             e.stopPropagation();
-//         }
+//         if (e) e.stopPropagation();
 //     }
+
 //     const openAvailableCheck = (e, v_slug = venue?.slug, v_id = venue?.id, by = "form") => {
 //         const leadData = {
 //             url: router.asPath,
@@ -47,28 +46,129 @@
 //         }
 //         setLeadFormData(leadData);
 //         setIsAvailableCheckOpen(true);
-//         if (e) {
-//             e.stopPropagation();
-//         }
+//         if (e) e.stopPropagation();
 //     }
+
+//     const schemaData = {
+//         "@context": "https://schema.org",
+//         "@type": "LocalBusiness",
+//         "name": venue?.name || "Venue Name",
+//         "url": `https://weddingbanquets.in${router.asPath}`,
+//         "logo": {
+//             "@type": "ImageObject",
+//             "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${venue?.images?.split(",")[0]}`,
+//         },
+//         "image":
+//             venue?.images
+//                 ?.split(",")
+//                 .map((img) => ({
+//                     "@type": "ImageObject",
+//                     "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`
+//                 })) || [],
+//         "description": venue?.meta_description,
+//         "address": {
+//             "@type": "PostalAddress",
+//             "streetAddress": venue?.venue_address || "",
+//             "addressLocality": venue?.city || "New Delhi, Delhi NCR",
+//             "addressRegion": venue?.state || "Delhi NCR",
+//             "addressCountry": "India"
+//         },
+//         "aggregateRating": {
+//             "@type": "AggregateRating",
+//             "ratingValue": venue?.place_rating || 4.5,
+//             "reviewCount": reviews?.length || 158,
+//             "bestRating": "5",
+//             "worstRating": "1"
+//         },
+//         "review": reviews.slice(0, 4).map((review) => ({
+//             "@type": "Review",
+//             "datePublished": review.created_at,
+//             "reviewBody": review?.comment || "Great experience!",
+//             "author": {
+//                 "@type": "Person",
+//                 "name": review?.users_name || "Anonymous"
+//             },
+//             "reviewRating": {
+//                 "@type": "Rating",
+//                 "ratingValue": review?.rating || 0,
+//                 "bestRating": "5",
+//                 "worstRating": "1"
+//             },
+//         })),
+//         "priceRange": venue.veg_price && venue.nonveg_price
+//             ? `Rs. ${venue.veg_price} - ${venue.nonveg_price}`
+//             : venue.veg_price
+//                 ? `Rs. ${venue.veg_price}`
+//                 : venue.nonveg_price
+//                     ? `Rs. ${venue.nonveg_price}`
+//                     : undefined,
+//     };
 
 //     return (
 //         <>
+//             <Head>
+//                 <script
+//                     type="application/ld+json"
+//                     dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+//                 />
+//                 {venue?.images &&
+//                     venue.images
+//                         .split(",")
+//                         .slice(0, 10)
+//                         .map((img, index) => (
+//                             <script
+//                                 key={index}
+//                                 type="application/ld+json"
+//                                 dangerouslySetInnerHTML={{
+//                                     __html: JSON.stringify({
+//                                         "@context": "https://schema.org",
+//                                         "@type": "ImageObject",
+//                                         "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`,
+//                                     }),
+//                                 }}
+//                             />
+//                         ))}
+//             </Head>
+
 //             <Header />
 //             <BreadCrumb meta_title={venue.meta_title} />
-//             <ImageSlider images={venue.images} rating={venue.place_rating ?? 4.5} ratingcount={reviews.length === 0 ? 158 : reviews.length} altname={venue.name} wb_assured={venue?.wb_assured} />
-//             <VenueBasicInfo venue={venue} openLeadsModel={openLeadsModel} openAvailableCheck={openAvailableCheck} id={venue.id} />
-//             <VenueFeatures venue={venue}/>
-//             <FoodPackage venue={venue} nonveg_foods={venue?.nonveg_foods} veg_foods={venue?.veg_foods} />
+//             <ImageSlider
+//                 images={venue.images}
+//                 rating={venue.place_rating ?? 4.5}
+//                 ratingcount={reviews.length === 0 ? 158 : reviews.length}
+//                 altname={venue.name}
+//                 wb_assured={venue?.wb_assured}
+//             />
+//             <VenueBasicInfo
+//                 venue={venue}
+//                 openLeadsModel={openLeadsModel}
+//                 openAvailableCheck={openAvailableCheck}
+//                 id={venue.id}
+//             />
+//             <VenueFeatures venue={venue} />
+//             <FoodPackage
+//                 venue={venue}
+//                 nonveg_foods={venue?.nonveg_foods}
+//                 veg_foods={venue?.veg_foods}
+//             />
 //             {/* <HaveUsCallYou /> */}
 //             <VenuePolicy venue={venue} />
-//             <VenueReview venue_place_id={venue_place_id} venue={venue} reviews={reviews} />
+//             <VenueReview
+//                 venue_place_id={venue_place_id}
+//                 venue={venue}
+//                 reviews={reviews}
+//             />
 //             <VenueMap location_map={venue.location_map} />
-//             <StickyButton openLeadsModel={openLeadsModel} phone={venue.phone} slug={venue.slug} id={venue.id} />
+//             <StickyButton
+//                 openLeadsModel={openLeadsModel}
+//                 phone={venue.phone}
+//                 slug={venue.slug}
+//                 id={venue.id}
+//             />
 //             <SimilarVenue similar_packages={similar_packages} />
 //             <Faqs faqs={venue?.faq} name={venue?.name} />
 //         </>
-//     )
+//     );
 // }
 
 
@@ -107,11 +207,11 @@ export default function VenueDetailsPage({ response }) {
             venue_slug: v_slug,
             type: "click",
             request_handle_by: by
-        }
+        };
         setLeadFormData(leadData);
         setIsLeadsModelOpen(true);
         if (e) e.stopPropagation();
-    }
+    };
 
     const openAvailableCheck = (e, v_slug = venue?.slug, v_id = venue?.id, by = "form") => {
         const leadData = {
@@ -120,11 +220,11 @@ export default function VenueDetailsPage({ response }) {
             venue_slug: v_slug,
             type: "click",
             request_handle_by: by
-        }
+        };
         setLeadFormData(leadData);
         setIsAvailableCheckOpen(true);
         if (e) e.stopPropagation();
-    }
+    };
 
     const schemaData = {
         "@context": "https://schema.org",
@@ -184,27 +284,32 @@ export default function VenueDetailsPage({ response }) {
     return (
         <>
             <Head>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-                />
-                {venue?.images &&
-                    venue.images
-                        .split(",")
-                        .slice(0, 10)
-                        .map((img, index) => (
-                            <script
-                                key={index}
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{
-                                    __html: JSON.stringify({
-                                        "@context": "https://schema.org",
-                                        "@type": "ImageObject",
-                                        "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`,
-                                    }),
-                                }}
-                            />
-                        ))}
+                {/* Show schema only if not Raas Banquet Moti Nagar */}
+                {router.asPath !== "/delhi/raas-banquet-moti-nagar" && (
+                    <>
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+                        />
+                        {venue?.images &&
+                            venue.images
+                                .split(",")
+                                .slice(0, 10)
+                                .map((img, index) => (
+                                    <script
+                                        key={index}
+                                        type="application/ld+json"
+                                        dangerouslySetInnerHTML={{
+                                            __html: JSON.stringify({
+                                                "@context": "https://schema.org",
+                                                "@type": "ImageObject",
+                                                "contentUrl": `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${img}`,
+                                            }),
+                                        }}
+                                    />
+                                ))}
+                    </>
+                )}
             </Head>
 
             <Header />
@@ -228,7 +333,6 @@ export default function VenueDetailsPage({ response }) {
                 nonveg_foods={venue?.nonveg_foods}
                 veg_foods={venue?.veg_foods}
             />
-            {/* <HaveUsCallYou /> */}
             <VenuePolicy venue={venue} />
             <VenueReview
                 venue_place_id={venue_place_id}
