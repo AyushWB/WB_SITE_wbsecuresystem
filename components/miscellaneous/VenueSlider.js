@@ -27,7 +27,7 @@ export default function VenueSlider({venues}) {
         <Div className="popular-venue-container">
 
             <Swiper
-                slidesPerView={2}
+                slidesPerView={1}
                 // centeredSlides={true}
                 spaceBetween={180}
                 loop={true}
