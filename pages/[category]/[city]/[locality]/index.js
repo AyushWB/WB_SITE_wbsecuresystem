@@ -68,6 +68,9 @@ function Venue(props) {
       ) : (
         <>
           <VendorListPage data={{ ...props, localities }} />
+          {props.result.meta?.faq && (
+            <Faqs faqs={props.result.meta?.faq} name={`${props.category} in ${props.city}`} />
+          )}
           <FooterVendors />
         </>
       )}
