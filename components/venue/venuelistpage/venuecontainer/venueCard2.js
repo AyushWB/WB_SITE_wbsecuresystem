@@ -90,7 +90,7 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
           <div className="rate">
             <RatingCardDynamic
               rating={venue?.place_rating}
-              ratingcount={venue?.reviews_count}
+              ratingcount={venue?.review_count}
               slug={venue?.slug}
             />
           </div>
