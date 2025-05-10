@@ -64,13 +64,13 @@ function VendorCard({ vendor, openLeadModel, city, category, locality, callConve
                 Exp.{" "}
                 <span className="price">
                   &nbsp;
-                {`${vendor?.yrs_exp !== undefined &&
-                  vendor?.yrs_exp !== null &&
-                  vendor?.yrs_exp !== 0
-                  ? vendor.yrs_exp
-                  : "5+"
-                  } Yr's`}
-                  </span>
+                  {`${vendor?.yrs_exp !== undefined &&
+                    vendor?.yrs_exp !== null &&
+                    vendor?.yrs_exp !== 0
+                    ? vendor.yrs_exp
+                    : "5+"
+                    } Yr's`}
+                </span>
               </p>
             </div>
             <div className="detail-circle">
@@ -181,78 +181,74 @@ const Wrapper = styled.div`
     }
   }
 
-  .price-bar {
+.price-bar {
+  display: flex;
+  justify-content: space-between; /* Add this */
+  align-items: center;
+  font-size: 1.6rem;
+  color: #333;
+  gap: 4px;
+  margin: 5px 3rem 0 0rem;
+
+  .icon-wrapper {
     display: flex;
-    font-size: 1.6rem;
-    color: #333;
-    gap:2px;
-    margin-top:5px;
-      .icon-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.2rem;
-        color: var(--para);
-        width: 30px;
-      }
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    color: var(--para);
+    margin-left:8px;
   }
 
-    .package-title{
-      color: var(--para);
-      font-family: Poppins;
-      font-size: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .package-title {
+    color: var(--para);
+    font-family: Poppins;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
 
-    .package-price {
-      display: flex;
-      justify-content: center;  
-      align-items: center;      
-      font-family: Montserrat;
-      font-weight: 600;
-      color: black;
-      font-size: 2.2rem;
-      text-align: center;   
-      height: 100%;
-      margin-top: 2px;
-    }
+  .package-price {
+    display: flex;
+    align-items: center;
+    font-family: Montserrat;
+    font-weight: 600;
+    color: black;
+    font-size: 2.2rem;
+    margin-left: auto; 
   }
-    .vendor-aditional-info {
-    margin-top: 10px;
-    .location {
-      margin: 0 20px 0 0;
-      p,
-      .icon {
-        color: var(--info-color);
-      }
-    }
-    .detail-circle {
-      padding: 0 1rem;
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      padding: 3px 7px;
-      border-radius: 5px;
-      color: var(--para);
-      margin-right: 20px;
-      margin-top:5px;
-      .icon {
-        font-size: 2.2rem;
-      }
-      p {
-        font-family: "Poppins";
-        font-size: 1.5rem;
-      }
-        span{
-        font-family: Montserrat;
-        font-weight: 600;
-        color: black;
-        font-size: 2.2rem;
-        }
-    }
+}
+.detail-circle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  color: var(--para);
+  margin-right: 20px;
+  margin-top: 5px;
+  font-size: 1.5rem;
+
+  .icon {
+    font-size: 2.2rem;
   }
+
+  p {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-family: "Poppins";
+    font-size: 1.5rem;
+  }
+
+  .price {
+    margin-left: auto; 
+    font-family: Montserrat;
+    font-weight: 600;
+    color: black;
+    font-size: 2.2rem;
+  }
+}
+
 
   .action-btns {
     padding: 1.5rem 1rem;
