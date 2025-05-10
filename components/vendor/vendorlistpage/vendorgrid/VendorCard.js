@@ -47,7 +47,9 @@ function VendorCard({ vendor, openLeadModel, city, category, locality, callConve
           </div>
 
           <div className="price-bar">
-          <MdOutlinePriceChange className="icon" />
+            <div className="icon-wrapper">
+              <MdOutlinePriceChange className="icon" />
+            </div>
             <p className="package-title">Package Price</p>
             <p className="package-price">
               <BiRupee />
@@ -56,34 +58,37 @@ function VendorCard({ vendor, openLeadModel, city, category, locality, callConve
           </div>
 
           <div className="vendor-aditional-info">
-                <div className="detail-circle">
-                  <BsFillSuitcaseLgFill className="icon" />
-                  <p>
-                    Exp.{" "}
-                    {`${vendor?.yrs_exp !== undefined &&
-                      vendor?.yrs_exp !== null &&
-                      vendor?.yrs_exp !== 0
-                      ? vendor.yrs_exp
-                      : "5+"
-                      } Yr's`}
-                  </p>
-                </div>
-                <div className="detail-circle">
-                  <MdEventAvailable className="icon" />
-                  <p>
-                    Event Completed:
-                    <span className="price">
-                      &nbsp;
-                      {`${vendor?.event_completed !== undefined &&
-                        vendor?.event_completed !== null &&
-                        vendor?.event_completed !== 0
-                        ? vendor.event_completed
-                        : 150
-                        }+`}
-                    </span>
-                  </p>
-                </div>
-              </div>
+            <div className="detail-circle">
+              <BsFillSuitcaseLgFill className="icon" />
+              <p>
+                Exp.{" "}
+                <span className="price">
+                  &nbsp;
+                {`${vendor?.yrs_exp !== undefined &&
+                  vendor?.yrs_exp !== null &&
+                  vendor?.yrs_exp !== 0
+                  ? vendor.yrs_exp
+                  : "5+"
+                  } Yr's`}
+                  </span>
+              </p>
+            </div>
+            <div className="detail-circle">
+              <MdEventAvailable className="icon" />
+              <p>
+                Event Completed:
+                <span className="price">
+                  &nbsp;
+                  {`${vendor?.event_completed !== undefined &&
+                    vendor?.event_completed !== null &&
+                    vendor?.event_completed !== 0
+                    ? vendor.event_completed
+                    : 150
+                    }+`}
+                </span>
+              </p>
+            </div>
+          </div>
 
           <div className="action-btns">
             <button
@@ -177,29 +182,41 @@ const Wrapper = styled.div`
   }
 
   .price-bar {
-    padding: 0 1rem;
     display: flex;
-    justify-content: space-between;
     font-size: 1.6rem;
     color: #333;
-     .icon {
-        color: var(--para);
+    gap:2px;
+    margin-top:5px;
+      .icon-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 2.2rem;
+        color: var(--para);
+        width: 30px;
       }
+  }
 
     .package-title{
       color: var(--para);
       font-family: Poppins;
       font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .package-price {
       display: flex;
-      align-items: center;
-      font-family: Poppins;
-      font-weight: bold;
+      justify-content: center;  
+      align-items: center;      
+      font-family: Montserrat;
+      font-weight: 600;
       color: black;
-      font-size: 1.5rem;  
+      font-size: 2.2rem;
+      text-align: center;   
+      height: 100%;
+      margin-top: 2px;
     }
   }
     .vendor-aditional-info {
@@ -212,8 +229,9 @@ const Wrapper = styled.div`
       }
     }
     .detail-circle {
+      padding: 0 1rem;
       display: flex;
-      gap: 3px;
+      gap: 6px;
       align-items: center;
       padding: 3px 7px;
       border-radius: 5px;
@@ -228,11 +246,10 @@ const Wrapper = styled.div`
         font-size: 1.5rem;
       }
         span{
-        font-family: Poppins;
-        font-weight: bold;
+        font-family: Montserrat;
+        font-weight: 600;
         color: black;
-        font-size: 1.5rem;
-        margin-left: 200px;
+        font-size: 2.2rem;
         }
     }
   }
