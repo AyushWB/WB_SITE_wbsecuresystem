@@ -31,7 +31,7 @@ import Assured from "@/components/miscellaneous/Assured";
 import RatingCardDynamic from "@/components/miscellaneous/RatingCardDynamic";
 
 
-export default function ImageSlider({ images, wb_assured, altname, rating, ratingcount }) {
+export default function ImageSlider({ images, wb_assured, altname, rating, ratingcount, slug }) {
 
     const [open, setOpen] = useState(false);
 
@@ -74,13 +74,20 @@ export default function ImageSlider({ images, wb_assured, altname, rating, ratin
                             return (
 
                                 <SwiperSlide className="img-container" key={i}>
-                                    {/* <img src="/img-slider1.png" /> */}
-                                    <Image
-                                        src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`}
-                                        fill
-                                        sizes="(100vw)"
-                                        alt={altname}
-                                    />
+                                    {slug === "raas-banquet-moti-nagar" ? (
+                                        <img 
+                                            src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`}
+                                            alt={altname}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${url}`}
+                                            fill
+                                            sizes="(100vw)"
+                                            alt={altname}
+                                        />
+                                    )}
                                 </SwiperSlide>
                             )
                         })

@@ -320,6 +320,7 @@ export default function VenueDetailsPage({ response }) {
                 ratingcount={reviews.length === 0 ? 158 : reviews.length}
                 altname={venue.name}
                 wb_assured={venue?.wb_assured}
+                slug={venue.slug}
             />
             <VenueBasicInfo
                 venue={venue}
