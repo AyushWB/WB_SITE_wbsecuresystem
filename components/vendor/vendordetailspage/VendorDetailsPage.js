@@ -10,6 +10,7 @@ import HaveUsCallYou from "@/components/miscellaneous/haveuscallyou/HaveUsCallYo
 import { useGlobalContext } from "@/context/MyContext";
 import Gallery from "@/components/vendor/vendordetailspage/gallery/Gallery";
 import TabsComponent from "./tabsComponent/TabsComponent";
+import VendorReview from "./vendorreview/VendorReview";
 
 export default function VendorDetailsPage({ response }) {
   // console.log(response)
@@ -20,11 +21,16 @@ export default function VendorDetailsPage({ response }) {
   const { similar_vendors, vendor } = response.data;
   // console.log(similar_vendors,vendor)
 
+   // Define vendor_place_id from vendor data
+  const vendor_place_id = vendor?.location_place_id;
+  // Define reviews from response data
+  const reviews = response.reviews || [];
+
   const openLeadsModel = (e, v_slug = vendor?.slug, v_id = vendor?.id) => {
     const leadData = {
       url: router.asPath,
-      venue_id: v_id,
-      venue_slug: v_slug,
+      vendor_id: v_id,
+      vendor_slug: v_slug,
       type: "click",
       request_handle_by: "form",
     };
@@ -48,6 +54,11 @@ export default function VendorDetailsPage({ response }) {
       <VendorBasicInfo vendor={vendor} openLeadsModel={openLeadsModel} />
       <HaveUsCallYou />
       <Policies />
+      <VendorReview
+                vendor_place_id={vendor_place_id}
+                vendor={vendor}
+                reviews={reviews}
+            />
       {similar_vendors && <SimilarVendors vendors={similar_vendors} />}
     </>
   );

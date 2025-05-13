@@ -96,7 +96,7 @@ export default function PriceListCard({
       <div className="bannar-img">
         <img
           src="/common/venue.jpg"
-          alt="An example image"
+          alt="Wedding Banquet"
           style={{ width: "100%", height: "auto" }}
         />
       </div>
