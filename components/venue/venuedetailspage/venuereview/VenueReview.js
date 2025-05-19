@@ -198,7 +198,7 @@ function VenueReview({ venue, reviews }) {
             <div className="rating-card">
               <div className="review-cards-container">
                 {reviews.map((review) =>
-                  review.status == 1 ? (
+                  review.status == 2 ? (
                     <div className="cardR" key={review.id}>
                       <div className="card-top">
                         <div className="card-bottom">

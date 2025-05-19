@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { AiFillCaretDown } from "react-icons/ai";
 import { BiSearch, BiCategoryAlt } from "react-icons/bi";
-import { MdCurrencyRupee, MdFaceRetouchingNatural, MdOutlineFaceRetouchingNatural, MdOutlineLocationOn } from "react-icons/md";
+import { MdCurrencyRupee, MdFaceRetouchingNatural, MdOutlineFaceRetouchingNatural, MdOutlineLocationOn,} from "react-icons/md";
 import { BsPeople } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 import { useGlobalContext } from "@/context/MyContext";
@@ -155,6 +155,33 @@ export default function VendorTopFilter({
     },
   ];
 
+  const serviceListMehendi = [
+    {
+      id: "traditional-mehndi",
+      name: "Traditional Mehendi",
+    },
+    {
+      id: "arabic-mehndi",
+      name: "Arabic Mehendi",
+    },
+    {
+      id: "portrait-mehndi",
+      name: "Portrait Mehendi",
+    },
+    {
+      id: "bridal-mehndi",
+      name: "Bridal Mehendi",
+    },
+    {
+      id: "groom-mehndi",
+      name: "Groom Mehendi",
+    },
+    {
+      id: "western-mehndi",
+      name: "Western Mehendi",
+    },
+  ];
+
   const { cities } = useGlobalContext();
   const router = useRouter();
 
@@ -166,9 +193,12 @@ export default function VendorTopFilter({
   const [filterMakeupBridalBudget, setFilterMakeupBridalBudget] = useState(
     filterQuery.makeup_bridal_budget || ""
   );
-  const [selectedServiceListMakeup, setSelectedServiceListMakeup] = useState(filterQuery.makeup_service?.split(",") || []);
-  const [selectedOccasionListMakeup, setSelectedOccasionListMakeup] = useState(filterQuery.makeup_occasion?.split(",") || []);
-
+  const [selectedServiceListMakeup, setSelectedServiceListMakeup] = useState(
+    filterQuery.makeup_service?.split(",") || []
+  );
+  const [selectedOccasionListMakeup, setSelectedOccasionListMakeup] = useState(
+    filterQuery.makeup_occasion?.split(",") || []
+  );
 
   // Photographer filter
   const [filterPhotographerService, setFilterPhotographerService] = useState(
@@ -176,12 +206,19 @@ export default function VendorTopFilter({
   );
   const [filterPhotographerServiceBudget, setFilterPhotographerServiceBudget] =
     useState(filterQuery.photographer_service_budget || "");
-  const [photoVideoPackageBudget, setPhotoVideoPackageBudget] = useState(initialPhotoVideoPackageBudget);
+  const [photoVideoPackageBudget, setPhotoVideoPackageBudget] = useState(
+    initialPhotoVideoPackageBudget
+  );
 
   // Mehndi filter
   const [filterMehndiPackageBudget, setFilterMehndiPackageBudget] = useState(
     filterQuery.mehndi_package_budget || ""
   );
+  const [selectedServiceListMehendi, setSelectedServiceListMehendi] = useState(
+    filterQuery.mehendi_service?.split(",") || []
+  );
+  const [selectedOccasionListMehendi, setSelectedOccasionListMehendi] =
+    useState(filterQuery.mehendi_occasion?.split(",") || []);
 
   // Decor filter
   const [filterBanquetDecorPackageBudget, setFilterBanquetDecorPackageBudget] =
@@ -201,8 +238,11 @@ export default function VendorTopFilter({
     category == "wedding-decorators"
   ) {
     gridvalue = "1.4fr 1.4fr 2fr 2fr 2fr 1.4fr";
-  } else if (category == "best-mehendi-artists" || category == "band-baja-ghodiwala") {
-    gridvalue = "1.4fr 1.4fr 2fr 2fr 1.4fr";
+  } else if (
+    category == "best-mehendi-artists" ||
+    category == "band-baja-ghodiwala"
+  ) {
+    gridvalue = "1.4fr 1.4fr 2fr 2fr 2fr 1.4fr";
   }
 
   useEffect(() => {
@@ -212,39 +252,49 @@ export default function VendorTopFilter({
 
   useEffect(() => {
     if (category === "wedding-photographers") {
-      const updatedBudget = initialPhotoVideoPackageBudget.map((item, index, array) => {
-        const newPriceRange = item.slug.split(',').map(price => parseInt(price, 10) * days);
-        let newName = '';
-        if (index === 0) {
-          newName = `${item.name.split('₹')[0]}₹ ${newPriceRange[1]}`;
-        } else if (index === array.length - 1) {
-          newName = `${item.name.split('₹')[0]}₹ ${newPriceRange[0]}+`;
-        } else {
-          newName = `${item.name.split('₹')[0]}₹ ${newPriceRange[0]}-${newPriceRange[1]}`;
+      const updatedBudget = initialPhotoVideoPackageBudget.map(
+        (item, index, array) => {
+          const newPriceRange = item.slug
+            .split(",")
+            .map((price) => parseInt(price, 10) * days);
+          let newName = "";
+          if (index === 0) {
+            newName = `${item.name.split("₹")[0]}₹ ${newPriceRange[1]}`;
+          } else if (index === array.length - 1) {
+            newName = `${item.name.split("₹")[0]}₹ ${newPriceRange[0]}+`;
+          } else {
+            newName = `${item.name.split("₹")[0]}₹ ${newPriceRange[0]}-${newPriceRange[1]
+              }`;
+          }
+          return {
+            ...item,
+            name: newName,
+          };
         }
-        return {
-          ...item,
-          name: newName,
-        };
-      });
+      );
       setPhotoVideoPackageBudget(updatedBudget);
     }
   }, [days, category]);
-
 
   async function handleApplyFilter() {
     const baseUrl = `/${filterCategory}/${city}/${filterLocality}`;
     let query = "";
     if (category === "makeup-artists") {
-      query = `?makeup_bridal_budget=${filterMakeupBridalBudget || ""}&makeup_service=${selectedServiceListMakeup || ""}&makeup_occasion=${selectedOccasionListMakeup || ""}`;
+      query = `?makeup_bridal_budget=${filterMakeupBridalBudget || ""
+        }&makeup_service=${selectedServiceListMakeup || ""}&makeup_occasion=${selectedOccasionListMakeup || ""
+        }`;
     } else if (category === "wedding-photographers") {
-      query = `?photographer_occation=${filterPhotographerService || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
+      query = `?photographer_occation=${filterPhotographerService || ""
+        }&photographer_service_budget=${filterPhotographerServiceBudget || ""
+        }&days=${days}`;
     } else if (category === "best-mehendi-artists") {
-      query = `?mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
+      query = `?mehndi_package_budget=${filterMehndiPackageBudget || ""}&mehendi_service=${selectedServiceListMehendi || ""}&mehendi_occasion=${selectedOccasionListMehendi || ""}`;
     } else if (category === "band-baja-ghodiwala") {
-      query = `?band_baja_ghodiwala_budget=${filterBandBajaGhodiwalaBudget || ""}`;
+      query = `?band_baja_ghodiwala_budget=${filterBandBajaGhodiwalaBudget || ""
+        }`;
     } else if (category === "wedding-decorators") {
-      query = `?banquet_decor_package_budget=${filterBanquetDecorPackageBudget || ""}&home_decor_package_budget=${filterHomeDecorPackageBudget || ""}`;
+      query = `?banquet_decor_package_budget=${filterBanquetDecorPackageBudget || ""
+        }&home_decor_package_budget=${filterHomeDecorPackageBudget || ""}`;
     }
     router.push(baseUrl + query);
   }
@@ -308,28 +358,30 @@ export default function VendorTopFilter({
             <AiFillCaretDown className="down-arrow" size={15} />
           </div>
         </div>
-
-        {category !== "wedding-photographers" && category !== "makeup-artists" && (
-          <div className="category-wrapper filter-item">
-            <div className="dropdown category-dropdown">
-              <BiCategoryAlt className="icon" />
-              <select
-                name="category"
-                onChange={(e) => handleCategoryChange(e)}
-                value={category}
-              >
-                <option value={null} disabled>Category</option>
-                {vendorCategories.map((cat) => (
-                  <option value={cat.slug} key={cat.id}>
-                    {cat.name}
+        {category !== "wedding-photographers" &&
+          category !== "makeup-artists" &&
+          category !== "best-mehendi-artists" && (
+            <div className="category-wrapper filter-item">
+              <div className="dropdown category-dropdown">
+                <BiCategoryAlt className="icon" />
+                <select
+                  name="category"
+                  onChange={(e) => handleCategoryChange(e)}
+                  value={category}
+                >
+                  <option value={null} disabled>
+                    Category
                   </option>
-                ))}
-              </select>
-              <AiFillCaretDown className="down-arrow" size={15} />
+                  {vendorCategories.map((cat) => (
+                    <option value={cat.slug} key={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+                <AiFillCaretDown className="down-arrow" size={15} />
+              </div>
             </div>
-          </div>
-        )}
-
+          )}
 
         {category === "makeup-artists" && (
           <>
@@ -338,7 +390,9 @@ export default function VendorTopFilter({
                 <SlCalender className="icon" />
                 <select
                   name="occationList"
-                  onChange={(e) => setSelectedOccasionListMakeup(e.target.value)}
+                  onChange={(e) =>
+                    setSelectedOccasionListMakeup(e.target.value)
+                  }
                   value={selectedOccasionListMakeup}
                 >
                   <option value="">Occasion</option>
@@ -463,14 +517,54 @@ export default function VendorTopFilter({
 
         {category === "best-mehendi-artists" && (
           <>
+            <div className="occationList-wrapper filter-item">
+              <div className="dropdown occationList-dropdown">
+                <SlCalender className="icon" />
+                <select
+                  name="occationList"
+                  onChange={(e) =>
+                    setSelectedOccasionListMehendi(e.target.value)
+                  }
+                  value={selectedOccasionListMehendi}
+                >
+                  <option value="">Occasion</option>
+                  {occationList.map((item, i) => (
+                    <option value={item.slug} key={i}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+                <AiFillCaretDown className="down-arrow" size={15} />
+              </div>
+            </div>
+
+            <div className="serviceListMakeup-wrapper filter-item">
+              <div className="dropdown serviceListMakeup-dropdown">
+                <MdOutlineFaceRetouchingNatural className="icon" />
+                <select
+                  name="serviceListMehendi"
+                  onChange={(e) =>
+                    setSelectedServiceListMehendi(e.target.value)
+                  }
+                  value={selectedServiceListMehendi}
+                >
+                  <option value="">Services</option>
+                  {serviceListMehendi.map((item, i) => (
+                    <option value={item.id} key={i}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+                <AiFillCaretDown className="down-arrow" size={15} />
+              </div>
+            </div>
+
             <div className="mehndiPackageBudget-wrapper filter-item">
               <div className="dropdown mehndiPackageBudget-dropdown">
                 <MdCurrencyRupee className="icon" />
                 <select
                   name="mehndiPackageBudget"
-                  onChange={(e) =>
-                    setFilterMehndiPackageBudget(e.target.value)
-                  }
+                  onChange={(e) => setFilterMehndiPackageBudget(e.target.value)}
                   value={filterMehndiPackageBudget}
                 >
                   <option value="">Mehndi Package (Bridal)</option>
@@ -538,7 +632,9 @@ export default function VendorTopFilter({
                 <MdCurrencyRupee className="icon" />
                 <select
                   name="bandBajaGhodiwalaBudget"
-                  onChange={(e) => setFilterBandBajaGhodiwalaBudget(e.target.value)}
+                  onChange={(e) =>
+                    setFilterBandBajaGhodiwalaBudget(e.target.value)
+                  }
                   value={filterBandBajaGhodiwalaBudget}
                 >
                   <option value="">Starting Price</option>

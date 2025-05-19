@@ -14,7 +14,7 @@ function BlogDetailPage({ data }) {
         <title>{blog.meta_title}</title>
         <meta name="description" content={blog.meta_description} />
         <meta name="keywords" content={blog.meta_keywords} />
-        <meta name="og:image" content={`${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${blog.image}`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/${blog.image}`} />
         <meta property="og:title" content={blog.og_title} />
         <meta property="og:description" content={blog.og_description} />
         <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />

@@ -97,7 +97,7 @@ function VenueCard2({
           <div className="rate">
             <RatingCardDynamic
               rating={vendor?.place_rating}
-              ratingcount={vendor?.reviews_count}
+              ratingcount={vendor?.review_count}
               slug={vendor?.slug}
             />
           </div>
@@ -167,7 +167,7 @@ function VenueCard2({
           </div>
         </div>
         <p className="venue-description">
-          {`${vendor_summary?.slice(0, 80)} `}
+          {`${vendor_summary?.slice(0, 70)} `}
           <span className="read-more-btn">read more...</span>
         </p>
         <div className="venue-category">
@@ -191,7 +191,7 @@ function VenueCard2({
               <p>Party Makeup</p>
             </div>
           )}
-           {vendor['candid_photography_price'] && (
+          {vendor['candid_photography_price'] && (
             <div className="category">
               <p>Candid Photography</p>
             </div>
@@ -206,20 +206,63 @@ function VenueCard2({
               <p>Pre Wedding Shoot</p>
             </div>
           )}
-           {vendor['traditional_photography_price'] && (
+          {vendor['traditional_photography_price'] && (
             <div className="category">
               <p>Traditional Photo/Video</p>
             </div>
           )}
-          {vendor['engagement_mehndi_price'] && (
+          {/* {vendor['engagement_mehndi_price'] && (
             <div className="category">
               <p>Engagement Mehndi</p>
             </div>
-          )}
-          {vendor['bridal_mehndi_price'] && (
+          )} */}
+          {/* {vendor['bridal_mehndi_price'] && (
             <div className="category">
               <p>Bridal Mehndi</p>
             </div>
+          )} */}
+          {/* {JSON.parse(vendor.services || '[]').includes("traditional-mehndi") && (
+            <div className="category">
+              <p>Traditional Mehendi</p>
+            </div>
+          )}
+          {JSON.parse(vendor.services || '[]').includes("arabic-mehndi") && (
+            <div className="category">
+              <p>Arabic Mehendi</p>
+            </div>
+          )}
+          {JSON.parse(vendor.services || '[]').includes("portrait-mehndi") && (
+            <div className="category">
+              <p>Portrait Mehendi</p>
+            </div>
+          )}
+          {JSON.parse(vendor.services || '[]').includes("bridal-mehndi") && (
+            <div className="category">
+              <p>Bridal Mehendi</p>
+            </div>
+          )} */}
+          {router.asPath.includes("/best-mehendi-artists/") ? (
+            <>
+              <div className="category"><p>Traditional Mehendi</p></div>
+              <div className="category"><p>Arabic Mehendi</p></div>
+              <div className="category"><p>Portrait Mehendi</p></div>
+              <div className="category"><p>Bridal Mehendi</p></div>
+            </>
+          ) : (
+            <>
+              {JSON.parse(vendor.services || '[]').includes("traditional-mehndi") && (
+                <div className="category"><p>Traditional Mehendi</p></div>
+              )}
+              {JSON.parse(vendor.services || '[]').includes("arabic-mehndi") && (
+                <div className="category"><p>Arabic Mehendi</p></div>
+              )}
+              {JSON.parse(vendor.services || '[]').includes("portrait-mehndi") && (
+                <div className="category"><p>Portrait Mehendi</p></div>
+              )}
+              {JSON.parse(vendor.services || '[]').includes("bridal-mehndi") && (
+                <div className="category"><p>Bridal Mehendi</p></div>
+              )}
+            </>
           )}
         </div>
         <div className="d-flex">
@@ -260,7 +303,7 @@ function VenueCard2({
                   e.stopPropagation();
                 }}
               >
-                Check 
+                Check
                 <br /> Prices
               </button>
               <button
@@ -282,7 +325,7 @@ function VenueCard2({
                 aria-label="call icon"
               >
                 <div className="">
-                <BiSolidPhoneCall className="phone-icon" />
+                  <BiSolidPhoneCall className="phone-icon" />
                 </div>
               </a>
             </div>

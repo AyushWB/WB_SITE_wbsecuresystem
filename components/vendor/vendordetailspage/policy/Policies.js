@@ -1,3 +1,4 @@
+import Heading from "@/components/miscellaneous/Heading";
 import styled from "styled-components";
 import PolicyCard from "@/components/venue/venuedetailspage/venuepolicy/PolicyCard";
 
@@ -6,6 +7,7 @@ export default function Policies() {
 
     return (<Wrapper className="section">
         <div className="container">
+            <Heading text={"Vendor Policy"} />
             <div className="policies-container">
                 <PolicyCard img_url={"/vpolicy/advance.png"} name={"Advance"} data={"40% at the time of booking"} />
 
