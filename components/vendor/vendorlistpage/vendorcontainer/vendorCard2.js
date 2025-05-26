@@ -264,6 +264,15 @@ function VenueCard2({
               )}
             </>
           )}
+           {router.asPath.includes("/wedding-band/") && (
+            <>
+              <div className="category"><p>Live Band</p></div>
+              <div className="category"><p>LED Dhol</p></div>
+              <div className="category"><p>Ghodi Baggi</p></div>
+              <div className="category"><p>Anchor</p></div>
+              <div className="category"><p>Wedding Entertainment</p></div>
+            </>
+          )}
         </div>
         <div className="d-flex">
           <div className="price-contianer">
