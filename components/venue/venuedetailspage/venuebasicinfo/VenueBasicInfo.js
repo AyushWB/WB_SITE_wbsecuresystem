@@ -267,7 +267,7 @@ export default function VenueBasicInfo({ venue, openLeadsModel, openAvailableChe
                         <div
                             className="about-desSc"
                             dangerouslySetInnerHTML={{
-                                __html: showSummary ? venue.summary : venue.summary.slice(0, 500),
+                                __html: showSummary ? venue.summary || "" : venue.summary ? venue.summary.slice(0, 500) : "",
                             }}
                         ></div>
                         <span className="read-more-btn" onClick={() => setShowSumary(!showSummary)}>
