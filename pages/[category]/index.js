@@ -12,7 +12,8 @@ import LeadForm from "@/components/homepage/leadform/LeadForm";
 import CityVenueHall from "@/components/miscellaneous/footer/CityVenueHall";
 import iscity from "@/lib/request/iscity/isCity";
 import VendorCategoryCardGrid from "@/components/miscellaneous/vendorcategorycardgrid/VendorCategoryCardGrid";
-import { query } from "@/utils/db";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Home({
   venueCategogies,
@@ -24,6 +25,8 @@ export default function Home({
   venue_list,
   city,
 }) {
+
+  const router = useRouter();
   const { setSelectedCity } = useGlobalContext();
 
   useEffect(() => {
@@ -33,6 +36,9 @@ export default function Home({
   }, [city]);
   return (
     <div>
+      <Head>
+                <link rel="canonical" href={`https://weddingbanquets.in${router.asPath}`} />
+      </Head>
       <Navbar />
       <Hero
         venueCategogies={venueCategogies}
