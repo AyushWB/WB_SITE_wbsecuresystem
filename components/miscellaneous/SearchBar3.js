@@ -184,8 +184,8 @@ const SearchBar3 = ({
     if (suggestion == "Makeup Artists") {
       suggestion = "Top Makeup Artists";
     }
-    if (suggestion == "Mehndi Artists") {
-      suggestion = "Best Mehndi Artists";
+    if (suggestion == "Mehendi Artists") {
+      suggestion = "Best Mehendi Artists";
     }
     let matchedVenue = null;
     let matchedVendor = null;

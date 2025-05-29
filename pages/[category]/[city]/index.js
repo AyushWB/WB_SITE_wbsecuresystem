@@ -15,7 +15,7 @@ export default function Page({ response }) {
           <meta name="description" content={response.data.venue.meta_description} />
           <meta name="keywords" content={response.data.venue.meta_keywords} />
           <meta
-            name="og:image"
+            property="og:image"
             content={
               response.data.venue && response.data.venue.images
                 ? `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${response.data.venue.images.split(',')[0]}`
@@ -40,7 +40,7 @@ export default function Page({ response }) {
           <meta name="description" content={response.data.vendor.meta_description} />
           <meta name="keywords" content={response.data.vendor.meta_keywords} />
           <meta
-            name="og:image"
+            property="og:image"
             content={
               response.data.vendor && response.data.vendor.images
                 ? `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${response.data.vendor.images.split(',')[0]}`

@@ -119,6 +119,34 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
     },
   ];
 
+   const serviceListMehendi = [
+    {
+      id: "traditional-mehndi",
+      name: "Traditional Mehendi",
+    },
+    {
+      id: "arabic-mehndi",
+      name: "Arabic Mehendi",
+    },
+    {
+      id: "portrait-mehndi",
+      name: "Portrait Mehendi",
+    },
+    {
+      id: "bridal-mehndi",
+      name: "Bridal Mehendi",
+    },
+    {
+      id: "groom-mehndi",
+      name: "Groom Mehendi",
+    },
+    {
+      id: "western-mehndi",
+      name: "Western Mehendi",
+    },
+  ];
+  
+
   const initialPhotoVideoPackageBudget = [
     { name: "Upto ₹ 50,000", slug: "0,50000" },
     { name: "₹ 50,000-₹ 1,00,000", slug: "50000,100000" },
@@ -194,7 +222,9 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
   const [filterMakeupBridalBudget, setFilterMakeupBridalBudget] = useState("");
   const [selectedOccasionListMakeup, setSelectedOccasionListMakeup] = useState([]);
 
+  const [selectedServiceListMehendi, setSelectedServiceListMehendi] = useState([]);
   const [filterMehndiPackageBudget, setFilterMehndiPackageBudget] = useState("");
+  const [selectedOccasionListMehendi, setSelectedOccasionListMehendi] = useState([]);
 
   const [filterBanquetDecorPackageBudget, setFilterBanquetDecorPackageBudget] = useState("");
   const [filterHomeDecorPackageBudget, setFilterHomeDecorPackageBudget] = useState("");
@@ -229,7 +259,7 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
     } else if (category === "wedding-photographers") {
       query += `&photographer_occation=${filterPhotographerOccation || ""}&photographer_service=${selectedServiceListPhotographers.join(",") || ""}&photographer_service_budget=${filterPhotographerServiceBudget || ""}&days=${days}`;
     } else if (category === "best-mehendi-artists") {
-      query += `&mehndi_package_budget=${filterMehndiPackageBudget || ""}`;
+      query += `&mehndi_package_budget=${filterMehndiPackageBudget || ""}&mehendi_service=${selectedServiceListMehendi.join(",") || ""}&mehendi_occasion=${selectedOccasionListMehendi || ""}`;
     } else if (category === "band-baja-ghodiwala") {
       query += `&band_baja_ghodiwala_budget=${filterBandBajaGhodiwalaBudget || ""}`;
     } else if (category === "wedding-decorators") {
@@ -263,6 +293,8 @@ function VendorFilter({ filterQuery, localities, city, category, locality }) {
         
         {category === "best-mehendi-artists" && (
           <>
+            <CheckFilter items={serviceListMehendi} name={"Services"} list={selectedServiceListMehendi} setList={setSelectedServiceListMehendi} handleApplyFilter={handleApplyFilter} />
+            <CylenderFilter name={"Occasion"} items={occationList} value={selectedOccasionListMehendi} setValue={setSelectedOccasionListMehendi} handleApplyFilter={handleApplyFilter} />
             <CylenderFilter name={"Mehndi Artist Budget"} items={mehndiPackageBudget} value={filterMehndiPackageBudget} setValue={setFilterMehndiPackageBudget} handleApplyFilter={handleApplyFilter} />
           </>
         )}

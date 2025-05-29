@@ -33,7 +33,7 @@ function Venue(props) {
         <meta property="og:description" content={props.result.meta?.meta_description} />
         <meta property="og:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
-            ? `${process.env.MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
+            ? `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
             : 'https://weddingbanquets.in/twitter-img.png'
         }
         />
@@ -42,7 +42,7 @@ function Venue(props) {
         <meta name="twitter:description" content={props.result.meta?.meta_description} />
         <meta name="twitter:image" content={
           props.result && props.result.data && props.result.data.length > 0 && props.result.data[0].images
-            ? `${process.env.MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
+            ? `${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${props.result.data[0].images.split(',')[0]}`
             : 'https://weddingbanquets.in/twitter-img.png'
         }
         />

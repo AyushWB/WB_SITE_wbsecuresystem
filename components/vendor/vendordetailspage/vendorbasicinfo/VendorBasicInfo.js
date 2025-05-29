@@ -305,6 +305,50 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                             </p>
                           </div>
                         )}
+                        {/* {vendor.traditional_mehndi_price && (
+                          <div className="category-item">
+                            <p>Traditional Mehendi</p>
+                            <p>
+                              ₹{" "}
+                              {isNaN(vendor.traditional_mehndi_price)
+                                ? "On Demand"
+                                : numberFormat(vendor.traditional_mehndi_price)}
+                            </p>
+                          </div>
+                        )}
+                        {vendor.arabic_mehndi_price && (
+                          <div className="category-item">
+                            <p>Arabic Mehendi</p>
+                            <p>
+                              ₹{" "}
+                              {isNaN(vendor.arabic_mehndi_price)
+                                ? "On Demand"
+                                : numberFormat(vendor.arabic_mehndi_price)}
+                            </p>
+                          </div>
+                        )}
+                        {vendor.portrait_mehndi_price && (
+                          <div className="category-item">
+                            <p>Portrait Mehendi</p>
+                            <p>
+                              ₹{" "}
+                              {isNaN(vendor.portrait_mehndi_price)
+                                ? "On Demand"
+                                : numberFormat(vendor.portrait_mehndi_price)}
+                            </p>
+                          </div>
+                        )}
+                        {vendor.bridal_mehndi_price && (
+                          <div className="category-item">
+                            <p>Bridal Mehendi</p>
+                            <p>
+                              ₹{" "}
+                              {isNaN(vendor.bridal_mehndi_price)
+                                ? "On Demand"
+                                : numberFormat(vendor.bridal_mehndi_price)}
+                            </p>
+                          </div>
+                        )} */}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

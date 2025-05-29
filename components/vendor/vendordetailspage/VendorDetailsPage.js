@@ -21,7 +21,7 @@ export default function VendorDetailsPage({ response }) {
   const { similar_vendors, vendor } = response.data;
   // console.log(similar_vendors,vendor)
 
-   // Define vendor_place_id from vendor data
+  // Define vendor_place_id from vendor data
   const vendor_place_id = vendor?.location_place_id;
   // Define reviews from response data
   const reviews = response.reviews || [];
@@ -50,15 +50,22 @@ export default function VendorDetailsPage({ response }) {
     <>
       <Header />
       <BreadCrumb meta_title={vendor.meta_title} />
-      <ImageSlider images={vendor.images} altname ={vendor.brand_name} wb_assured={vendor?.wb_assured} />
+      <ImageSlider
+        images={vendor.images}
+        rating={vendor?.place_rating}
+        ratingcount={vendor?.reviews_count}
+        altname={vendor?.brand_name}
+        wb_assured={vendor?.wb_assured}
+        slug={vendor?.slug}
+      />
       <VendorBasicInfo vendor={vendor} openLeadsModel={openLeadsModel} />
       <HaveUsCallYou />
       <Policies />
       <VendorReview
-                vendor_place_id={vendor_place_id}
-                vendor={vendor}
-                reviews={reviews}
-            />
+        vendor_place_id={vendor_place_id}
+        vendor={vendor}
+        reviews={reviews}
+      />
       {similar_vendors && <SimilarVendors vendors={similar_vendors} />}
     </>
   );
