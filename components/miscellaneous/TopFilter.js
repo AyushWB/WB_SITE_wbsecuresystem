@@ -32,7 +32,7 @@ export default function TopFilter({ locality, city, category, venueCategories, f
 
     function handleCityChange(e) {
         setFilterLocality("all");
-        router.push(`/banquet-halls/${e.target.value}/all`);
+        router.push(`/${filterCategory}/${e.target.value}/all`);
     }
 
     return (
