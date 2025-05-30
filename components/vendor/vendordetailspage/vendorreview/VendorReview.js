@@ -10,7 +10,7 @@ function VendorReview({ vendor, reviews }) {
   const [showFullText, setShowFullText] = useState([]);
   const [isOffCanvasOpen, setIsOffCanvasOpen] = useState(false);
   const [isOffCanvasReviewOpen, setIsOffCanvasReviewOpen] = useState(false);
-  // const vendorData = vendor;
+  const vendorData = vendor;
   const toggleFullText = (index) => {
     setShowFullText((prevState) => {
       const newState = [...prevState];
@@ -47,66 +47,69 @@ function VendorReview({ vendor, reviews }) {
     return [...goldStars, ...grayStars];
   };
 
+
   return (
     <Section className="section" id="rating-section">
       <div className="container">
         <Heading text={`Latest Ratings & Reviews`} />
-        <div className="rating-heading">
-          <h2 className="review-rating-heading">
-            {vendor?.brand_name || "Vendor Name"}
-          </h2>
-          <div className="row review-rating-details">
-            <div className="row">
-              <div className="review-rating-rating">
-                {vendor?.place_rating || 4.5}
+        {vendorData.place_rating > 0 &&
+          <div className="rating-heading">
+            <h2 className="review-rating-heading">{vendorData?.brand_name || "Vendor Name"}</h2>
+            <div className="row review-rating-details">
+              <div className="row">
+                <div className="review-rating-rating">
+                  {vendorData?.place_rating || 4.5}
+                </div>
+                <div style={{ display: "flex" }} className="review_stars">
+                  {renderStars(Math.floor(vendorData?.place_rating))}
+                </div>
               </div>
-              <div style={{ display: "flex" }} className="review_stars">
-                {renderStars(Math.floor(vendor?.place_rating || 4.5))}
+              <div className="see-all-reviews">
+                <a onClick={openOffCanvasReview}>See all verified reviews </a>
+                <span>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L1 9"
+                      stroke="#000"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </span>
               </div>
-            </div>
-            <div className="see-all-reviews">
-              <a onClick={openOffCanvasReview}>See all verified reviews </a>
-              <span>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#000"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </span>
             </div>
           </div>
-        </div>
+        }
+
 
         <div className="review-cards-container">
-          {reviews.slice(0, 4).map((review, index) => (
+          {reviews.slice(0, 4).map((review, index) =>
             <div className="card" key={index + 234443}>
               <div className="card-top">
                 <div className="card-bottom">
                   <div className="prof">
                     <Image
-                      src={
-                        review.profile_pic
-                          ? review.profile_pic
-                          : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`
-                      }
+                      src={review.profile_pic ? review.profile_pic : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`}
                       width={50}
                       height={50}
                       alt="review-img"
                     />
                   </div>
                   <div className="prof-detail">
-                    <div className="reviewer_name">{review.users_name}</div>
-                    <div style={{ display: "flex" }} className="review_stars">
+                    <div className="reviewer_name">
+                      {review.users_name}
+                    </div>
+                    <div
+                      style={{ display: "flex" }}
+                      className="review_stars"
+                    >
                       {renderStars(review.rating)}
                     </div>
                   </div>
@@ -134,15 +137,21 @@ function VendorReview({ vendor, reviews }) {
                 <p>
                   {showFullText[index]
                     ? review.comment
-                    : `${review.comment.split(" ").slice(0, 20).join(" ")} ...`}
+                    : `${review.comment
+                      .split(" ")
+                      .slice(0, 20)
+                      .join(" ")} ...`}
                   <br />
-                  <a onClick={() => toggleFullText(index)} className="g_review">
+                  <a
+                    onClick={() => toggleFullText(index)}
+                    className="g_review"
+                  >
                     {showFullText[index] ? "Read Less" : "Read More"}
                   </a>
                 </p>
               </div>
             </div>
-          ))}
+          )}
         </div>
         <div className="write-a-review">
           <div className="heading">
@@ -189,17 +198,13 @@ function VendorReview({ vendor, reviews }) {
             <div className="rating-card">
               <div className="review-cards-container">
                 {reviews.map((review) =>
-                  review.status == 2 ? (
+                  review.status == 1 ? (
                     <div className="cardR" key={review.id}>
                       <div className="card-top">
                         <div className="card-bottom">
                           <div className="prof">
                             <Image
-                              src={
-                                review.profile_pic
-                                  ? review.profile_pic
-                                  : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`
-                              }
+                              src={review.profile_pic ? review.profile_pic : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`}
                               width={50}
                               height={50}
                               alt="review-img"
@@ -241,9 +246,9 @@ function VendorReview({ vendor, reviews }) {
                           {showFullText[review.id]
                             ? review.comment
                             : `${review.comment
-                                .split(" ")
-                                .slice(0, 20)
-                                .join(" ")} ...`}
+                              .split(" ")
+                              .slice(0, 20)
+                              .join(" ")} ...`}
                           <br />
                           <a
                             onClick={() => toggleFullText(review.id)}
@@ -380,8 +385,8 @@ const Section = styled.div`
   .write-a-review {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap:wrap;
+    gap:10px;
     justify-content: center;
     flex-direction: row;
     align-items: center;
