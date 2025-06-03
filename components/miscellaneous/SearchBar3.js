@@ -176,7 +176,7 @@ const SearchBar3 = ({
       suggestion = "5 Star Wedding Hotels";
     }
     if (suggestion == "Wedding Transportation / Vintage Cars") {
-      suggestion = "Wedding Transportation And Vintage Cars";
+      suggestion = "Wedding Transportation Vintage Cars";
     }
     if (suggestion == "Photographers / Videography") {
       suggestion = "Best Wedding Photographers";
@@ -187,6 +187,21 @@ const SearchBar3 = ({
     if (suggestion == "Mehendi Artists") {
       suggestion = "Best Mehendi Artists";
     }
+      if (suggestion == "Choreographers") {
+    suggestion = "Wedding Choreographer";
+  }
+  if (suggestion.trim().toLowerCase().replace(/\s*/g, "") === "decorators/florists") {
+  suggestion = "Wedding Decorators";
+}
+      if (suggestion == "Invitation Card") {
+    suggestion = "Wedding Invitation Card";
+  }
+      if (suggestion == "Bridal Wear") {
+    suggestion = "Bridal Outfits";
+  }
+      if (suggestion == "Groom Wear") {
+    suggestion = "Groom Outfits";
+  }
     let matchedVenue = null;
     let matchedVendor = null;
     let venueMatchedSlug = null;
