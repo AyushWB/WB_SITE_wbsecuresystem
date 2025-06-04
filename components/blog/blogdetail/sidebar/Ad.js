@@ -44,7 +44,7 @@ function Ad() {
         <img
           src="/common/venue.jpg"
           alt="An example image"
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "400px" }}
         />
       </div>
     </Wrapper>
