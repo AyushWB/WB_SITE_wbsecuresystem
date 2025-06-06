@@ -402,11 +402,14 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
 const Wrapper = styled.section`
   background-color: var(--bg-color);
   position: relative;
-  padding: 2rem 0;
 
-  .info-cardd {
-    margin-top: 25px;
-  }
+      .container-l {
+        margin: auto;
+        display: grid;
+        grid-template-columns: 7fr 0fr;
+        gap: 2rem;
+    }
+
 
   .v-header {
     display: flex;
@@ -504,9 +507,13 @@ const Wrapper = styled.section`
     grid-template-columns: 7fr 3fr;
     align-items: start;
     gap: 2rem;
+
     .info-card {
-      display: flex;
-      flex-direction: column;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
       .v-name {
         font-family: "Montserrat";
         font-size: 2.5rem;
@@ -539,6 +546,11 @@ const Wrapper = styled.section`
         ul li {
           list-style-type: disc;
           margin-left: 3rem;
+          font-family: Poppins;
+          font-weight: 400;
+          letter-spacing: 1px;
+          line-height: 25px;
+    n     font-size: 1.5rem !important
         }
         h1 {
           font-size: 24px !important;

@@ -23,7 +23,7 @@ function ExtraCard() {
 
       <div className="vendor-details">
         <h3>Banquet Hall</h3>
-        <p>{`(502)`}</p>
+        <p>{`(1007)`}</p>
       </div>
     </Card>
   );

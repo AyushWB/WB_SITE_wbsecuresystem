@@ -27,12 +27,20 @@ function VenueCity() {
             slug: "party-halls"
         },
         {
-            name: "Marriage Halls",
+            name: "Marriage Gardens",
             slug: "marriage-gardens"
         },
         {
             name: "Wedding Farmhouse",
             slug: 'wedding-farmhouse'
+        },
+        {
+            name: "Destination Weddings",
+            slug: 'destination-weddings'
+        },
+        {
+            name: "5 Star Wedding Hotels",
+            slug: '5-star-wedding-hotels'
         }
 
     ]
@@ -68,7 +76,6 @@ function VenueCity() {
 
                                 <li>
                                     <Link href={`/banquet-halls/${city.slug}/all`} className="link-item">
-                                        {`All venues in ${city.name}`}
                                     </Link>
                                 </li>
 
@@ -88,7 +95,7 @@ const Div = styled.div`
 
 
 display: flex;
-gap: 50px;
+gap: 26px;
 grid-template-columns: repeat(5,1fr);
 
 
