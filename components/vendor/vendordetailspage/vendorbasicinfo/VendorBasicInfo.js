@@ -140,9 +140,14 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                 <div
                   className="v-desc"
                   dangerouslySetInnerHTML={{
+                    // __html: showSummary
+                    //   ? vendor.summary
+                    //   : `${vendor.summary.slice(0, 500)}...`,
                     __html: showSummary
-                      ? vendor.summary
-                      : `${vendor.summary.slice(0, 500)}...`,
+                      ? vendor.summary || ""
+                      : vendor.summary
+                        ? `${vendor.summary.slice(0, 500)}...`
+                        : "",
                   }}
                 ></div>
                 <span
