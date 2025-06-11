@@ -11,6 +11,7 @@ import { useGlobalContext } from "@/context/MyContext";
 import Gallery from "@/components/vendor/vendordetailspage/gallery/Gallery";
 import TabsComponent from "./tabsComponent/TabsComponent";
 import VendorReview from "./vendorreview/VendorReview";
+import Faqs from "@/components/vendor/vendordetailspage/faqs/Faqs";
 
 export default function VendorDetailsPage({ response }) {
   // console.log(response)
@@ -67,6 +68,7 @@ export default function VendorDetailsPage({ response }) {
         reviews={reviews}
       />
       {similar_vendors && <SimilarVendors vendors={similar_vendors} />}
+      <Faqs faqs={vendor?.faq} name={vendor?.brand_name} />
     </>
   );
 }

@@ -11,7 +11,7 @@ function FooterLocalities({ city, category, localities }) {
     <Section className="section-vendors">
       <div className="container">
         <h2 className="vendors-heading">
-          Find {category_name} localities in{" "}
+          Other {category_name} near by{" "}
           <span className="city-name">{city}</span>
         </h2>
         <div className="vendors-container">
@@ -22,7 +22,7 @@ function FooterLocalities({ city, category, localities }) {
                   className="vendor-link"
                   href={`/${category}/${city}/${locality.slug}`}
                 >
-                  {`${category_name} in ${locality.name}`}
+                  {`${category_name} in ${locality.name}`}  
                 </Link>
               </span>
             ))}

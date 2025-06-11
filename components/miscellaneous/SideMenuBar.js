@@ -94,12 +94,12 @@ export default function SideMenuBar() {
                         <li className="menu-item">
                             <Link href="/blog" className="menu-link" onClick={() => setIsMenuOpen(false)}>Blog</Link>
                         </li>
-                        <li className="menu-item" >
+                        {/* <li className="menu-item" >
                             <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photos </Link>
                         </li>
                         <li className="menu-item" >
                             <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Real Wedding </Link>
-                        </li>
+                        </li> */}
 
                     </ul>
 

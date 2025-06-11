@@ -6,6 +6,7 @@ import PopularPost from "./sidebar/PopularPost";
 import LatestPost from "./sidebar/LatestPost";
 import Ad from "./sidebar/Ad";
 import AuthorCard from "./authorcard/AuthorCard";
+import Faqs from "@/components/blog/blogdetail/faqs/Faqs";
 
 const BlogDetail = ({ data }) => {
   const blog = data.data;
@@ -163,6 +164,7 @@ const BlogDetail = ({ data }) => {
             className="description"
             dangerouslySetInnerHTML={{ __html: blog.summary }}
           />
+            <Faqs faqs={blog?.faq} name={blog?.heading} />
           <AuthorCard {...author} />
         </Description>
 

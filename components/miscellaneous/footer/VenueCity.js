@@ -27,6 +27,10 @@ function VenueCity() {
             slug: "party-halls"
         },
         {
+            name: "5 Star Hotels",
+            slug: '5-star-wedding-hotels'
+        },
+        {
             name: "Marriage Gardens",
             slug: "marriage-gardens"
         },
@@ -37,10 +41,6 @@ function VenueCity() {
         {
             name: "Destination Weddings",
             slug: 'destination-weddings'
-        },
-        {
-            name: "5 Star Wedding Hotels",
-            slug: '5-star-wedding-hotels'
         }
 
     ]
