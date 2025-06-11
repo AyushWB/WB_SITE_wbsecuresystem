@@ -548,23 +548,103 @@ const Wrapper = styled.section`
         color: var(--para) !important;
       }
       .v-desc {
+        font-family: "Poppins" !important;
+        font-size: 1.6rem !important;
+        line-height: 1.6;
+        color: var(--para) !important;
+
+        /* List styling */
+        ul, ol {
+          padding-left: 2rem;
+          margin: 1rem 0;
+        }
+
         ul li {
-          list-style-type: disc;
-          margin-left: 3rem;
-          font-family: Poppins;
-          font-weight: 400;
-          letter-spacing: 1px;
-          line-height: 25px;
-    n     font-size: 1.5rem !important
+          list-style-type: disc !important;
+          margin-bottom: 0.5rem;
+          font-size: 1.6rem !important;
+          line-height: 1.6;
         }
+
+        ol li {
+          list-style-type: decimal !important;
+          margin-bottom: 0.5rem;
+          font-size: 1.6rem !important;
+          line-height: 1.6;
+        }
+
+        /* Heading styles */
+        h1, h2, h3, h4, h5, h6 {
+          margin: 1.5rem 0 1rem;
+          color: var(--primary-color);
+          font-weight: 600;
+        }
+
         h1 {
-          font-size: 24px !important;
+          font-size: 2.4rem !important;
         }
+
         h2 {
-          font-size: 22px !important;
+          font-size: 2.2rem !important;
         }
+
         h3 {
-          font-size: 20px !important;
+          font-size: 2rem !important;
+        }
+
+        h4 {
+          font-size: 1.8rem !important;
+        }
+
+        /* Paragraph styling */
+        p {
+          margin-bottom: 1rem;
+          font-size: 1.6rem !important;
+          line-height: 1.6;
+        }
+
+        /* Table styling */
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1rem 0;
+        }
+
+        th, td {
+          border: 1px solid #ececec;
+          padding: 0.8rem;
+          font-size: 1.6rem;
+        }
+
+        th {
+          background-color: #f8f8f8;
+          font-weight: 600;
+        }
+
+        /* Image styling */
+        img {
+          max-width: 100%;
+          height: auto;
+          margin: 1rem 0;
+        }
+
+        /* Blockquote styling */
+        blockquote {
+          border-left: 4px solid var(--primary-color);
+          margin: 1rem 0;
+          padding: 1rem 2rem;
+          background-color: #f8f8f8;
+          font-style: italic;
+        }
+
+        /* Link styling */
+        a {
+          color: var(--info-color);
+          text-decoration: underline;
+          
+          &:hover {
+            color: var(--primary-color);
+          }
         }
       }
       .read-more-btn {
