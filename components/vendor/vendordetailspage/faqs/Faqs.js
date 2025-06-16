@@ -8,11 +8,23 @@ import { useRouter } from "next/router";
 function Faqs({ faqs, name }) {
   const router = useRouter();
 
+  // Check if FAQs data is available before rendering the section
+  if (!faqs || faqs.trim() === "") {
+    return null; // Do not render the FAQ section if no data is provided
+  }
+
+  // Safe JSON parsing with fallback
   let faqs_content = [];
   try {
-    faqs_content = faqs ? JSON.parse(faqs) : [];
-  } catch (err) {
-    console.error("Invalid FAQ JSON:", err);
+    faqs_content = JSON.parse(faqs);
+  } catch (error) {
+    console.error("Invalid FAQ JSON:", error);
+    return null; // Do not render the FAQ section if JSON parsing fails
+  }
+
+  // Render the FAQ section only if there are valid FAQ items
+  if (faqs_content.length === 0) {
+    return null;
   }
 
   const [activeIndex, setActiveIndex] = useState(null);

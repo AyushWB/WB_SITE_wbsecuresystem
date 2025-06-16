@@ -35,6 +35,12 @@ export default function TopFilter({ locality, city, category, venueCategories, f
         router.push(`/${filterCategory}/${e.target.value}/all`);
     }
 
+    function handlefilterLocalityChange(e) {
+        const selectedLocality = e.target.value;
+        setFilterLocality(selectedLocality); 
+        router.push(`/${filterCategory}/${city}/${selectedLocality}?guest=${filterGuest || ""}&per_budget=${filterBudget}&per_plate=${filterQuery.per_plate}&multi_localities=`);
+    }
+
     return (
         <Div>
             <Wrapper className='container'>
@@ -53,10 +59,15 @@ export default function TopFilter({ locality, city, category, venueCategories, f
                     </div>
                 </div>
 
+                {/* ✅ UPDATED: Locality Dropdown with routing logic */}
                 <div className="location-wrapper filter-item">
                     <div className="dropdown locality-dropdown">
                         <MdOutlineLocationOn className='icon' />
-                        <select name='locality' onChange={(e) => setFilterLocality(e.target.value)} value={filterLocality}>
+                        <select
+                            name='locality'
+                            onChange={handlefilterLocalityChange} // ✅ handle route change
+                            value={filterLocality}
+                        >
                             <option value="all">Locality</option>
                             {localities.map((loc) => (
                                 <option value={loc.slug} key={loc.id}>{loc.name}</option>
@@ -65,6 +76,7 @@ export default function TopFilter({ locality, city, category, venueCategories, f
                         <AiFillCaretDown className="down-arrow" size={15} />
                     </div>
                 </div>
+                
                 <div className="category-wrapper filter-item">
                     <div className="dropdown category-dropdown">
                         <BiCategoryAlt className='icon' />
