@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 function Faqs({ faqs, name }) {
   const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(null); // ✅ Hook at top level
 
   // Check if FAQs data is available before rendering the section
   if (!faqs || faqs.trim() === "") {
@@ -27,7 +28,6 @@ function Faqs({ faqs, name }) {
     return null;
   }
 
-  const [activeIndex, setActiveIndex] = useState(null);
   const onItemClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
