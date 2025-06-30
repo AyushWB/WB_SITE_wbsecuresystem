@@ -97,7 +97,7 @@ export default function PriceListCard({
         <img
           src="/common/venue.jpg"
           alt="Wedding Banquet"
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "475px" }}
         />
       </div>
     </Wrapper>

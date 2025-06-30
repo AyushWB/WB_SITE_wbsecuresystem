@@ -406,7 +406,7 @@
 
 
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
 import { FaStore, FaHome, FaHotel } from "react-icons/fa";
 import { AiFillPhone } from "react-icons/ai";
@@ -428,6 +428,8 @@ function PhoneNav() {
   const [activeMenu, setActiveMenu] = useState("home");
   const [hasTriggered, setHasTriggered] = useState(false);
   const [triggerCount, setTriggerCount] = useState(0);
+  const [showNav, setShowNav] = useState(true);
+  const lastScrollY = useRef(0);
 
   const openLeadsModel = useCallback((e, type = "click") => {
     if (e) e.stopPropagation();
@@ -482,6 +484,21 @@ function PhoneNav() {
 
     return "home";
   }, [venue_list, venueCategories, vendor_list, vendorCategories, selectedCity]);
+
+    useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth > 1000) return; // Only for mobile
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current) {
+        setShowNav(false); // Hide on scroll down
+      } else {
+        setShowNav(true); // Show on scroll up
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -547,7 +564,8 @@ function PhoneNav() {
   };
 
   return (
-    <MainComp>
+    // <MainComp>
+        <MainComp style={{ display: showNav ? undefined : 'none' }}>
       <Wrapper>
         <input
           type="radio"
@@ -756,12 +774,19 @@ const Wrapper = styled.div`
   }
 `;
 
+// const MainComp = styled.div`
+//  display: none;
+
+//      @media (max-width: 1000px) {
+//       display: block;
+//     }`;
+
 const MainComp = styled.div`
  display: none;
-
-     @media (max-width: 1000px) {
-      display: block;
-    }`;
-
+ @media (max-width: 1000px) {
+    display: block;
+ }
+ scrollbar-color: transparent transparent;
+`;
 export default PhoneNav;
 
