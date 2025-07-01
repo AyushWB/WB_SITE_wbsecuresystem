@@ -353,7 +353,7 @@ background-color: var(--bg-color);
 
 @media (max-width:600px) {
     .sticky-head{
-        top: 7rem;
+        top: 0rem;
     }
 }
 `;

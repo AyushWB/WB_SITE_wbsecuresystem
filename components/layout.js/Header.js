@@ -47,8 +47,7 @@ height: 100px;
 @media (max-width:1000px) {
     height: 8rem;
     top: 0px;
-    position: sticky;
-    
+    position: normal;
 }
 
 @media (max-width:600px) {

@@ -50,7 +50,7 @@ const Container = styled.div`
     padding: 2.5rem;
     margin: auto;
     outline: none;
-    font-size: 16px;
+    font-size: 17px !important;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
     border-bottom-left-radius: ${({ showSuggestions }) =>
@@ -320,7 +320,7 @@ const SearchBarForSideBar = ({
   };
 
   const inputProps = {
-    placeholder: "Search for Banquet Halls, etc..",
+    placeholder: "Search for Wedding Services",
     value,
     onChange,
     onFocus: onFocusHandler,

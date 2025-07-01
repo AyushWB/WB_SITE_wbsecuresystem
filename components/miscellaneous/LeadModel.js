@@ -51,7 +51,7 @@ export default function LeadModel() {
       console.log(error);
     }
   }
- 
+
   const onRecaptchaChange = (value) => {
     setrecaptcha(value);
   };
@@ -249,7 +249,7 @@ export default function LeadModel() {
                     borderColor: isSubmitted && (!phoneNumber || errors.phoneNumber) ? "red" : "var(--primary-color)",
                     borderStyle: 'solid', borderRadius: 0, borderWidth: '1px'
                   }}
-                                                    />
+                />
               </div>
               {errors.phoneNumber && (
                 <span className="error-text">{errors.phoneNumber}</span>
@@ -325,18 +325,18 @@ const Wrapper = styled.div`
 
     max-width: 45rem;
     min-width: 45rem;
-@media only screen and (min-device-width: 375px) and (max-device-width: 414px) 
-and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-    max-width: 40rem;
-    min-width: 40rem;
-}
+    @media only screen and (min-device-width: 375px) and (max-device-width: 414px) 
+    and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+      max-width: 40rem;
+      min-width: 40rem;
+    }
 
     position: relative;
     background-color: white;
     z-index: 9;
     border-radius: 5px;
     box-shadow: 0 0 10px 2000px rgba(0, 0, 0, 0.5);
-    padding: 4rem 3rem 5rem 3rem;
+    padding: 3rem 3rem 3rem;
 
     .cancel-icon {
       position: absolute;
@@ -414,7 +414,7 @@ and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
           border: none;
           outline: none;
           width: 100%;
-          font-size: 1.8rem;
+          font-size: 17px;
           font-family: "Poppins";
           font-weight: 400;
           padding: 5px 0.9rem;
@@ -427,9 +427,9 @@ and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
           -moz-appearance: textfield;
           min-height: 1.2em;
           width: 500px;
-        }
+}
 
-        .date-picker {
+ .date-picker {
           border: none;
           outline: none;
           width: 100%;

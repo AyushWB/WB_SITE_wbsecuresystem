@@ -727,7 +727,7 @@ const SearchBarVenue = ({
   };
 
   const inputProps = {
-    placeholder: "Search for Banquet Halls, etc..",
+    placeholder: "Search for Wedding Services",
     value,
     onChange,
     onFocus: onFocusHandler,
