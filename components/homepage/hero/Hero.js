@@ -15,7 +15,7 @@ function Hero({ venueCategogies}) {
   let allVenues = venue_list.map((category) => category.name);
   let allVenuesSlug = venue_list.map((category) => category.slug);
   let allVendorsSlug = vendor_list.map((category) => category.slug);
-  const [backgroundImage, setBackgroundImage] = useState("/banner/delhi.jpg");
+  const [backgroundImage, setBackgroundImage] = useState("/banner/delhii.webp");
   const suggestions = [
     ...venueNames,
     ...vendorNames,
@@ -47,7 +47,7 @@ function Hero({ venueCategogies}) {
     checkImageExists(cityImagePath).then((imageExists) => {
       const backgroundImage = imageExists
         ? cityImagePath
-        : "/banner/delhi.jpg";
+        : "/banner/delhii.webp";
       setBackgroundImage(backgroundImage);
     });
   }, [selectedCity, setBackgroundImage]);
