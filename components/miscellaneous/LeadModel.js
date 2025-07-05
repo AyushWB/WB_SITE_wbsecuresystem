@@ -196,10 +196,10 @@ export default function LeadModel() {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)', borderRadius: 0, borderWidth: '1px'}}
+                  style={{ borderStyle: 'solid', borderColor: 'var(--primary-color)', borderRadius: 0, borderWidth: '1px' }}
                 />
               </div>
-              <div className="discount-form">
+              <div className="discount-form floating-label-date" style={{ position: 'relative' }}>
                 <div className="country-code">
                   <span>
                     <div className="flag-box">
@@ -217,10 +217,64 @@ export default function LeadModel() {
                   className="input"
                   name="date"
                   min={today}
-                  placeholder="Event Date"
-                  onClick={(e) => e.target.showPicker()}
-                  style={{borderStyle: 'solid', borderColor: 'var(--primary-color)' , borderRadius: 0, borderWidth: '1px'}}
+                  value={csrfToken}
+                  onChange={e => setCsrfToken(e.target.value)}
+                  onClick={e => e.target.showPicker()}
+                  style={{
+                    borderStyle: 'solid',
+                    borderColor: 'var(--primary-color)',
+                    borderRadius: 0,
+                    borderWidth: '1px',
+                    position: 'relative',
+                    zIndex: 2,
+                    background: 'white',
+                    color: '#888',
+                    fontFamily: 'Poppins',
+                    fontWeight: 400,
+                    fontSize: '17px'
+                  }}
                 />
+                {/* Mobile floating label */}
+                {typeof window !== 'undefined' && window.innerWidth <= 600 && (
+                  <label
+                    htmlFor="date"
+                    style={{
+                      position: 'absolute',
+                      left: '60px',
+                      top: csrfToken ? '-12px' : '50%',
+                      transform: csrfToken ? 'translateY(0)' : 'translateY(-50%)',
+                      fontSize: csrfToken ? '13px' : '17px',
+                      color: csrfToken ? 'var(--primary-color)' : '#888',
+                      background: 'white',
+                      padding: csrfToken ? '0 4px' : '0',
+                      pointerEvents: 'none',
+                      fontFamily: 'Poppins',
+                      transition: 'all 0.2s',
+                      zIndex: 3,
+                    }}
+                  >
+                    Event Date
+                  </label>
+                )}
+                {/* Desktop border label */}
+                {typeof window !== 'undefined' && window.innerWidth > 600 && csrfToken && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      left: '60px',
+                      top: '-13px',
+                      fontSize: '13px',
+                      color: 'var(--primary-color)',
+                      background: 'white',
+                      padding: '0 4px',
+                      fontFamily: 'Poppins',
+                      zIndex: 3,
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    Event Date
+                  </span>
+                )}
               </div>
               <div className="discount-form">
                 <div className="country-code">
@@ -417,7 +471,7 @@ const Wrapper = styled.div`
           font-size: 17px;
           font-family: "Poppins";
           font-weight: 400;
-          padding: 5px 0.9rem;
+          padding: 5px 0.9rem 6px 2.6rem;
           background-color: white;
         }
 
