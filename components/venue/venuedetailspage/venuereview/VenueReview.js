@@ -11,6 +11,11 @@ function VenueReview({ venue, reviews }) {
   const [isOffCanvasOpen, setIsOffCanvasOpen] = useState(false);
   const [isOffCanvasReviewOpen, setIsOffCanvasReviewOpen] = useState(false);
   const venueData = venue;
+
+  // ✅ CHANGE #1
+  // Filter only approved reviews (status === 1)
+  const approvedReviews = reviews.filter((review) => review.status === 1);
+
   const toggleFullText = (index) => {
     setShowFullText((prevState) => {
       const newState = [...prevState];
@@ -47,112 +52,119 @@ function VenueReview({ venue, reviews }) {
     return [...goldStars, ...grayStars];
   };
 
-
   return (
     <Section className="section" id="rating-section">
       <div className="container">
         <Heading text={`Latest Ratings & Reviews`} />
-{venueData.place_rating > 0 && 
-  <div className="rating-heading">
-          <h2 className="review-rating-heading">{venueData.name || ""}</h2>
-          <div className="row review-rating-details">
-            <div className="row">
-              <div className="review-rating-rating">
-                {venueData.place_rating}
+        {venueData.place_rating > 0 && (
+          <div className="rating-heading">
+            <h2 className="review-rating-heading">
+              {venueData.name || ""}
+            </h2>
+            <div className="row review-rating-details">
+              <div className="row">
+                <div className="review-rating-rating">
+                  {venueData.place_rating}
+                </div>
+                <div style={{ display: "flex" }} className="review_stars">
+                  {renderStars(Math.floor(venueData.place_rating))}
+                </div>
               </div>
-              <div style={{ display: "flex" }} className="review_stars">
-                {renderStars(Math.floor(venueData.place_rating))}
+              <div className="see-all-reviews">
+                <a onClick={openOffCanvasReview}>See all verified reviews </a>
+                <span>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L1 9"
+                      stroke="#000"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </span>
               </div>
-            </div>
-            <div className="see-all-reviews">
-              <a onClick={openOffCanvasReview}>See all verified reviews </a>
-              <span>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#000"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </span>
             </div>
           </div>
-        </div>
-}
-        
+        )}
 
         <div className="review-cards-container">
-          {reviews.slice(0, 4).map((review, index) =>
-              <div className="card" key={index + 234443}>
-                <div className="card-top">
-                  <div className="card-bottom">
-                    <div className="prof">
-                      <Image
-                        src={review.profile_pic ? review.profile_pic : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`}
-                        width={50}
-                        height={50}
-                        alt="review-img"
-                      />
+          {/* ✅ CHANGE #2 */}
+          {/* Use approvedReviews instead of raw reviews for preview cards */}
+          {approvedReviews.slice(0, 4).map((review, index) => (
+            <div className="card" key={review.id}>
+              <div className="card-top">
+                <div className="card-bottom">
+                  <div className="prof">
+                    <Image
+                      src={
+                        review.profile_pic
+                          ? review.profile_pic
+                          : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`
+                      }
+                      width={50}
+                      height={50}
+                      alt="review-img"
+                    />
+                  </div>
+                  <div className="prof-detail">
+                    <div className="reviewer_name">
+                      {review.users_name}
                     </div>
-                    <div className="prof-detail">
-                      <div className="reviewer_name">
-                        {review.users_name}
-                      </div>
-                      <div
-                        style={{ display: "flex" }}
-                        className="review_stars"
-                      >
-                        {renderStars(review.rating)}
-                      </div>
-                    </div>
-                    <div className="verified">
-                      <svg
-                        width="25"
-                        height="25"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M18.6613 5L16.1279 3.87305L15 1.3387L12.243 1.62663L10 0L7.7557 1.62663L5 1.3387L3.87288 3.87191L1.33854 5L1.62663 7.757L0 10L1.62663 12.2443L1.33854 15L3.87191 16.127L5 18.6613L7.757 18.3734L10 20L12.2443 18.3734L15 18.6613L16.127 16.1279L18.6613 15L18.3732 12.243L20 10L18.3732 7.7557L18.6613 5Z"
-                          fill="#57A4FF"
-                        ></path>
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M13.5731 6.58705C13.457 6.47098 13.269 6.47098 13.1529 6.58705L8.32091 11.419L6.84923 9.95012C6.73331 9.83449 6.54558 9.83449 6.42966 9.95012L5.58734 10.7874C5.53148 10.8431 5.5 10.9188 5.5 10.9977C5.5 11.0767 5.53148 11.1524 5.58734 11.2081L8.10997 13.7307C8.22589 13.8466 8.41405 13.8466 8.53012 13.7307L14.4131 7.84764C14.529 7.73172 14.529 7.54355 14.4131 7.42749L13.5731 6.58705Z"
-                          fill="white"
-                        ></path>
-                      </svg>
+                    <div
+                      style={{ display: "flex" }}
+                      className="review_stars"
+                    >
+                      {renderStars(review.rating)}
                     </div>
                   </div>
-                  <p>
-                    {showFullText[index]
-                      ? review.comment
-                      : `${review.comment
+                  <div className="verified">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M18.6613 5L16.1279 3.87305L15 1.3387L12.243 1.62663L10 0L7.7557 1.62663L5 1.3387L3.87288 3.87191L1.33854 5L1.62663 7.757L0 10L1.62663 12.2443L1.33854 15L3.87191 16.127L5 18.6613L7.757 18.3734L10 20L12.2443 18.3734L15 18.6613L16.127 16.1279L18.6613 15L18.3732 12.243L20 10L18.3732 7.7557L18.6613 5Z"
+                        fill="#57A4FF"
+                      ></path>
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M13.5731 6.58705C13.457 6.47098 13.269 6.47098 13.1529 6.58705L8.32091 11.419L6.84923 9.95012C6.73331 9.83449 6.54558 9.83449 6.42966 9.95012L5.58734 10.7874C5.53148 10.8431 5.5 10.9188 5.5 10.9977C5.5 11.0767 5.53148 11.1524 5.58734 11.2081L8.10997 13.7307C8.22589 13.8466 8.41405 13.8466 8.53012 13.7307L14.4131 7.84764C14.529 7.73172 14.529 7.54355 14.4131 7.42749L13.5731 6.58705Z"
+                        fill="white"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p>
+                  {showFullText[review.id]
+                    ? review.comment
+                    : `${review.comment
                         .split(" ")
                         .slice(0, 20)
                         .join(" ")} ...`}
-                    <br />
-                    <a
-                      onClick={() => toggleFullText(index)}
-                      className="g_review"
-                    >
-                      {showFullText[index] ? "Read Less" : "Read More"}
-                    </a>
-                  </p>
-                </div>
+                  <br />
+                  <a
+                    onClick={() => toggleFullText(review.id)}
+                    className="g_review"
+                  >
+                    {showFullText[review.id] ? "Read Less" : "Read More"}
+                  </a>
+                </p>
               </div>
-          )}
+            </div>
+          ))}
         </div>
+
         <div className="write-a-review">
           <div className="heading">
             Have something to share about the venue?
@@ -167,10 +179,15 @@ function VenueReview({ venue, reviews }) {
         <section>
           <div id="sidebar">
             <div className="row close-and-heading">
-              <div className="close-btn reviewer_name" onClick={closeOffCanvas}>
+              <div
+                className="close-btn reviewer_name"
+                onClick={closeOffCanvas}
+              >
                 X
               </div>
-              <div className="reviewer_name">Write A Review & Ratings</div>
+              <div className="reviewer_name">
+                Write A Review & Ratings
+              </div>
             </div>
             <div className="rating-card">
               <RatingForm
@@ -181,6 +198,7 @@ function VenueReview({ venue, reviews }) {
           </div>
         </section>
       )}
+
       {isOffCanvasReviewOpen && (
         <section>
           <div id="sidebar">
@@ -197,72 +215,76 @@ function VenueReview({ venue, reviews }) {
             </div>
             <div className="rating-card">
               <div className="review-cards-container">
-                {reviews.map((review) =>
-                  review.status == 2 ? (
-                    <div className="cardR" key={review.id}>
-                      <div className="card-top">
-                        <div className="card-bottom">
-                          <div className="prof">
-                            <Image
-                        src={review.profile_pic ? review.profile_pic : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`}
-                        width={50}
-                              height={50}
-                              alt="review-img"
-                            />
+                {/* ✅ CHANGE #3 */}
+                {/* Use approvedReviews instead of reviews with status === 2 */}
+                {approvedReviews.map((review) => (
+                  <div className="cardR" key={review.id}>
+                    <div className="card-top">
+                      <div className="card-bottom">
+                        <div className="prof">
+                          <Image
+                            src={
+                              review.profile_pic
+                                ? review.profile_pic
+                                : `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/storage/uploads/images.png`
+                            }
+                            width={50}
+                            height={50}
+                            alt="review-img"
+                          />
+                        </div>
+                        <div className="prof-detail">
+                          <div className="reviewer_name">
+                            {review.users_name}
                           </div>
-                          <div className="prof-detail">
-                            <div className="reviewer_name">
-                              {review.users_name}
-                            </div>
-                            <div
-                              style={{ display: "flex" }}
-                              className="review_stars"
-                            >
-                              {renderStars(review.rating)}
-                            </div>
-                          </div>
-                          <div className="verified">
-                            <svg
-                              width="25"
-                              height="25"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M18.6613 5L16.1279 3.87305L15 1.3387L12.243 1.62663L10 0L7.7557 1.62663L5 1.3387L3.87288 3.87191L1.33854 5L1.62663 7.757L0 10L1.62663 12.2443L1.33854 15L3.87191 16.127L5 18.6613L7.757 18.3734L10 20L12.2443 18.3734L15 18.6613L16.127 16.1279L18.6613 15L18.3732 12.243L20 10L18.3732 7.7557L18.6613 5Z"
-                                fill="#57A4FF"
-                              ></path>
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M13.5731 6.58705C13.457 6.47098 13.269 6.47098 13.1529 6.58705L8.32091 11.419L6.84923 9.95012C6.73331 9.83449 6.54558 9.83449 6.42966 9.95012L5.58734 10.7874C5.53148 10.8431 5.5 10.9188 5.5 10.9977C5.5 11.0767 5.53148 11.1524 5.58734 11.2081L8.10997 13.7307C8.22589 13.8466 8.41405 13.8466 8.53012 13.7307L14.4131 7.84764C14.529 7.73172 14.529 7.54355 14.4131 7.42749L13.5731 6.58705Z"
-                                fill="white"
-                              ></path>
-                            </svg>
+                          <div
+                            style={{ display: "flex" }}
+                            className="review_stars"
+                          >
+                            {renderStars(review.rating)}
                           </div>
                         </div>
-                        <p>
-                          {showFullText[review.id]
-                            ? review.comment
-                            : `${review.comment
+                        <div className="verified">
+                          <svg
+                            width="25"
+                            height="25"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.6613 5L16.1279 3.87305L15 1.3387L12.243 1.62663L10 0L7.7557 1.62663L5 1.3387L3.87288 3.87191L1.33854 5L1.62663 7.757L0 10L1.62663 12.2443L1.33854 15L3.87191 16.127L5 18.6613L7.757 18.3734L10 20L12.2443 18.3734L15 18.6613L16.127 16.1279L18.6613 15L18.3732 12.243L20 10L18.3732 7.7557L18.6613 5Z"
+                              fill="#57A4FF"
+                            ></path>
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M13.5731 6.58705C13.457 6.47098 13.269 6.47098 13.1529 6.58705L8.32091 11.419L6.84923 9.95012C6.73331 9.83449 6.54558 9.83449 6.42966 9.95012L5.58734 10.7874C5.53148 10.8431 5.5 10.9188 5.5 10.9977C5.5 11.0767 5.53148 11.1524 5.58734 11.2081L8.10997 13.7307C8.22589 13.8466 8.41405 13.8466 8.53012 13.7307L14.4131 7.84764C14.529 7.73172 14.529 7.54355 14.4131 7.42749L13.5731 6.58705Z"
+                              fill="white"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <p>
+                        {showFullText[review.id]
+                          ? review.comment
+                          : `${review.comment
                               .split(" ")
                               .slice(0, 20)
                               .join(" ")} ...`}
-                          <br />
-                          <a
-                            onClick={() => toggleFullText(review.id)}
-                            className="g_review"
-                          >
-                            {showFullText[review.id]
-                              ? "Read Less"
-                              : "Read More"}
-                          </a>
-                        </p>
-                      </div>
+                        <br />
+                        <a
+                          onClick={() => toggleFullText(review.id)}
+                          className="g_review"
+                        >
+                          {showFullText[review.id]
+                            ? "Read Less"
+                            : "Read More"}
+                        </a>
+                      </p>
                     </div>
-                  ) : null
-                )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
