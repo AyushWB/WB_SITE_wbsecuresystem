@@ -144,7 +144,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="f-copyright">
-                    <p>Copyright © 2024 Wise Weddings Pvt Ltd(Wedding Banquets). All Rights Reserved.</p>
+                    <p>Copyright © 2025 Wise Weddings Pvt Ltd(Wedding Banquets). All Rights Reserved.</p>
 
                 </div>
             </div>
