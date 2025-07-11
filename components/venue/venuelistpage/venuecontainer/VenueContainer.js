@@ -403,14 +403,17 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
     const venueObject = allVenues.map((name, i) => ({ [name]: allVenuesSlug[i] }));
     const vendorObject = vendorBrandNames.map((name, i) => ({ [name]: allVendorsSlug[i] }));
 
+    // UseEffect to update the venue list when it changes
     useEffect(() => {
         setVenueList(lists);
     }, [lists]);
 
+    // Check if there are more venues to load
     useEffect(() => {
         setHasMore(venuelists.length < count);
     }, [venuelists, count]);
 
+    // Fetch venues when filterQuery changes
     useEffect(() => {
         const fetchFilteredVenue = async () => {
             setLoading(true);
@@ -430,6 +433,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
         fetchFilteredVenue();
     }, [filterQuery, category, city]);
 
+    // Fetch more venues when scrolling
     const fetchMoreVenue = useCallback(async () => {
         if (loading || !hasMore) return;
         setLoading(true);
@@ -447,6 +451,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
         }
     }, [loading, hasMore, page, filterQuery, category, city]);
 
+    // Intersection observer for infinite scroll
     const lastVenueElementRef = useCallback(node => {
         if (loading) return;
         if (observer.current) observer.current.disconnect();
@@ -497,7 +502,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
             <Section className="section section-venue-container">
                 <div className="sticky-head">
                     <div className="page-title">
-                        <h1 className="main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city : locality}`}</h1>
+                        <h1 className="main-title">{`${category.replaceAll("-", " ")} in ${locality === "all" ? city : locality}`}</h1>
                         <span className="count">{` Total result : ${count || 0} `}</span>
                     </div>
                     <div className="filter-btn" onClick={() => { setShowFilter(true) }}>
@@ -511,7 +516,7 @@ function VenueContainer({ city, lists, locality, category, count, localities, ve
                     </aside>
                     <main className="venues-list box">
                         <div className="d-flex">
-                            <h2 className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")}  in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></h2>
+                            <h2 className="venue-conatiner-h1 main-title">{`${category.replaceAll("-", " ")} in ${locality === "all" ? city.replaceAll("-", " ") : locality.replaceAll("-", " ")}`} <span className="count">{`(${count || 0})`}</span></h2>
                             <SearchBarVenue
                                 suggestions={suggestions}
                                 selectedCity={selectedCity}
@@ -557,57 +562,55 @@ background-color: var(--bg-color);
     font-weight: 500;
 }
 .sticky-head{
-        position: sticky;
-        top: 8rem;
-        z-index: 2;
+    position: sticky;
+    top: 8rem;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding:1.5rem 2rem;
+    box-shadow:var(--shadow);
+    display: none;
+    .page-title{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: white;
-        padding:1.5rem 2rem;
-        box-shadow:var(--shadow);
-        display: none;
-
-        .page-title{
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-            .main-title{
-                font-family: "Montserrat";
-                font-size:2rem ;
-                text-transform: capitalize;
-            }
-            .count{
-                color: var(--para);
-                font-size: 1.5rem;
-                font-family: "Poppins";
-            }
+        flex-direction: column;
+        gap: .5rem;
+        .main-title{
+            font-family: "Montserrat";
+            font-size:2rem ;
+            text-transform: capitalize;
         }
-
-        .filter-btn{
-            cursor: pointer;
-            border: 1px solid var(--para);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .5rem;
-            width: 100px;
-            padding: 1rem;
-            border-radius: 3rem;
-
-            .filter-icon{
-                color: var(--para);
-                font-size: 2.5rem;
-            }
-
-            .filter-label{
-                font-family: "Poppins";
-                font-weight: 500;
-                color: var(--para);
-                font-size: 1.8rem;
-            }
+        .count{
+            color: var(--para);
+            font-size: 1.5rem;
+            font-family: "Poppins";
         }
     }
+
+    .filter-btn{
+        cursor: pointer;
+        border: 1px solid var(--para);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        width: 100px;
+        padding: 1rem;
+        border-radius: 3rem;
+        .filter-icon{
+            color: var(--para);
+            font-size: 2.5rem;
+        }
+
+        .filter-label{
+            font-family: "Poppins";
+            font-weight: 500;
+            color: var(--para);
+            font-size: 1.8rem;
+        }
+    }
+}
 
 .venue-list-container{
     margin: auto;
@@ -621,7 +624,6 @@ background-color: var(--bg-color);
         font-size:2.8rem ;
         padding: 1rem 2rem;
         text-transform: capitalize;
-
         .count{
             color: var(--para);
             font-size: 1.7rem;
@@ -637,7 +639,6 @@ background-color: var(--bg-color);
         max-height: 95vh;
         background-color: white;
         padding: 2rem 3rem ;
-
         .apply-btn{
             position: sticky;
             bottom: 0px;
@@ -660,28 +661,12 @@ background-color: var(--bg-color);
     gap: 2rem;
     padding: 1rem;
     max-width: 100%;
-
-    .load-more-btn{
-        margin: auto;
-        border: none;
-        outline: none;
-        background-color: #F1F5FA;
-        font-size: 1.8rem;
-        font-family: "Poppins";
-        padding: 1rem 2rem;
-        cursor: pointer;
-        transition: all .3s linear;
-        background-color: var(--secoundary-color);
-        color: white;
-        border-radius: 5rem;
-    }
 }
 
 @media (max-width:1000px) {
     .sticky-head{
         display: flex;
     }
-    
     .venue-filter{
         display: none;
         position: fixed !important; 
@@ -690,7 +675,6 @@ background-color: var(--bg-color);
         height: 100vh; 
         z-index: 999999;
         box-shadow: 0 0 10px  1000px rgba(0, 0, 0, .5);    
-
         .filters{
             display: flex;
             flex-direction: column;
