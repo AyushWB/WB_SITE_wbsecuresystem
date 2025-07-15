@@ -2,6 +2,11 @@
 <?xml-stylesheet type="text/xsl" href="/sitemap-url.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+                    <loc>https://weddingbanquets.in/banquet-halls/noida/all</loc>
+                    <lastmod>2025-04-03T06:58:20.804Z</lastmod>
+                    <priority>1.00</priority>
+                </url>
+<url>
                     <loc>https://weddingbanquets.in/banquet-halls/noida/greater-noida</loc>
                     <lastmod>2025-04-03T06:58:20.804Z</lastmod>
                     <priority>1.00</priority>
@@ -308,6 +313,11 @@
                 </url>
 <url>
                     <loc>https://weddingbanquets.in/party-halls/noida/sector-72</loc>
+                    <lastmod>2025-04-03T06:58:20.805Z</lastmod>
+                    <priority>1.00</priority>
+                </url>
+<url>
+                    <loc>https://weddingbanquets.in/5-star-wedding-hotels/noida/all</loc>
                     <lastmod>2025-04-03T06:58:20.805Z</lastmod>
                     <priority>1.00</priority>
                 </url>
