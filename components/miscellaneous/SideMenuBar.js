@@ -1,45 +1,175 @@
+// import styled from "styled-components";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useSwipeable } from "react-swipeable";
+// import { useGlobalContext } from "@/context/MyContext";
+// import { css } from "styled-components";
+// // ----------------------------------------------------
+// import { BiSearch } from 'react-icons/bi'
+// import { AiFillCaretDown } from 'react-icons/ai'
+// import { FaUserAlt } from 'react-icons/fa'
+// import { MdCancel } from 'react-icons/md'
+
+
+
+// export default function SideMenuBar() {
+//     const { isMenuOpen, setIsMenuOpen, cities, selectedCity, setSelectedCity, loggedUser, setCityRoute } = useGlobalContext();
+
+//     const handlers = useSwipeable({
+//         onSwipedRight: (eventData) => { setIsMenuOpen(false) },
+
+//     });
+
+//     return (
+//         <Wrapper {...handlers} isActive={isMenuOpen}>
+//             <Div isActive={isMenuOpen} onBlur={() => setIsMenuOpen(false)} tabIndex="1" >
+//                 <div className="menu-img">
+//                     <Image
+//                         src="/common/menu.png"
+//                         alt="An example image"
+//                         fill={true}
+//                         sizes="(100vw)"
+//                     />
+//                     <MdCancel className="cancel-icon" onClick={() => setIsMenuOpen(false)} />
+//                     <div className="profile">
+//                         <div className="user-icon-wrapper">
+//                             <FaUserAlt className="user-icon" />
+//                         </div>
+//                         {
+//                             loggedUser ? <Link href="/user/profile" className="user-name" onClick={() => setIsMenuOpen(false)}>{loggedUser?.name}</Link> : <Link href="/user/signin" className="user-name" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+//                         }
+
+
+//                     </div>
+//                 </div>
+//                 <div className="city-dropdown-container">
+//                     <div className="dropdown city-dropdown">
+//                         <div className="search-icon-wrapper">
+//                             <BiSearch className='icon' />
+//                         </div>
+//                         <select name='cities' value={selectedCity} onChange={(e) => { setSelectedCity(e.target.value); setCityRoute(e.target.value); setIsMenuOpen(false); }}>
+//                             <option value={null} disabled>City</option>
+//                             {
+//                                 cities?.map((city) => {
+//                                     return (<option value={city.slug} key={city.id}> {city.name}</option>)
+//                                 })
+//                             }
+//                         </select>
+//                         <div className="dropdown-wrapper">
+//                             <AiFillCaretDown className="down-arrow" size={15} />
+//                         </div>
+//                     </div>
+
+//                 </div>
+//                 <div className="menu-list-container">
+//                     <ul className="menu-list">
+//                         <li className="menu-item">
+//                             <Link href="/" className="menu-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
+//                         </li>
+//                         <li className="menu-item" >
+//                             <Link href={`/banquet-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Banquet Halls </Link>
+//                         </li>
+//                         <li className="menu-item" >
+//                             <Link href={`/party-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Party Halls </Link>
+//                         </li>
+//                         <li className="menu-item">
+
+//                             <Link href={`/wedding-photographers/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photographers</Link>
+//                         </li>
+//                         <li className="menu-item">
+//                             <Link href={`/makeup-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Makeup Artist</Link>
+
+//                         </li>
+//                         <li className="menu-item">
+//                             <Link href={`/best-mehendi-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Mehndi Artist</Link>
+//                         </li>
+
+
+//                     </ul>
+
+
+//                 </div>
+//                 <div className="menu-list-container">
+//                     <ul className="menu-list">
+//                         <li className="menu-item">
+//                             <Link href="/blog" className="menu-link" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+//                         </li>
+//                         {/* <li className="menu-item" >
+//                             <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photos </Link>
+//                         </li>
+//                         <li className="menu-item" >
+//                             <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Real Wedding </Link>
+//                         </li> */}
+
+//                     </ul>
+
+
+//                 </div>
+//                 <div className="menu-list-container">
+//                     <ul className="menu-list">
+//                         <li className="menu-item">
+//                             <Link href="/career" className="menu-link" onClick={() => setIsMenuOpen(false)}>Career</Link>
+//                         </li>
+//                         <li className="menu-item" >
+//                             <Link href={`/about`} className="menu-link" onClick={() => setIsMenuOpen(false)}>About us </Link>
+//                         </li>
+
+
+//                     </ul>
+
+
+//                 </div>
+
+//                 <div className="list-your-business-wrapper">
+//                     {/* <span className="text">List your Business</span> */}
+//                     <li className="menu-item">
+//                         <Link href="/business" className="text" onClick={() => setIsMenuOpen(false)}>List Your Business</Link>
+//                     </li>
+//                 </div>
+//             </Div>
+
+//         </Wrapper>)
+// }
+
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { useSwipeable } from "react-swipeable";
 import { useGlobalContext } from "@/context/MyContext";
 import { css } from "styled-components";
-// ----------------------------------------------------
-import { BiSearch } from 'react-icons/bi'
-import { AiFillCaretDown } from 'react-icons/ai'
-import { FaUserAlt } from 'react-icons/fa'
-import { MdCancel } from 'react-icons/md'
-
-
+import { BiSearch } from 'react-icons/bi';
+import { AiFillCaretDown } from 'react-icons/ai';
+import { FaUserAlt } from 'react-icons/fa';
+import { MdCancel } from 'react-icons/md';
 
 export default function SideMenuBar() {
     const { isMenuOpen, setIsMenuOpen, cities, selectedCity, setSelectedCity, loggedUser, setCityRoute } = useGlobalContext();
 
     const handlers = useSwipeable({
-        onSwipedRight: (eventData) => { setIsMenuOpen(false) },
-
+        onSwipedRight: () => setIsMenuOpen(false),
     });
 
     return (
         <Wrapper {...handlers} isActive={isMenuOpen}>
-            <Div isActive={isMenuOpen} onBlur={() => setIsMenuOpen(false)} tabIndex="1" >
+            <Div isActive={isMenuOpen} onBlur={() => setIsMenuOpen(false)} tabIndex="1">
                 <div className="menu-img">
                     <Image
                         src="/common/menu.png"
-                        alt="An example image"
+                        alt="Menu Background"
                         fill={true}
                         sizes="(100vw)"
+                        priority={false} // improved INP: deferred load
                     />
                     <MdCancel className="cancel-icon" onClick={() => setIsMenuOpen(false)} />
                     <div className="profile">
                         <div className="user-icon-wrapper">
                             <FaUserAlt className="user-icon" />
                         </div>
-                        {
-                            loggedUser ? <Link href="/user/profile" className="user-name" onClick={() => setIsMenuOpen(false)}>{loggedUser?.name}</Link> : <Link href="/user/signin" className="user-name" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
-                        }
-
-
+                        {loggedUser ? (
+                            <Link href="/user/profile" className="user-name" onClick={() => setIsMenuOpen(false)}>{loggedUser?.name}</Link>
+                        ) : (
+                            <Link href="/user/signin" className="user-name" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+                        )}
                     </div>
                 </div>
                 <div className="city-dropdown-container">
@@ -47,88 +177,50 @@ export default function SideMenuBar() {
                         <div className="search-icon-wrapper">
                             <BiSearch className='icon' />
                         </div>
-                        <select name='cities' value={selectedCity} onChange={(e) => { setSelectedCity(e.target.value); setCityRoute(e.target.value); setIsMenuOpen(false); }}>
+                        <select name='cities' value={selectedCity} onChange={(e) => {
+                            setSelectedCity(e.target.value);
+                            setCityRoute(e.target.value);
+                            setIsMenuOpen(false);
+                        }}>
                             <option value={null} disabled>City</option>
-                            {
-                                cities?.map((city) => {
-                                    return (<option value={city.slug} key={city.id}> {city.name}</option>)
-                                })
-                            }
+                            {cities?.map((city) => (
+                                <option value={city.slug} key={city.id}>{city.name}</option>
+                            ))}
                         </select>
                         <div className="dropdown-wrapper">
                             <AiFillCaretDown className="down-arrow" size={15} />
                         </div>
                     </div>
-
                 </div>
                 <div className="menu-list-container">
                     <ul className="menu-list">
-                        <li className="menu-item">
-                            <Link href="/" className="menu-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-                        </li>
-                        <li className="menu-item" >
-                            <Link href={`/banquet-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Banquet Halls </Link>
-                        </li>
-                        <li className="menu-item" >
-                            <Link href={`/party-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Party Halls </Link>
-                        </li>
-                        <li className="menu-item">
-
-                            <Link href={`/wedding-photographers/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photographers</Link>
-                        </li>
-                        <li className="menu-item">
-                            <Link href={`/makeup-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Makeup Artist</Link>
-
-                        </li>
-                        <li className="menu-item">
-                            <Link href={`/best-mehendi-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Mehndi Artist</Link>
-                        </li>
-
-
+                        <li className="menu-item"><Link href="/" className="menu-link" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+                        <li className="menu-item"><Link href={`/banquet-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Banquet Halls</Link></li>
+                        <li className="menu-item"><Link href={`/party-halls/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Party Halls</Link></li>
+                        <li className="menu-item"><Link href={`/wedding-photographers/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photographers</Link></li>
+                        <li className="menu-item"><Link href={`/makeup-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Makeup Artist</Link></li>
+                        <li className="menu-item"><Link href={`/best-mehendi-artists/${selectedCity}/all`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Mehndi Artist</Link></li>
                     </ul>
-
-
                 </div>
                 <div className="menu-list-container">
                     <ul className="menu-list">
-                        <li className="menu-item">
-                            <Link href="/blog" className="menu-link" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-                        </li>
-                        {/* <li className="menu-item" >
-                            <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Photos </Link>
-                        </li>
-                        <li className="menu-item" >
-                            <Link href={`/`} className="menu-link" onClick={() => setIsMenuOpen(false)}>Real Wedding </Link>
-                        </li> */}
-
+                        <li className="menu-item"><Link href="/blog" className="menu-link" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
                     </ul>
-
-
                 </div>
                 <div className="menu-list-container">
                     <ul className="menu-list">
-                        <li className="menu-item">
-                            <Link href="/career" className="menu-link" onClick={() => setIsMenuOpen(false)}>Career</Link>
-                        </li>
-                        <li className="menu-item" >
-                            <Link href={`/about`} className="menu-link" onClick={() => setIsMenuOpen(false)}>About us </Link>
-                        </li>
-
-
+                        <li className="menu-item"><Link href="/career" className="menu-link" onClick={() => setIsMenuOpen(false)}>Career</Link></li>
+                        <li className="menu-item"><Link href="/about" className="menu-link" onClick={() => setIsMenuOpen(false)}>About us</Link></li>
                     </ul>
-
-
                 </div>
-
                 <div className="list-your-business-wrapper">
-                    {/* <span className="text">List your Business</span> */}
                     <li className="menu-item">
                         <Link href="/business" className="text" onClick={() => setIsMenuOpen(false)}>List Your Business</Link>
                     </li>
                 </div>
             </Div>
-
-        </Wrapper>)
+        </Wrapper>
+    );
 }
 
 const Wrapper = styled.div`
