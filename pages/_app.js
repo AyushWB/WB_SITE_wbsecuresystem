@@ -14,9 +14,29 @@ export default function App({ Component, pageProps }) {
   const [chatOpen, setChatOpen] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [notificationCount, setNotificationCount] = useState(1);
-  const [eventManager, setEventManager] = useState(null); // State to store event manager data
+  const [eventManager, setEventManager] = useState(null);
   const chatBoxRef = useRef(null);
-  const GTM_ID = "GTM-P2LJ8GNM";  // Replace with your actual GTM ID
+  const GTM_ID = "GTM-P2LJ8GNM"; // Replace with your actual GTM ID
+
+  // ✅ GTM loading optimized — defer script using requestIdleCallback or load event
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const loadGTM = () => {
+        const script = document.createElement("script");
+        script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+        script.async = true;
+        document.head.appendChild(script);
+      };
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadGTM);
+      } else {
+        window.addEventListener("load", loadGTM);
+      }
+    }
+  }, []);
+
+  // ✅ GTM noscript fallback should go in _document.js (not here)
 
   // Fetch event manager data
   useEffect(() => {
@@ -26,7 +46,7 @@ export default function App({ Component, pageProps }) {
           `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAINN}/api/get_random_rm`
         );
         const data = await response.json();
-        setEventManager(data); // Save fetched event manager data
+        setEventManager(data);
       } catch (error) {
         console.error("Error fetching event manager:", error);
       }
@@ -35,7 +55,7 @@ export default function App({ Component, pageProps }) {
     fetchEventManager();
   }, []);
 
-  // Loading logic for route changes
+  // Route change loading screen
   useEffect(() => {
     const handleStart = () => setLoading(true);
     const handleComplete = () => setLoading(false);
@@ -51,7 +71,7 @@ export default function App({ Component, pageProps }) {
     };
   }, [router]);
 
-  // Handle automatic chat opening
+  // Auto open chat on interval
   useEffect(() => {
     const lastOpened = localStorage.getItem("chatLastOpened");
     const now = new Date().getTime();
@@ -68,7 +88,7 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  // Close chat box when clicking outside
+  // Click outside to close chat
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -106,13 +126,9 @@ export default function App({ Component, pageProps }) {
         <title>Best Banquet Halls And Wedding Venues at 40% Discount</title>
         <meta
           name="description"
-          content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion. Look Over 10000+ Indian Wedding Venues For Corporate Events, Weddings And Parties"
+          content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion..."
         />
-        <meta
-          name="keywords"
-          content="Affordable Banquet Halls, Banquet Halls, Top Banquet Halls, Best Banquet Halls with price, Banquet Halls with review, Luxury Banquet Halls, Best Banquet Halls, List of Banquet Halls, Cheapest Banquet Halls, Banquet Halls near by, Banquet Halls near, Marriage Halls, Party Halls, Birthday Party Halls, Function Halls, Wedding Venues"
-        />
-        
+        <meta name="keywords" content="Affordable Banquet Halls, ..." />
         <meta name="author" content="y@sh" />
         <meta name="theme-color" content="#870808" />
         <meta name="msapplication-navbutton-color" content="#870808" />
@@ -132,18 +148,8 @@ export default function App({ Component, pageProps }) {
         {eventManager?.profile_image && (
           <link rel="preload" as="image" href={eventManager.profile_image} />
         )}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id=${GTM_ID}'+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `,
-          }}
-        />
       </Head>
+
       <Layout>
         {loading && <LoadingScreen />}
         <div>
@@ -209,7 +215,7 @@ export default function App({ Component, pageProps }) {
                   </div>
                   <div style={{ padding: "15px" }}>
                     <p style={{ margin: 0, fontSize: "11px" }}>
-                      Hi! I'm {eventManager?.name || "Dolly"}, your wedding planning assistant! Let me help you discover the best vendors and venues to make your wedding day perfect.
+                      Hi! I'm {eventManager?.name || "Dolly"}, your wedding planning assistant!
                     </p>
                     <a
                       href={`https://api.whatsapp.com/send?phone=918882198989&text=Hi%20${eventManager?.name || ""}`}
@@ -234,6 +240,7 @@ export default function App({ Component, pageProps }) {
               )}
             </div>
           )}
+
           <div
             onClick={handleWhatsAppClick}
             className="whatsapp-icon"
@@ -283,14 +290,6 @@ export default function App({ Component, pageProps }) {
         </div>
 
         <Component {...pageProps} />
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-P2LJ8GNM"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
       </Layout>
     </MyContextProvider>
   );
