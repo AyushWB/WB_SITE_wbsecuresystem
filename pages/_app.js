@@ -126,9 +126,9 @@ export default function App({ Component, pageProps }) {
         <title>Best Banquet Halls And Wedding Venues at 40% Discount</title>
         <meta
           name="description"
-          content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion..."
+          content="Wedding Banquet To Plan Your Wedding And Make Sure It is a Memorable Occasion. Look Over 10000+ Indian Wedding Venues For Corporate Events, Weddings And Parties"
         />
-        <meta name="keywords" content="Affordable Banquet Halls, ..." />
+        <meta name="keywords" content="Affordable Banquet Halls, Banquet Halls, Top Banquet Halls, Best Banquet Halls with price, Banquet Halls with review, Luxury Banquet Halls, Best Banquet Halls, List of Banquet Halls, Cheapest Banquet Halls, Banquet Halls near by, Banquet Halls near, Marriage Halls, Party Halls, Birthday Party Halls, Function Halls, Wedding Venues"/>
         <meta name="author" content="y@sh" />
         <meta name="theme-color" content="#870808" />
         <meta name="msapplication-navbutton-color" content="#870808" />
