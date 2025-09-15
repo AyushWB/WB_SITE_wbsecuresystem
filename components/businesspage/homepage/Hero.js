@@ -9,7 +9,10 @@ export default function Hero() {
   return (
     <>
       <Head>
-        <title>Connect with WeddingBanquets to grow your wedding business, connect with many individuals, and increase your visibility and clarity in the wedding industry.</title>
+        <title>
+          Connect with WeddingBanquets to grow your wedding business, connect with many individuals, 
+          and increase your visibility and clarity in the wedding industry.
+        </title>
         <meta
           name="description"
           content="Learn about Wedding Banquets and how it helps you plan weddings and events with top venues vendors like makeup artists, photographers, mehendi artists and more."
@@ -37,126 +40,121 @@ export default function Hero() {
           })
         }}
       />
-        <Wrapper className="section">
-            <div className="hero-container">
-                <div className="hero-content">
-                    <Link href={"/"}>
-                        <div className="logo-container">
-                            <Image
-                                src={'/logo.png'}
-                                fill={true}
-                                sizes="(100vw)"
-                                alt="logo"
-                            />
 
-                        </div>
-                    </Link>
-                    <h1 className="hero-title">TAKE YOUR BUSINESS TO NEXT LEVEL WITH WEDDING BANQUETS </h1>
-                    <ul className="hero-lists">
-                        <li className="hero-list">Promote your services on our best in business site.</li>
-                        <li className="hero-list"> Commute to local engaged couples and book more weddings</li>
-                        <li className="hero-list"> Trusted by over 10,000 professionals. </li>
-                    </ul>
-                    <Link href={"/business/signup"}><ButtonDark>Signup</ButtonDark></Link>
+      <Wrapper className="section">
+        <div className="hero-container">
+          <div className="hero-content">
+            <Link href={"/"}>
+              <div className="logo-container">
+                {/* ✅ Fixed logo dimensions to avoid CLS */}
+                <Image
+                  src="/logo.png"
+                  alt="Wedding Banquets Logo"
+                  width={200}
+                  height={40}
+                  priority // small but above-the-fold → boosts LCP
+                />
+              </div>
+            </Link>
 
-                </div>
-                <div className="hero-banner">
-                    <Image
-                        src={"/business/vendor_hero.png"}
-                        alt="hero-img"
-                        fill={true}
-                        sizes="(100vw)"
-                    />
+            <h1 className="hero-title">
+              TAKE YOUR BUSINESS TO NEXT LEVEL WITH WEDDING BANQUETS 
+            </h1>
+            <ul className="hero-lists">
+              <li className="hero-list">
+                Promote your services on our best in business site.
+              </li>
+              <li className="hero-list">
+                Commute to local engaged couples and book more weddings
+              </li>
+              <li className="hero-list">
+                Trusted by over 10,000 professionals. 
+              </li>
+            </ul>
+            <Link href={"/business/signup"}>
+              <ButtonDark>Signup</ButtonDark>
+            </Link>
+          </div>
 
-                </div>
-            </div>
-
-        </Wrapper>
-        </>
-    )
+          <div className="hero-banner">
+            {/* ✅ Optimized hero image for LCP */}
+            <Image
+              src="/business/vendor_hero.png"
+              alt="Wedding Banquets Vendor Hero"
+              fill
+              sizes="100vw"
+              priority // 🚀 improves LCP on mobile & desktop
+              placeholder="blur"
+              blurDataURL="/business/vendor_hero.png" // temporary fallback; can replace with tiny base64 later
+            />
+          </div>
+        </div>
+      </Wrapper>
+    </>
+  );
 }
 
 const Wrapper = styled.section`
+  background-color: rgb(239,239,239);
 
-/* background-color: var(--bg-color); */
-background-color:rgb(239,239,239);
-
-
-.hero-container{
+  .hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
 
-}
-
-.logo-container{
+  .logo-container {
     width: 25rem;
     height: 50px;
     cursor: pointer;
     position: relative;
-    /* margin: 4rem auto; */
-    /* border: 1px solid red; */
-}
+  }
 
-.hero-content{
-    /* border: 1px solid red; */
+  .hero-content {
     padding: 5rem 8rem;
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
     max-width: 80rem;
 
-    .hero-title{
-        color: var(--primary-color);
-        font-size: 3rem;
-        font-family: "Montserrat";
-        font-weight: 600;
-
-    }
-    .hero-lists{
-        color: var(--para);
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-
-        .hero-list{
-            list-style:disc !important;
-            font-size: 1.8rem;
-            font-family: "Poppins";
-            font-weight: 400;
-        }
+    .hero-title {
+      color: var(--primary-color);
+      font-size: 3rem;
+      font-family: "Montserrat";
+      font-weight: 600;
     }
 
-}
-.hero-banner{
+    .hero-lists {
+      color: var(--para);
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .hero-list {
+        list-style: disc !important;
+        font-size: 1.8rem;
+        font-family: "Poppins";
+        font-weight: 400;
+      }
+    }
+  }
+
+  .hero-banner {
     height: 400px;
-    /* border: 2px solid blue; */
     position: relative;
+  }
 
-}
+  @media (max-width: 1000px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+    }
+    .hero-banner {
+      height: 300px;
+    }
+  }
 
-@media (max-width:1000px) {
-    .hero-container{
-    display: grid;
-    grid-template-columns: 1fr;
-
-}
-
-.hero-banner{
-    height: 300px;
-    /* border: 2px solid blue; */
-    position: relative;
-
-}
-    
-}
-
-@media (max-width:800px) {
-
-.hero-content{
-    /* border: 1px solid red; */
-    padding: 5rem;
-}
-    
-    
-}
-`
+  @media (max-width: 800px) {
+    .hero-content {
+      padding: 5rem;
+    }
+  }
+`;
