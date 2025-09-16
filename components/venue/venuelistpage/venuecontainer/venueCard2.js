@@ -1,234 +1,3 @@
-// import styled, { keyframes } from "styled-components";
-// import { useMemo, useState } from "react";
-// import { IoIosPeople, IoLogoWhatsapp, IoIosCall } from "react-icons/io";
-// import { IoLocationSharp } from "react-icons/io5";
-// import { useRouter } from "next/router";
-// import Veg from "@/components/miscellaneous/Veg";
-// import { memo } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/free-mode";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/thumbs";
-// import { FreeMode, Thumbs, Pagination, Autoplay } from "swiper";
-// import Image from "next/image";
-// import { BiSolidPhoneCall } from "react-icons/bi";
-// import { ImWhatsapp } from "react-icons/im";
-// import Assured from "@/components/miscellaneous/Assured";
-// import { useGlobalContext } from "@/context/MyContext";
-// import RatingCardDynamic from "@/components/miscellaneous/RatingCardDynamic";
-
-// function VenueCard2({ venue, city, openLeadModel, locality, category, callConversion, index }) {
-
-//   const images = venue.images?.split(",");
-//   const { selectedCity } = useGlobalContext();
-
-//   function removeHTMLTags(text = "") {
-//     return text.replace(/<.*?>/g, "");
-//   }
-
-//   async function handleAnchorClick(e, slug) {
-//     e.stopPropagation();
-//     await CallingRequest(slug);
-//   }
-
-//   function shareViaWhatsApp(e) {
-//     const venueUrl = `https://weddingbanquets.in/${selectedCity}/${venue.slug}`;
-//     const whatsappUrl = `https://api.whatsapp.com/send?phone=918882198989&text=${encodeURIComponent(venueUrl)}`;
-//     window.open(whatsappUrl, "_blank");
-//     e.stopPropagation();
-//   }
-
-//   const venue_summary = useMemo(() => {
-//     return removeHTMLTags((venue && venue["summary"]) || "");
-//   }, [venue]);
-//   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-//   const router = useRouter();
-
-//   const categoryValues = venue.venue_category_ids;
-//   const mapCategoryNames = (categoryValues) => {
-//     return categoryValues.split(',').map(category => category.trim());
-//   };
-
-//   const categories = mapCategoryNames(categoryValues);
-
-//   return (
-//     <Wrapper>
-//       <div className="image-slider">
-//         <Swiper
-//           style={{
-//             "--swiper-navigation-color": "#fff",
-//             "--swiper-pagination-color": "#fff",
-//           }}
-//           loop={true}
-//           spaceBetween={10}
-//           pagination={{ dynamicBullets: true }}
-//           autoplay={{ delay: 2500, disableOnInteraction: false }}
-//           thumbs={{ swiper: thumbsSwiper }}
-//           modules={[FreeMode, Thumbs, Pagination, Autoplay]}
-//           className="mySwiper2"
-//           onClick={() => {
-//             router.push(`/${city}/${venue?.slug}`);
-//           }} >
-//           {images?.slice(0, 4).map((image, index) => (
-//             <SwiperSlide key={index} className="image-container">
-//                 <Image
-//                   src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
-//                   fill
-//                   sizes="(100vw)"
-//                   quality={10}
-//                   loading="lazy"
-//                   alt={venue?.name}
-//                   title={`${venue?.name} photos`}
-//                   // title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-//                   // alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
-//                 />
-//             </SwiperSlide>
-//           ))}
-
-//           <div className="rate">
-//             <RatingCardDynamic
-//               rating={venue?.place_rating}
-//               ratingcount={venue?.review_count}
-//               slug={venue?.slug}
-//             />
-//           </div>
-//           {venue?.wb_assured && <Assured />}
-//         </Swiper>
-
-//         <Swiper
-//           onSwiper={setThumbsSwiper}
-//           loop={true}
-//           spaceBetween={5}
-//           slidesPerView={4}
-//           freeMode={true}
-//           watchSlidesProgress={true}
-//           modules={[FreeMode, Thumbs]}
-//           className="mySwiper"
-//         >
-//           {images?.slice(0, 4).map((image, index) => (
-//             <SwiperSlide key={index} className="image-container">
-//                 <Image
-//                   src={`${process.env.NEXT_PUBLIC_MEDIA_PREFIX}/${image}`}
-//                   fill
-//                   sizes="(100vw)"
-//                   quality={1}
-//                   loading="lazy"
-//                   alt={venue?.name}
-//                   title={`${venue?.name} photos`}
-
-//                   // title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
-//                   // alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
-//                 />
-//             </SwiperSlide>
-//           ))}
-//         </Swiper>
-//       </div>
-
-//       <div
-//         className="content"
-//         onClick={() => {
-//           router.push(`/${city}/${venue?.slug}`);
-//         }}
-//       >
-//         <div className="venue-basic-info">
-//           <div className="name-address">
-//             <h2 className="venue-name">{venue?.name}</h2>
-//             <address>{venue?.venue_address}</address>
-//           </div>
-//           <div className="phone">
-//             <div className="" onClick={(e) => shareViaWhatsApp(e)}>
-//               <div className="whatsapp-btn">
-//               <ImWhatsapp className="whatsapp-icon" />
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="venue-aditional-info">
-//           <div className="location detail-circle">
-//             <IoLocationSharp className="icon" />
-//             <p>{`${venue?.get_locality.name} , ${venue?.get_city.name}`}</p>
-//           </div>
-//           <div className="guests detail-circle">
-//           <IoIosPeople className="icon" />
-//             <p>{`${venue?.min_capacity}-${venue?.max_capacity} guests`}</p>
-//           </div>
-//         </div>
-//         <p className="venue-description">
-//           {`${venue_summary?.slice(0, 80)} `}
-//           <span className="read-more-btn">read more...</span>
-//         </p>
-
-//         <div className="venue-category">
-//           {categories?.map((item, index) => (
-//             <div className="category" key={index}>
-//               <p>{item}</p>
-//             </div>
-//           ))}
-//         </div>
-
-//         <div className="d-flex">
-//           <div className="price-contianer">
-//             <div className="veg-price">
-//               <Veg color={"green"} />
-//               <p>
-//                 Veg: <del className="price">₹{venue?.veg_price}</del>/Plate
-//               </p>
-//             </div>
-//             {(venue.nonveg_price && venue.nonveg_price !== 'null' && venue.nonveg_price > 0) ? (
-//               <div className="nonveg-price">
-//                 <Veg color={"red"} />
-//                 <p>
-//                   Non Veg: <del className="price">₹{venue.nonveg_price}</del>
-//                   /Plate
-//                 </p>
-//               </div>
-//             ) : ('')}
-//           </div>
-//           <div className="cts-contianer">
-//             <div className="action-btns">
-//               <button
-//                 className="venue-card-btn phone"
-//                 onClick={(e) => {
-//                   openLeadModel(e, venue?.slug, venue?.id);
-//                   e.stopPropagation();
-//                 }}
-//               >
-//                 Check
-//                 <br /> Prices
-//               </button>
-//               <button
-//                 className="venue-card-btn pc"
-//                 onClick={(e) => {
-//                   openLeadModel(e, venue?.slug, venue?.id);
-//                   e.stopPropagation();
-//                 }}
-//               >
-//                 Check Prices
-//               </button>
-//               <a
-//                 className="call-us-btn"
-//                 href={`tel:0${venue.phone}`}
-//                 onClick={(e) => {
-//                   handleAnchorClick(e, venue.slug);
-//                   callConversion(e, venue.slug, venue.id);
-//                 }}
-//                 aria-label="call icon"
-//               >
-//                 <div className="">
-//                 <BiSolidPhoneCall className="phone-icon" />
-//                 </div>
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </Wrapper>
-//   );
-// }
-// export default memo(VenueCard2);
-
 import styled, { keyframes } from "styled-components";
 import { useMemo, useState } from "react";
 import { IoIosPeople, IoLogoWhatsapp, IoIosCall } from "react-icons/io";
@@ -255,17 +24,14 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
 
   const images = venue.images?.split(",");
   const { selectedCity } = useGlobalContext();
-  const router = useRouter();
 
   function removeHTMLTags(text = "") {
     return text.replace(/<.*?>/g, "");
   }
 
-  // -------------------------
-  // CHANGED: handleAnchorClick now accepts full URL instead of slug
-  async function handleAnchorClick(e, fullUrl) {
+  async function handleAnchorClick(e, slug) {
     e.stopPropagation();
-    await CallingRequest(fullUrl); // send the full URL to backend
+    await CallingRequest(slug);
   }
 
   function shareViaWhatsApp(e) {
@@ -278,13 +44,14 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
   const venue_summary = useMemo(() => {
     return removeHTMLTags((venue && venue["summary"]) || "");
   }, [venue]);
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const router = useRouter();
 
   const categoryValues = venue.venue_category_ids;
   const mapCategoryNames = (categoryValues) => {
     return categoryValues.split(',').map(category => category.trim());
   };
+
   const categories = mapCategoryNames(categoryValues);
 
   return (
@@ -315,6 +82,8 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                   loading="lazy"
                   alt={venue?.name}
                   title={`${venue?.name} photos`}
+                  // title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  // alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
                 />
             </SwiperSlide>
           ))}
@@ -349,6 +118,9 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
                   loading="lazy"
                   alt={venue?.name}
                   title={`${venue?.name} photos`}
+
+                  // title={locality === "all" ? `${category.replaceAll("-", " ")} in ${city.replaceAll("-", " ")}` : `${category.replaceAll("-", " ")} in ${locality.replaceAll("-", " ")}`}
+                  // alt={locality === "all" ? `${venue?.name} in ${city.replaceAll("-", " ")}` : `${venue?.name} at ${locality.replaceAll("-", " ")}, ${city.replaceAll("-", " ")}`}
                 />
             </SwiperSlide>
           ))}
@@ -374,7 +146,6 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
             </div>
           </div>
         </div>
-
         <div className="venue-aditional-info">
           <div className="location detail-circle">
             <IoLocationSharp className="icon" />
@@ -385,7 +156,6 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
             <p>{`${venue?.min_capacity}-${venue?.max_capacity} guests`}</p>
           </div>
         </div>
-
         <p className="venue-description">
           {`${venue_summary?.slice(0, 80)} `}
           <span className="read-more-btn">read more...</span>
@@ -411,12 +181,12 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
               <div className="nonveg-price">
                 <Veg color={"red"} />
                 <p>
-                  Non Veg: <del className="price">₹{venue.nonveg_price}</del>/Plate
+                  Non Veg: <del className="price">₹{venue.nonveg_price}</del>
+                  /Plate
                 </p>
               </div>
             ) : ('')}
           </div>
-
           <div className="cts-contianer">
             <div className="action-btns">
               <button
@@ -438,35 +208,19 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
               >
                 Check Prices
               </button>
-
-              {/* ------------------------- */}
-              {/* CHANGED: send full URL for callConversion and handleAnchorClick */}
               <a
                 className="call-us-btn"
                 href={`tel:0${venue.phone}`}
-                onClick={async (e) => {
-                  e.preventDefault();
-
-                  const fullUrl = `https://weddingbanquets.in/${city}/${venue.slug}`; // full URL instead of slug
-
-                  try {
-                    await handleAnchorClick(e, fullUrl); // send to backend
-                    await callConversion(e, fullUrl, venue.id); // track conversion
-                  } catch (err) {
-                    console.error("Lead tracking failed:", err);
-                  } finally {
-                    // always open phone dialer
-                    window.location.href = `tel:0${venue.phone}`;
-                  }
+                onClick={(e) => {
+                  handleAnchorClick(e, venue.slug);
+                  callConversion(e, venue.slug, venue.id);
                 }}
                 aria-label="call icon"
               >
                 <div className="">
-                  <BiSolidPhoneCall className="phone-icon" />
+                <BiSolidPhoneCall className="phone-icon" />
                 </div>
               </a>
-              {/* ------------------------- */}
-
             </div>
           </div>
         </div>
@@ -474,7 +228,6 @@ function VenueCard2({ venue, city, openLeadModel, locality, category, callConver
     </Wrapper>
   );
 }
-
 export default memo(VenueCard2);
 
 const ringingAnimationn = keyframes`
