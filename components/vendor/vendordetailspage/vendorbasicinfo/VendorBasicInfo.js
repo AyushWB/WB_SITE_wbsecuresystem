@@ -91,7 +91,8 @@ export default function VendorBasicInfo({ vendor, openLeadsModel }) {
                 </div>
                 <div className="action-btns">
                   <a
-                    href={`tel:+${vendor.phone}`}
+                    // href={`tel:+${vendor.phone}`}
+                    href={`tel:0${vendor.phone}`}
                     onClick={(e) => handleAnchorClick(e, vendor?.slug)}
                     className="call-btn-header"
                     aria-label="call icon"
