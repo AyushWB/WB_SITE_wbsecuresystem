@@ -30,7 +30,7 @@ export default function Hero() {
             "@type": "Organization",
             "name": "Wedding Banquets",
             "url": "https://www.weddingbanquets.in",
-            "logo": "https://www.weddingbanquets.in/logo.png",
+            "logo": "https://www.weddingbanquets.in/logo.webp",
             "sameAs": [
               "https://www.instagram.com/weddingbanquets",
               "https://www.facebook.com/weddingbanquets"
@@ -48,7 +48,7 @@ export default function Hero() {
               <div className="logo-container">
                 {/* ✅ Fixed logo dimensions to avoid CLS */}
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Wedding Banquets Logo"
                   width={200}
                   height={40}

@@ -25,7 +25,7 @@ function Navbar() {
         <div className="logo-container">
             <Link href={"/"} className='logo-img'>
                 <Image
-                    src={"/logo.png"}
+                    src={"/logo.webp"}
                     alt='logo'
                     fill
                     sizes="(100vw)"
