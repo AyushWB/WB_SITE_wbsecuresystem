@@ -6,7 +6,7 @@ const LoadingScreen = () => {
   return (
     <div style={styles.container}>
       <Image
-        src="https://weddingbanquets.in/logo.png"
+        src="https://weddingbanquets.in/logo.webp"
         alt="Loading"
         height={100}
         width={100}
