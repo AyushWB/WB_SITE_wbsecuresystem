@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 </urlset>`;
 
     // Save the sitemap in the public directory
-    const filePath = path.join(process.cwd(), 'public', 'blog_sitemap.xml');
+    const filePath = path.join(process.cwd(), 'public', 'blog-sitemap.xml');
     fs.writeFileSync(filePath, sitemapContent);
 
     res.status(200).json({ message: 'Sitemap generated successfully!' });
