@@ -23,7 +23,7 @@ export default function Page() {
               "@type": "Organization",
               "name": "Wedding Banquets",
               "url": "https://www.weddingbanquets.in",
-              "logo": "https://www.weddingbanquets.in/logo.webp",
+              "logo": "https://www.weddingbanquets.in/logo.png",
               "sameAs": [
                 "https://www.instagram.com/weddingbanquets",
                 "https://www.facebook.com/weddingbanquets"

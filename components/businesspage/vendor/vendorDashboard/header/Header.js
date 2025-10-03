@@ -28,7 +28,7 @@ export default function Header({cookie_name}) {
             <div className="logo-container">
                 <Link href={"/"}>
                     <Image
-                        src={'/logo.webp'}
+                        src={'/logo.png'}
                         fill={true}
                         alt="img"
                         sizes="(100vw)"

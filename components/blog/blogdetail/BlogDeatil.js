@@ -130,7 +130,7 @@ const BlogDetail = ({ data }) => {
       name: "www.weddingbanquets.in",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.weddingbanquets.in/logo.webp",
+        url: "https://www.weddingbanquets.in/logo.png",
         width: 280,
         height: 60,
       },

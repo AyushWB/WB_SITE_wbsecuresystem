@@ -25,7 +25,7 @@ function Footer() {
 
                         <Link href={"/"} className='logo-img' aria-label="logo">
                             <Image
-                                src={"/logo.webp"}
+                                src={"/logo.png"}
                                 alt='logo'
                                 fill
                                 sizes="(100vw)"

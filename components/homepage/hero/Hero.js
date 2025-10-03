@@ -5,28 +5,23 @@ import SearchBar3 from "@/components/miscellaneous/SearchBar3";
 import { useGlobalContext } from "@/context/MyContext";
 import { useEffect, useState } from "react";
 
-function Hero({ venueCategogies }) {
+function Hero({ venueCategogies}) {
   let venueObject = [];
   let vendorObject = [];
-  const { venue_list, vendor_list, vendorCategories, selectedCity, venueCategories } =
-    useGlobalContext();
-
+  const { venue_list, vendor_list, vendorCategories, selectedCity, venueCategories } = useGlobalContext();
   let venueNames = venueCategories.map((category) => category.name);
   let vendorNames = vendorCategories.map((category) => category.name);
   let vendorBrandNames = vendor_list.map((category) => category.brand_name);
   let allVenues = venue_list.map((category) => category.name);
   let allVenuesSlug = venue_list.map((category) => category.slug);
   let allVendorsSlug = vendor_list.map((category) => category.slug);
-
-  const [backgroundImage, setBackgroundImage] = useState("/banner/delhi.webp");
-
+  const [backgroundImage, setBackgroundImage] = useState("/banner/delhi.jpg");
   const suggestions = [
     ...venueNames,
     ...vendorNames,
     ...vendorBrandNames,
     ...allVenues,
   ];
-
   for (let i = 0; i < allVenues.length; i++) {
     let obj = {};
     obj[allVenues[i]] = allVenuesSlug[i];
@@ -37,9 +32,8 @@ function Hero({ venueCategogies }) {
     obj[vendorBrandNames[i]] = allVendorsSlug[i];
     vendorObject.push(obj);
   }
-
   useEffect(() => {
-    const cityImagePath = `/banner/${selectedCity.toLowerCase()}.webp`;
+    const cityImagePath = `/banner/${selectedCity.toLowerCase()}.jpg`;
 
     async function checkImageExists(url) {
       try {
@@ -53,7 +47,7 @@ function Hero({ venueCategogies }) {
     checkImageExists(cityImagePath).then((imageExists) => {
       const backgroundImage = imageExists
         ? cityImagePath
-        : "/banner/delhi.webp";
+        : "/banner/delhi.jpg";
       setBackgroundImage(backgroundImage);
     });
   }, [selectedCity, setBackgroundImage]);
@@ -64,22 +58,15 @@ function Hero({ venueCategogies }) {
         <Image
           src={backgroundImage}
           alt="Wedding Banquets, Banquet halls, Wedding Venues"
-          fill
-          priority // ✅ improves LCP (loads hero immediately)
+          fill={true}
+          priority={true} 
           quality={60}
-          // ✅ responsive sizes to reduce payload
-          sizes="(max-width: 550px) 100vw, 
-                 (max-width: 800px) 90vw, 
-                 100vw"
-          // style={{
-          //   objectFit: "cover", // ✅ prevents distortion + CLS
-          // }}
+          // sizes="(100vw)"
         />
         <div className="overlay"></div>
         <div className="hero-title-container">
-          <h1 className="title">
-            Find The Perfect Wedding Banquet <br />Hall For Your Dream Day!
-          </h1>
+          <h1 className="title">Find The Perfect Wedding Banquet 
+          <br />Hall For Your Dream Day!</h1>
           <p className="description">
             Explore over 50,000+ Venues and Vendors with reviews, pricing and
             more.
@@ -111,19 +98,13 @@ const Section = styled.section`
     position: relative;
     width: 100%;
     height: 85vh;
-    overflow: hidden;
-
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.3) 0%,
-        rgba(0, 0, 0, 0.1) 100%
-      );
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
     }
 
     .hero-title-container {
@@ -152,22 +133,30 @@ const Section = styled.section`
 
   @media (max-width: 800px) {
     .hero-container {
+      position: relative;
+      width: 100%;
       height: 450px;
     }
   }
 
   @media (max-width: 550px) {
     .hero-container {
+      position: relative;
+      width: 100%;
       height: 350px;
     }
 
     .hero-title-container {
+      position: absolute;
+      top: 40%;
+      right: 50%;
+      transform: translate(50%, -50%);
       min-width: 90% !important;
 
       h1 {
         font-size: 2.5rem !important;
       }
-      p {
+      P {
         font-size: 1.8rem !important;
         padding: 0.5rem 1rem;
       }

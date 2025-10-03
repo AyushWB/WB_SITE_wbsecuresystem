@@ -221,7 +221,7 @@ export default function App({ Component, pageProps }) {
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//i.ibb.co" />
 
-        <link rel="prefetch" href="https://weddingbanquets.in/logo.webp" />
+        <link rel="prefetch" href="https://weddingbanquets.in/logo.png" />
         <meta property="og:site_name" content="Weddingbanquets" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />

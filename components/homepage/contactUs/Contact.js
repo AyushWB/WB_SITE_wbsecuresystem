@@ -15,7 +15,7 @@ export default function Contact() {
                 <div className="contact-data box">
                     <div className="logo-container">
                         <Image
-                            src={'/logo.webp'}
+                            src={'/logo.png'}
                             fill={true}
                             alt={"logo-img"}
                             sizes="(100vw)"

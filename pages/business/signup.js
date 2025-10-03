@@ -131,7 +131,7 @@ export default function SignUpPage() {
                             "@type": "Organization",
                             "name": "Wedding Banquets",
                             "url": "https://www.weddingbanquets.in",
-                            "logo": "https://www.weddingbanquets.in/logo.webp",
+                            "logo": "https://www.weddingbanquets.in/logo.png",
                             "sameAs": [
                                 "https://www.instagram.com/weddingbanquets",
                                 "https://www.facebook.com/weddingbanquets"
@@ -150,7 +150,7 @@ export default function SignUpPage() {
 
                         <div className="logo-container">
                             <Image
-                                src={'/logo.webp'}
+                                src={'/logo.png'}
                                 fill={true}
                                 sizes="(100vw)"
                                 alt="logo img"
