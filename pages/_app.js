@@ -4,15 +4,12 @@ import { GlobalStyles } from "@/styles/GlobalStyle";
 import { useRouter } from "next/router";
 import Layout from "@/components/layout.js/Layout";
 import Head from "next/head";
-import { useEffect, useRef, useState, useCallback, useMemo } from "react"; // CHANGED: added useCallback/useMemo
-import dynamic from "next/dynamic"; // CHANGED: dynamic import for LoadingScreen (reduces LCP)
-import Script from "next/script"; // CHANGED: next/script for GTM (safer + better perf)
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import dynamic from "next/dynamic";
+import Script from "next/script";
 import Image from "next/image";
 
-// CHANGED: lazy-load LoadingScreen to avoid blocking the critical path
-const LoadingScreen = dynamic(() => import("./loading"), {
-  ssr: false,
-});
+const LoadingScreen = dynamic(() => import("./loading"), { ssr: false });
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -22,16 +19,11 @@ export default function App({ Component, pageProps }) {
   const [notificationCount, setNotificationCount] = useState(1);
   const [eventManager, setEventManager] = useState(null);
   const chatBoxRef = useRef(null);
-  const GTM_ID = "GTM-P2LJ8GNM"; // Replace with your actual GTM ID
+  const GTM_ID = "GTM-P2LJ8GNM";  // Replace with your actual GTM ID
 
-  // CHANGED: Use router callbacks wrapped with useCallback (minor INP win by keeping stable refs)
   const handleStart = useCallback(() => setLoading(true), []);
   const handleComplete = useCallback(() => setLoading(false), []);
 
-  // CHANGED: Use next/script for GTM instead of manual script tag (less layout thrash, better scheduling)
-  // Note: <noscript> iframe should be in _document.js; leaving logic unchanged here.
-
-  // Fetch event manager data (deferred to idle to reduce LCP/INP contention)
   useEffect(() => {
     let aborted = false;
     const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
@@ -39,7 +31,6 @@ export default function App({ Component, pageProps }) {
     const doFetch = async () => {
       try {
         const response = await fetch(
-          // NOTE: Keeping your original env var name; if it's a typo, fix in env, not logic.
           `${process.env.NEXT_PUBLIC_LEAD_SERVER_DOMAINN}/api/get_random_rm`,
           controller ? { signal: controller.signal } : undefined
         );
@@ -51,12 +42,10 @@ export default function App({ Component, pageProps }) {
       }
     };
 
-    // CHANGED: prefer idle time to avoid competing with initial render (LCP)
     const schedule = () => {
       if (typeof window !== "undefined" && "requestIdleCallback" in window) {
         requestIdleCallback(doFetch, { timeout: 2000 });
       } else {
-        // fallback: yield main thread, then fetch
         setTimeout(doFetch, 0);
       }
     };
@@ -69,7 +58,6 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
-  // Route change loading screen
   useEffect(() => {
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
@@ -79,9 +67,8 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
-  }, [router.events, handleStart, handleComplete]); // CHANGED: depend on router.events & stable handlers
+  }, [router.events, handleStart, handleComplete]);
 
-  // Auto open chat on interval (kept logic; schedule after idle to avoid early INP hit)
   useEffect(() => {
     const openIfNeeded = () => {
       try {
@@ -97,11 +84,10 @@ export default function App({ Component, pageProps }) {
           }, 2000);
         }
       } catch {
-        // no-op
+        // ignore
       }
     };
 
-    // CHANGED: defer chat auto-open to idle (prevents layout/INP contention during first paint)
     if (typeof window !== "undefined" && "requestIdleCallback" in window) {
       requestIdleCallback(openIfNeeded, { timeout: 3000 });
     } else {
@@ -109,7 +95,6 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  // Click outside to close chat
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -121,13 +106,10 @@ export default function App({ Component, pageProps }) {
         setShowContent(false);
       }
     };
-
-    // CHANGED: add listener only on client; keep it simple (mousedown is fine; no passive flag needed)
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // CHANGED: memoized inline styles to avoid re-creating objects every render (small INP win)
   const chatBoxStyle = useMemo(
     () => ({
       position: "fixed",
@@ -137,7 +119,7 @@ export default function App({ Component, pageProps }) {
       boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
       borderRadius: "10px",
       width: "300px",
-      zIndex: "999999",
+      zIndex: 999999,
       overflow: "hidden",
     }),
     []
@@ -157,7 +139,7 @@ export default function App({ Component, pageProps }) {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      zIndex: "999999",
+      zIndex: 999999,
     }),
     []
   );
@@ -194,8 +176,6 @@ export default function App({ Component, pageProps }) {
   return (
     <MyContextProvider>
       <GlobalStyles />
-
-      {/* CHANGED: Light-weight preconnects to speed up third-party fetches without CLS */}
       <Head>
         <title>Best Banquet Halls And Wedding Venues at 40% Discount</title>
         <meta
@@ -210,33 +190,24 @@ export default function App({ Component, pageProps }) {
         <meta name="theme-color" content="#870808" />
         <meta name="msapplication-navbutton-color" content="#870808" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#870808" />
-        <link
-          rel="icon"
-          type="image/png"
-          href="https://weddingbanquets.in/fav-icon/favicon14.png"
-        />
-        {/* CHANGED: preconnects for faster third-party starts (helps LCP without layout impact) */}
+        <link rel="icon" type="image/png" href="https://weddingbanquets.in/fav-icon/favicon14.png" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
         <link rel="preconnect" href="https://i.ibb.co" crossOrigin="" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//i.ibb.co" />
-
         <link rel="prefetch" href="https://weddingbanquets.in/logo.png" />
         <meta property="og:site_name" content="Weddingbanquets" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Weddingbanquets" />
-        <meta
-          name="twitter:image"
-          content="https://weddingbanquets.in/twitter-img.png"
-        />
+        <meta name="twitter:image" content="https://weddingbanquets.in/twitter-img.png" />
         {eventManager?.profile_image && (
           <link rel="preload" as="image" href={eventManager.profile_image} />
         )}
       </Head>
 
-      {/* CHANGED: Proper GTM load via next/script using lazyOnload to avoid impacting LCP/INP */}
+      {/* ✅ FIXED: Proper dangerouslySetInnerHTML syntax */}
       {GTM_ID && (
         <>
           <Script
@@ -244,14 +215,19 @@ export default function App({ Component, pageProps }) {
             strategy="lazyOnload"
             src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
           />
-          <Script id="gtm-init" strategy="lazyOnload">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GTM_ID}');
-            `}
-          </Script>
+          <Script
+            id="gtm-init"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${GTM_ID}');
+              `,
+            }}
+          />
         </>
       )}
 
@@ -280,7 +256,6 @@ export default function App({ Component, pageProps }) {
                         width={40}
                         height={40}
                         style={{ borderRadius: "50%", marginRight: "10px" }}
-                        // CHANGED: ensure fixed dimensions already set => no CLS
                         loading="lazy"
                       />
                       <div>
@@ -336,7 +311,7 @@ export default function App({ Component, pageProps }) {
             onClick={handleWhatsAppClick}
             className="whatsapp-icon"
             style={whatsappFabStyle}
-            role="button" // CHANGED: a11y + minor INP improvement in some UAs
+            role="button"
             aria-label="Open WhatsApp chat"
           >
             <Image
@@ -344,7 +319,6 @@ export default function App({ Component, pageProps }) {
               alt="WhatsApp Icon"
               width={55}
               height={55}
-              // CHANGED: not priority; keep lazy; dimensions prevent CLS
               loading="lazy"
             />
             {notificationCount > 0 && (
