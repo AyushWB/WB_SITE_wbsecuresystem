@@ -4,8 +4,18 @@ import { ButtonDark } from "@/styles/components/buttons";
 import Link from "next/link";
 import Head from "next/head";
 import Script from "next/script"; 
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
+
 
 export default function Hero() {
+  // Memoize hero lists to reduce re-renders
+  const heroLists = useMemo(() => [
+    "Promote your services on our best in business site.",
+    "Commute to local engaged couples and book more weddings",
+    "Trusted by over 10,000 professionals."
+  ], []);
+
   return (
     <>
       <Head>
@@ -18,6 +28,14 @@ export default function Hero() {
           content="Learn about Wedding Banquets and how it helps you plan weddings and events with top venues vendors like makeup artists, photographers, mehendi artists and more."
         />
         <meta name="robots" content="index, follow" />
+        {/* Preload Hero Image for LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/business/vendor_hero.png"
+          imageSrcSet="/business/vendor_hero.png"
+          fetchpriority="high"
+        />
       </Head>
 
       <Script
@@ -46,13 +64,12 @@ export default function Hero() {
           <div className="hero-content">
             <Link href={"/"}>
               <div className="logo-container">
-                {/* ✅ Fixed logo dimensions to avoid CLS */}
                 <Image
                   src="/logo.png"
                   alt="Wedding Banquets Logo"
                   width={200}
                   height={40}
-                  priority // small but above-the-fold → boosts LCP
+                  priority
                 />
               </div>
             </Link>
@@ -60,32 +77,28 @@ export default function Hero() {
             <h1 className="hero-title">
               TAKE YOUR BUSINESS TO NEXT LEVEL WITH WEDDING BANQUETS 
             </h1>
+
             <ul className="hero-lists">
-              <li className="hero-list">
-                Promote your services on our best in business site.
-              </li>
-              <li className="hero-list">
-                Commute to local engaged couples and book more weddings
-              </li>
-              <li className="hero-list">
-                Trusted by over 10,000 professionals. 
-              </li>
+              {heroLists.map((list, index) => (
+                <li className="hero-list" key={index}>{list}</li>
+              ))}
             </ul>
+
             <Link href={"/business/signup"}>
               <ButtonDark>Signup</ButtonDark>
             </Link>
           </div>
 
           <div className="hero-banner">
-            {/* ✅ Optimized hero image for LCP */}
             <Image
               src="/business/vendor_hero.png"
               alt="Wedding Banquets Vendor Hero"
               fill
               sizes="100vw"
-              priority // 🚀 improves LCP on mobile & desktop
+              priority
               placeholder="blur"
-              blurDataURL="/business/vendor_hero.png" // temporary fallback; can replace with tiny base64 later
+              blurDataURL="/business/vendor_hero.png"
+              style={{ objectFit: "cover", aspectRatio: "16/9" }}
             />
           </div>
         </div>
@@ -100,11 +113,12 @@ const Wrapper = styled.section`
   .hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
   .logo-container {
-    width: 25rem;
-    height: 50px;
+    width: 200px;
+    height: 40px;
     cursor: pointer;
     position: relative;
   }
@@ -127,7 +141,7 @@ const Wrapper = styled.section`
       color: var(--para);
       display: flex;
       flex-direction: column;
-      gap: .5rem;
+      gap: 0.5rem;
 
       .hero-list {
         list-style: disc !important;
@@ -155,6 +169,20 @@ const Wrapper = styled.section`
   @media (max-width: 800px) {
     .hero-content {
       padding: 5rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .hero-content {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-list {
+        font-size: 1.5rem;
+      }
+    }
+    .hero-banner {
+      height: 250px;
     }
   }
 `;

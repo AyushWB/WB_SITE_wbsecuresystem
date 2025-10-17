@@ -1,88 +1,99 @@
 import styled from "styled-components";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import Offer from "@/components/miscellaneous/Offer";
-import SearchBar3 from "@/components/miscellaneous/SearchBar3";
 import { useGlobalContext } from "@/context/MyContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
-function Hero({ venueCategogies}) {
-  let venueObject = [];
-  let vendorObject = [];
-  const { venue_list, vendor_list, vendorCategories, selectedCity, venueCategories } = useGlobalContext();
-  let venueNames = venueCategories.map((category) => category.name);
-  let vendorNames = vendorCategories.map((category) => category.name);
-  let vendorBrandNames = vendor_list.map((category) => category.brand_name);
-  let allVenues = venue_list.map((category) => category.name);
-  let allVenuesSlug = venue_list.map((category) => category.slug);
-  let allVendorsSlug = vendor_list.map((category) => category.slug);
+const Offer = dynamic(() => import("@/components/miscellaneous/Offer"), {
+  ssr: false,
+  loading: () => null,
+});
+
+import SearchBar3 from "@/components/miscellaneous/SearchBar3";
+
+function Hero() {
+  const { venue_list, vendor_list, vendorCategories, selectedCity, venueCategories } =
+    useGlobalContext();
+
   const [backgroundImage, setBackgroundImage] = useState("/banner/delhi.jpg");
-  const suggestions = [
-    ...venueNames,
-    ...vendorNames,
-    ...vendorBrandNames,
-    ...allVenues,
-  ];
-  for (let i = 0; i < allVenues.length; i++) {
-    let obj = {};
-    obj[allVenues[i]] = allVenuesSlug[i];
-    venueObject.push(obj);
-  }
-  for (let i = 0; i < vendorBrandNames.length; i++) {
-    let obj = {};
-    obj[vendorBrandNames[i]] = allVendorsSlug[i];
-    vendorObject.push(obj);
-  }
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const memoizedData = useMemo(() => {
+    const venueNames = venueCategories.map((c) => c.name);
+    const vendorNames = vendorCategories.map((c) => c.name);
+    const vendorBrandNames = vendor_list.map((c) => c.brand_name);
+    const allVenues = venue_list.map((c) => c.name);
+    const allVenuesSlug = venue_list.map((c) => c.slug);
+    const allVendorsSlug = vendor_list.map((c) => c.slug);
+
+    const suggestions = [...venueNames, ...vendorNames, ...vendorBrandNames, ...allVenues];
+
+    const venueObject = allVenues.map((v, i) => ({ [v]: allVenuesSlug[i] }));
+    const vendorObject = vendorBrandNames.map((v, i) => ({ [v]: allVendorsSlug[i] }));
+
+    return {
+      venueObject,
+      vendorObject,
+      suggestions,
+      vendorBrandNames,
+      allVenues,
+      allVenuesSlug,
+    };
+  }, [venueCategories, vendorCategories, vendor_list, venue_list]);
+
   useEffect(() => {
-    const cityImagePath = `/banner/${selectedCity.toLowerCase()}.jpg`;
-
-    async function checkImageExists(url) {
-      try {
-        const response = await fetch(url, { method: "HEAD" });
-        return response.ok;
-      } catch (error) {
-        return false;
-      }
+    const path = `/banner/${selectedCity?.toLowerCase?.() || "delhi"}.jpg`;
+    if (typeof window !== "undefined") {
+      const preload = new window.Image();
+      preload.src = path;
+      preload.onload = () => setBackgroundImage(path);
     }
-
-    checkImageExists(cityImagePath).then((imageExists) => {
-      const backgroundImage = imageExists
-        ? cityImagePath
-        : "/banner/delhi.jpg";
-      setBackgroundImage(backgroundImage);
-    });
-  }, [selectedCity, setBackgroundImage]);
+  }, [selectedCity]);
 
   return (
-    <Section className="section-hero">
+    <Section aria-label="Hero Section">
       <div className="hero-container">
         <Image
           src={backgroundImage}
           alt="Wedding Banquets, Banquet halls, Wedding Venues"
-          fill={true}
-          priority={true} 
-          quality={60}
-          // sizes="(100vw)"
+          fill
+          priority
+          quality={65}
+          fetchPriority="high"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/2wCEAA...==" // placeholder trimmed
+          sizes="100vw"
+          style={{
+            opacity: isImageLoaded ? 1 : 0.25,
+            transition: "opacity 0.5s ease-out",
+            willChange: "opacity",
+          }}
+          onLoadingComplete={() => setIsImageLoaded(true)}
         />
-        <div className="overlay"></div>
+
+        <div className="overlay" />
+
         <div className="hero-title-container">
-          <h1 className="title">Find The Perfect Wedding Banquet 
-          <br />Hall For Your Dream Day!</h1>
+          <h1 className="title">
+            Find The Perfect Wedding Banquet <br />
+            Hall For Your Dream Day!
+          </h1>
           <p className="description">
-            Explore over 50,000+ Venues and Vendors with reviews, pricing and
-            more.
+            Explore over 50,000+ Venues and Vendors with reviews, pricing and more.
           </p>
         </div>
 
         <SearchBar3
-          suggestions={suggestions}
+          suggestions={memoizedData.suggestions}
           selectedCity={selectedCity}
-          vendorBrandNames={vendorBrandNames}
-          allVenues={allVenues}
-          allVenuesSlug={allVenuesSlug}
-          venueObject={venueObject}
-          vendorObject={vendorObject}
+          vendorBrandNames={memoizedData.vendorBrandNames}
+          allVenues={memoizedData.allVenues}
+          allVenuesSlug={memoizedData.allVenuesSlug}
+          venueObject={memoizedData.venueObject}
+          vendorObject={memoizedData.vendorObject}
         />
       </div>
+
       <Offer />
     </Section>
   );
@@ -98,33 +109,49 @@ const Section = styled.section`
     position: relative;
     width: 100%;
     height: 85vh;
+    overflow: visible;
+    background: #000;
+
     .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.15) 100%
+      );
+      will-change: opacity;
+      transition: opacity 0.3s ease-out;
+      z-index: 1;
     }
 
     .hero-title-container {
       position: absolute;
       top: 40%;
-      right: 50%;
-      transform: translate(50%, -50%);
-      min-width: 70rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      width: 90%;
+      max-width: 700px;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
 
       h1 {
-        text-align: center;
-        color: white;
+        color: #fff;
         font-size: 4rem;
-        font-family: "Montserrat";
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
       }
+
       p {
-        text-align: center;
-        color: white;
+        color: #fff;
         font-size: 2rem;
         font-weight: 500;
+        opacity: 0.95;
         margin-top: 1rem;
         font-family: "Montserrat";
       }
@@ -133,32 +160,23 @@ const Section = styled.section`
 
   @media (max-width: 800px) {
     .hero-container {
-      position: relative;
-      width: 100%;
       height: 450px;
     }
   }
 
   @media (max-width: 550px) {
     .hero-container {
-      position: relative;
-      width: 100%;
-      height: 350px;
+      height: 360px;
     }
 
     .hero-title-container {
-      position: absolute;
-      top: 40%;
-      right: 50%;
-      transform: translate(50%, -50%);
-      min-width: 90% !important;
-
       h1 {
         font-size: 2.5rem !important;
+        line-height: 1.3;
       }
-      P {
+
+      p {
         font-size: 1.8rem !important;
-        padding: 0.5rem 1rem;
       }
     }
   }

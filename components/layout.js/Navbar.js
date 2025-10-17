@@ -29,6 +29,7 @@ function Navbar() {
                     alt='logo'
                     fill
                     sizes="(100vw)"
+                    priority
                 />
             </Link>
         </div>
@@ -389,4 +390,3 @@ grid-template-columns: 4fr 6fr;
     }
 }
 `
-

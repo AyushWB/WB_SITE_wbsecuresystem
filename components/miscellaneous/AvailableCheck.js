@@ -1,15 +1,19 @@
 import styled, { css } from "styled-components";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-// import { MdCancel } from 'react-icons/md'
 import { AiOutlineClose } from "react-icons/ai";
 import { useGlobalContext } from "@/context/MyContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { Spinner1 } from "@/styles/components/spinner";
-import EncryprKey from "./EncryprKey";
-import ReCAPTCHA from "react-google-recaptcha";
+
+// ✅ Lazy-load ReCAPTCHA only when needed (reduces LCP)
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function AvailableCheck() {
-  const today = new Date().toISOString().split("T")[0];
+  const today = useMemo(() => new Date().toISOString().split("T")[0], []);
   const {
     leadFormData,
     isAvailableCheckOpen,
@@ -17,58 +21,35 @@ export default function AvailableCheck() {
     setIsAvailableCheckShow,
     setIsAvailableCheckID,
     userIP,
-    secureToken
+    secureToken,
   } = useGlobalContext();
+
   const [recaptcha, setrecaptcha] = useState(null);
   const [isSent, setIsSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
-  const [csrfToken, setCsrfToken] = useState("");
-  const [errors, setErrors] = useState({
-    phoneNumber: "",
-    name: "",
-  });
+  const [errors, setErrors] = useState({ phoneNumber: "", name: "" });
 
-  useEffect(() => {
-    if (isAvailableCheckOpen) {
-      conversionHandler("click");
-    } else {
-      console.log("Lead model close");
-    }
-  }, [isAvailableCheckOpen]);
+  // ✅ Stable handler (no new function each render)
+  const hideCard = useCallback(() => {
+    setIsAvailableCheckOpen(false);
+    setIsSent(false);
+    setPhoneNumber("");
+    setName("");
+    setErrors({ phoneNumber: "", name: "" });
+  }, [setIsAvailableCheckOpen]);
 
-  async function conversionHandler(type) {
-    try {
-      const url = `${process.env.NEXT_PUBLIC_SERVER_DOMAIN_LIVE}/api/click_conversion_handle`;
-      let response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...leadFormData, type: type }),
-      });
-
-      response = await response.json();
-      console.log(response);
-      if (response.success) {
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
- 
-
-  const onRecaptchaChange = (value) => {
+  const onRecaptchaChange = useCallback((value) => {
     setrecaptcha(value);
-  };
+  }, []);
 
-  const handlePhoneInput = (e) => {
+  // ✅ Memoize handler to avoid re-renders on every keystroke
+  const handlePhoneInput = useCallback((e) => {
     const value = e.target.value;
     setPhoneNumber(value);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
+    setErrors((prev) => ({
+      ...prev,
       phoneNumber:
         value.length === 10
           ? parseInt(value, 10) >= 6000000000
@@ -76,46 +57,52 @@ export default function AvailableCheck() {
             : "Phone number must be greater than or equal to 6000000000"
           : "Phone number must be 10 digits",
     }));
-  };
+  }, []);
 
-  const handleNameInput = (e) => {
+  const handleNameInput = useCallback((e) => {
     const value = e.target.value;
     setName(value);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
+    setErrors((prev) => ({
+      ...prev,
       name: value.length <= 200 ? "" : "Name must be 200 characters or less",
     }));
-  };
+  }, []);
 
-  const hideCard = () => {
-    setIsAvailableCheckOpen(false);
-    setIsSent(false);
-    setPhoneNumber("");
-    setName("");
-    setErrors({
-      phoneNumber: "",
-      name: "",
-    });
-  };
-  async function submitHandler() {
+  // ✅ Conversion handler memoized
+  const conversionHandler = useCallback(async (type) => {
     try {
-      if (errors.phoneNumber || errors.name) {
-        return;
-      }
+      const url = `${process.env.NEXT_PUBLIC_SERVER_DOMAIN_LIVE}/api/click_conversion_handle`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...leadFormData, type }),
+      });
+      const data = await response.json();
+      if (data.success) console.log("Conversion tracked:", type);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [leadFormData]);
+
+  useEffect(() => {
+    if (isAvailableCheckOpen) conversionHandler("click");
+  }, [isAvailableCheckOpen, conversionHandler]);
+
+  const submitHandler = useCallback(async () => {
+    try {
+      if (errors.phoneNumber || errors.name) return;
       setIsLoading(true);
-      const utm_source_active = localStorage.getItem('utm_source_active');
+      const utm_source_active = localStorage.getItem("utm_source_active");
       let response = await fetch("/api/save_lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mobile: phoneNumber,
           preference: leadFormData.venue_slug,
-          name: name,
+          name,
           token: secureToken,
-          recaptcha: recaptcha,
-          is_ad : utm_source_active,
+          recaptcha,
+          is_ad: utm_source_active,
           user_ip: userIP,
         }),
       });
@@ -128,18 +115,29 @@ export default function AvailableCheck() {
         conversionHandler("conversion");
         setIsAvailableCheckShow(true);
         setIsAvailableCheckID(leadFormData.venue_id);
-      } else {
-        // console.log(response.msg)
       }
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [
+    errors,
+    phoneNumber,
+    name,
+    recaptcha,
+    leadFormData,
+    secureToken,
+    userIP,
+    conversionHandler,
+    setIsAvailableCheckShow,
+    setIsAvailableCheckID,
+  ]);
+
   return (
     <Wrapper show={isAvailableCheckOpen}>
       <div className="discont-container" tabIndex="1">
+        {/* ✅ SVG interaction stable */}
         <AiOutlineClose className="cancel-icon" onClick={hideCard} />
         <div className="content">
           {isSent ? (
@@ -148,6 +146,7 @@ export default function AvailableCheck() {
               alt="thank you"
               width={150}
               height={150}
+              priority
             />
           ) : (
             <Image
@@ -155,6 +154,7 @@ export default function AvailableCheck() {
               alt="An example image"
               width={160}
               height={160}
+              priority
             />
           )}
           {isSent ? (
@@ -168,6 +168,7 @@ export default function AvailableCheck() {
               ? "Our team will reach you soon with best price.."
               : "Share your mobile number to see the Availability"}
           </p>
+
           {!isSent && (
             <>
               <div className="discount-form">
@@ -176,9 +177,10 @@ export default function AvailableCheck() {
                     <div className="flag-box">
                       <Image
                         src={"/icons/name.png"}
-                        fill={true}
+                        fill
                         alt="flag"
-                        sizes="()"
+                        sizes="24px"
+                        priority={false}
                       />
                     </div>
                   </span>
@@ -189,18 +191,20 @@ export default function AvailableCheck() {
                   className="input"
                   placeholder="Full Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleNameInput}
                 />
               </div>
+
               <div className="discount-form">
                 <div className="country-code">
                   <span>
                     <div className="flag-box">
                       <Image
                         src={"/icons/calender.png"}
-                        fill={true}
+                        fill
                         alt="calender"
-                        sizes="()"
+                        sizes="24px"
+                        priority={false}
                       />
                     </div>
                   </span>
@@ -214,15 +218,17 @@ export default function AvailableCheck() {
                   onClick={(e) => e.target.showPicker()}
                 />
               </div>
+
               <div className="discount-form">
                 <div className="country-code">
                   <span>
                     <div className="flag-box">
                       <Image
                         src={"/icons/flag.png"}
-                        fill={true}
+                        fill
                         alt="flag"
-                        sizes="()"
+                        sizes="24px"
+                        priority={false}
                       />
                     </div>
                   </span>
@@ -232,7 +238,6 @@ export default function AvailableCheck() {
                   name="phone-number"
                   className={`input ${errors.phoneNumber ? "error" : ""}`}
                   placeholder="Phone Number"
-                  max={10}
                   value={phoneNumber}
                   onChange={handlePhoneInput}
                 />
@@ -240,10 +245,11 @@ export default function AvailableCheck() {
               {errors.phoneNumber && (
                 <span className="error-text">{errors.phoneNumber}</span>
               )}
-              {/* <ReCAPTCHA sitekey="6LfVFGcpAAAAAO606P0XnI79hWitIwuF4HPhB_nR" onChange={onRecaptchaChange} /> */}
+              {/* Lazy-loaded ReCAPTCHA */}
+              {/* <ReCAPTCHA sitekey="YOUR_KEY" onChange={onRecaptchaChange} /> */}
             </>
           )}
-          {/* {recaptcha===null ?( <span className="error-text">Please Fill ReCAPTCHA</span>):(<></> )} */}
+
           {isSent ? (
             <button className="discount-btn" onClick={hideCard}>
               CLOSE
@@ -252,9 +258,6 @@ export default function AvailableCheck() {
             <button className="discount-btn" onClick={submitHandler}>
               {isLoading ? <Spinner1 /> : "SUBMIT"}
             </button>
-            //   <button className="discount-btn" disabled={recaptcha===null} onClick={submitHandler}>
-            //   {isLoading ? <Spinner1 /> : "SUBMIT"}
-            // </button>
           )}
         </div>
       </div>
@@ -263,45 +266,26 @@ export default function AvailableCheck() {
 }
 
 const Wrapper = styled.div`
-  transition: all 0.3s linear;
-  opacity: 1;
-  visibility: visible;
-
-  ${({ show }) =>
-    !show &&
-    css`
-      opacity: 0;
-      visibility: hidden;
-    `}
-
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  inset: 0;
   z-index: 9;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .discont-container {
-    transition: all 0.3s linear;
-    transform: scale(0.5);
-
-    ${({ show }) =>
-    show &&
-    css`
-        transform: scale(1);
-      `}
+    transition: transform 0.3s ease;
+    transform: ${({ show }) => (show ? "scale(1)" : "scale(0.5)")};
     max-width: 45rem;
     min-width: 45rem;
-    position: relative;
     background-color: white;
-    z-index: 9;
     border-radius: 5px;
     box-shadow: 0 0 10px 2000px rgba(0, 0, 0, 0.5);
     padding: 4rem 3rem 5rem 3rem;
+    position: relative;
 
     .cancel-icon {
       position: absolute;
@@ -310,6 +294,12 @@ const Wrapper = styled.div`
       font-size: 3rem;
       color: var(--primary-color);
       cursor: pointer;
+      will-change: transform; /* GPU hint for smoother INP */
+      transition: transform 0.2s ease;
+    }
+
+    .cancel-icon:active {
+      transform: scale(0.9);
     }
 
     .title {
@@ -326,102 +316,77 @@ const Wrapper = styled.div`
       flex-direction: column;
       justify-content: center;
       gap: 1.4rem;
+    }
 
-      .discount-heading {
-        color: var(--primary-color);
-        font-size: 3rem;
-        font-family: Montserrat;
-        font-weight: 700;
-        text-transform: capitalize;
-      }
+    .discount-heading {
+      color: var(--primary-color);
+      font-size: 3rem;
+      font-family: Montserrat;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
 
-      .discount-text {
-        font-size: 1.6rem;
-        color: var(--para);
-        text-align: center;
-        font-family: "Poppins";
-      }
+    .discount-text {
+      font-size: 1.6rem;
+      color: var(--para);
+      text-align: center;
+      font-family: "Poppins";
+    }
 
-      .discount-form {
+    .discount-form {
+      display: flex;
+      width: 100%;
+      border-radius: 0.3rem;
+      border: 1px solid var(--primary-color);
+
+      .country-code {
+        padding: 10px 5px;
         display: flex;
-        width: 100%;
-        border-radius: 0.3rem;
-        border: 1px solid var(--primary-color);
-
-        .country-code {
-          padding: 10px 5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--primary-color);
-          color: white;
-          font-family: "Poppins";
-          font-weight: 400;
-          font-size: 1.6rem;
-
-          span {
-            margin: 0px 5px;
-            .flag-box {
-              position: relative;
-              width: 20px;
-              height: 15px;
-            }
-          }
-
-          .down-icon {
-            font-size: 1.7rem;
-            padding-left: 0.3rem;
-            color: white;
-          }
-        }
-
-        .input {
-          border: none;
-          outline: none;
-          width: 100%;
-          font-size: 1.8rem;
-          font-family: "Poppins";
-          font-weight: 400;
-          padding: 5px 0.9rem;
-          background-color: white;
-        }
-
-        input[type="date"] {
-          display: block;
-          -webkit-appearance: textfield;
-          -moz-appearance: textfield;
-          min-height: 1.2em;
-        }
-
-        .date-picker {
-          border: none;
-          outline: none;
-          width: 100%;
-          border: 2px solid red;
-          font-size: 1.8rem;
-          font-family: "Poppins";
-          font-weight: 400;
-          padding: 5px 0.9rem;
-          background-color: white;
-        }
-      }
-
-      .discount-btn {
+        align-items: center;
+        justify-content: center;
         background-color: var(--primary-color);
-        white-space: nowrap;
         color: white;
-        font-size: 2rem;
-        border: none;
-        width: 100%;
-        padding: 1rem 3rem;
-        border-radius: 0.3rem;
-        cursor: pointer;
-        text-transform: uppercase;
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 1.6rem;
       }
+
+      .flag-box {
+        position: relative;
+        width: 24px;
+        height: 24px;
+      }
+
+      .input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 1.8rem;
+        font-family: "Poppins";
+        font-weight: 400;
+        padding: 5px 0.9rem;
+        background-color: white;
+      }
+    }
+
+    .discount-btn {
+      background-color: var(--primary-color);
+      color: white;
+      font-size: 2rem;
+      border: none;
+      width: 100%;
+      padding: 1rem 3rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .discount-btn:active {
+      background-color: #e05050;
     }
   }
 
-  // Hide the arrow from the number input
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;

@@ -583,10 +583,10 @@ const SearchBarVenue = ({
       if (suggestion == "Choreographers") {
     suggestion = "Wedding Choreographer";
   }
-  if (suggestion.trim().toLowerCase().replace(/\s*/g, "") === "decorators/florists") {
-  suggestion = "Wedding Decorators";
-}
-      if (suggestion == "Invitation Card") {
+      if (suggestion == "Decorators / Florists") {
+    suggestion = "Wedding Decorators";
+  }
+      if (suggestion == "Invitation Cards") {
     suggestion = "Wedding Invitation Card";
   }
       if (suggestion == "Bridal Wear") {
