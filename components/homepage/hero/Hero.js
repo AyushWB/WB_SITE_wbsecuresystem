@@ -75,7 +75,7 @@ function Hero() {
 
         <div className="hero-title-container">
           <h1 className="title">
-            Find The Perfect Wedding Banquet <br />
+            Test The Perfect Wedding Banquet <br />
             Hall For Your Dream Day!
           </h1>
           <p className="description">
